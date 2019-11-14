@@ -131,7 +131,7 @@ ensure_arcanist()
   git clone https://github.com/phacility/arcanist.git arcanist 2> /dev/null || (cd arcanist || exit 1; git pull)
 }
 
-if [ "_arg_action" = "install" || "_arg_action" = "upgrade"]
+if [ "_arg_action" == "install" ] || [ "_arg_action" == "upgrade" ]
 then
   cd "$SCRIPT_PATH"/.. || exit 1
   git pull
