@@ -1,0 +1,20 @@
+#!/bin/bash
+
+RESTORE_PATH=`pwd`
+SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.26/checkstyle-8.26-all.jar
+
+
+if [ "$1" = "upgrade" ]
+then
+  cd "$SCRIPT_PATH"
+  cd ".."
+
+  git pull
+
+  cd "$RESTORE_PATH"
+else
+  echo "Usage:"
+  echo "upgrade: Upgrade the elhubdev repository from source"
+  echo "help:    These help instructions"
+fi

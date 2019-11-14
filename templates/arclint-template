@@ -1,0 +1,50 @@
+{
+    "exclude": [
+        "(\\.idea$)",
+        "(^target/)"
+    ],
+    "linters": {
+       "checkstyle": {
+            "type": "checkstyle",
+            "include": "(\\.java$)",
+            "checkstyle.config": "../phabricator/elhubdev/checkstyle/elhub-checks.xml"
+        },
+        "detekt": {
+            "type": "detekt",
+            "include": "(\\.kt$)",
+            "detekt.config": "../phabricator/elhubdev/detekt/elhub-config.yml"
+        },
+        "filename": {
+            "type": "filename"
+        },
+        "json": {
+            "type": "json",
+            "include": [
+                "(^\\.arcconfig$)",
+                "(^\\.arclint$)",
+                "(\\.json$)"
+            ]
+        },
+        "generated": {
+            "type": "generated"
+        },
+        "nolint": {
+            "type": "nolint"
+        },
+        "spelling": {
+            "type": "spelling"
+        },
+        "text": {
+            "type": "text",
+            "severity": {
+                "1": "disabled",
+                "3": "disabled",
+                "5": "disabled"
+            }
+        },
+        "xml": {
+            "type": "xml",
+            "include": "(\\.xml$)"
+        }
+    }
+}

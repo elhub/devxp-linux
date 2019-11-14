@@ -1,0 +1,4 @@
+{
+    "phabricator.uri" : "http://phabricator.elhub.cloud",
+    "unit.engine": "GradleUnitTestEngine"
+}
