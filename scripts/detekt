@@ -9,11 +9,11 @@ then
   cd "$SCRIPT_PATH"
   cd "../detekt"
 
-  if [ -f "detekt-cli-1.0.0-RC12-all.jar" ]
+  if [ -f "detekt.jar" ]
   then
-    java -jar detekt-cli-1.0.0-RC12-all.jar $*
+    java -jar detekt.jar $*
   else
-    echo 'detekt-cli-1.0.0-RC12-all.jar can not be found'
+    echo 'detekt.jar can not be found'
   fi
 
   cd "$RESTORE_PATH"

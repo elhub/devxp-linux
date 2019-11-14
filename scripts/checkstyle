@@ -9,11 +9,11 @@ then
   cd "$SCRIPT_PATH"
   cd "../checkstyle"
 
-  if [ -f "checkstyle-8.16-all.jar" ]
+  if [ -f "checkstyle.jar" ]
   then
-    java -jar checkstyle-8.16-all.jar $*
+    java -jar checkstyle.jar $*
   else
-    echo 'checkstyle-8.16-all.jar can not be found'
+    echo 'checkstyle.jar can not be found'
   fi
 
   cd "$RESTORE_PATH"
