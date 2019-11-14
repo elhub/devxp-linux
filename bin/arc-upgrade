@@ -1,27 +1,26 @@
 #!/bin/bash
-
 RESTORE_PATH=`pwd`
 SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_CHECKSTYLE="checkstyle/repo"
 REPO_DETEKT="detekt/repo"
 
-
 if [ "$1" = "upgrade" ]
 then
-  cd "$SCRIPT_PATH"
+  cd "$SCRIPT_PATH" || exit 1
   cd ".."
   git pull
   # checkstyle
-  git clone https://github.com/checkstyle/checkstyle.git "$REPO_CHECKSTYLE" 2> /dev/null || (cd "$REPO_CHECKSTYLE" ; git pull)
-  cd $REPO_CHECKSTYLE
+  git clone https://github.com/checkstyle/checkstyle.git "$REPO_CHECKSTYLE" 2> /dev/null || (cd "$REPO_CHECKSTYLE" || exit 1; git pull)
+  cd $REPO_CHECKSTYLE || exit 1
   mvn compile
   cd ../..
   # detekt
-  git clone https://github.com/arturbosch/detekt.git "$REPO_DETEKT" 2> /dev/null || (cd "$REPO_DETEKT" ; git pull)
-  gradlew build
+  git clone https://github.com/arturbosch/detekt.git "$REPO_DETEKT" 2> /dev/null || (cd "$REPO_DETEKT" || exit 1; git pull)
+  cd $REPO_DETEKT || exit 1
+  ./gradlew build
   cd ../..
   # Wrap-up
-  cd "$RESTORE_PATH"
+  cd "$RESTORE_PATH" || exit 1
 else
   echo "Usage:"
   echo "upgrade: Upgrade the dev-phabricator repository from source"
