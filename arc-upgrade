@@ -12,13 +12,18 @@ then
   # checkstyle
   git clone https://github.com/checkstyle/checkstyle.git "$REPO_CHECKSTYLE" 2> /dev/null || (cd "$REPO_CHECKSTYLE" || exit 1; git pull)
   cd $REPO_CHECKSTYLE || exit 1
-  mvn compile
-  cd ../..
+  mvn -DskipTests package
+  cd ..
+  rm $REPO_CHECKSTYLE/target/*tests.jar
+  ln -s $REPO_CHECKSTYLE/target/`ls -rt $REPO_CHECKSTYLE/target | tail -n1` checkstyle.jar
+  cd ..
   # detekt
   git clone https://github.com/arturbosch/detekt.git "$REPO_DETEKT" 2> /dev/null || (cd "$REPO_DETEKT" || exit 1; git pull)
   cd $REPO_DETEKT || exit 1
-  ./gradlew build
-  cd ../..
+  ./gradlew build -x test
+  cd ..
+  ln -s $REPO_DETEKT/build/libs/`ls -rt $REPO_DETEKT/build/libs | tail -n1` detekt.jar
+  cd ..
   # Wrap-up
   cd "$RESTORE_PATH" || exit 1
 else

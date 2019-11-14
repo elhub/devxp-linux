@@ -2,5 +2,6 @@
 .idea/
 *.iml
 *.iws
+*.jar
 checkstyle/repo
 detekt/repo
