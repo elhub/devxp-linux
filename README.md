@@ -4,8 +4,16 @@ dev-phabricator contains settings and utility scripts and tools for the Phabrica
 
 ## Getting Started
 
-The following instructions assumes a standard Windows 10 PC with WSL and Ubuntu installed. If you have other systems,
-you will need to correct your setup accordingly. 
+### Prerequisites
+
+* Git
+* PHP
+
+The following instructions assumes a standard Windows 10 PC with WSL and Ubuntu installed. Both Git and PHP should
+be installed by default if your PC is installed with the Elhub window-dev-box setup. If you have other systems,
+you will need to correct your setup accordingly.
+
+### Install
 
 We strongly recommend installing this script in C:\ProgramData\Phabricator. From Ubuntu:
 
@@ -21,15 +29,25 @@ Then run the phabricator installer script:
 
     $ phabricator install
 
-Once it is done, you can verYou can verify that everything is set up correctly by running the checkstyle and
-detekt scripts from the command line.
+Link the arc config to the default location for Linux. 
+
+     $ ln -s /mnt/c/ProgramData/Phabricator/arcanist/config /etc/arcconfig
+
+You can verify that everything is set up correctly by running the checkstyle and detekt scripts from the
+command line in both Ubuntu and Windows cmd.
  
-### Prerequisites
+### Troubleshooting
 
-**Git** is required to retrieve the EL-module and to run some of the scripts.
+Arcanist requires php.curl; ensure the following is set in your php.ini:
 
-**Arcanist** is required to use the extensions. See the [Installing Arcanist](http://confluence.elhub.org/display/ELTOR/Installing+Arcanist)
-guide.
+    extension=php_curl.dll
+
+Do not clone from Windows. Doing so will likely give you issues with git autocrlf option. If you find uch issues,
+consider deleting the directory and setting:
+
+    $ git config --global core.autocrlf false
+    
+Before cloning the repository. Once arcanist has been installed, you can re-enable core.autocrlf.
 
 ### Structure
 
@@ -54,13 +72,16 @@ directory contains the latest jar, and the checkstyle configuration style that c
 
 See the [checkstyle documentation](http://checkstyle.sourceforge.net/cmdline.html) for more detailed information. 
 
+#### Detekt
+
+Detekt can be used as a command line tool to check that your Kotlin code conforms with a given Java style. This
+directory contains the latest jar, and the kotlin configuration style that conforms to the Elhub Java style. 
+
+See the [detekt documentation](https://arturbosch.github.io/detekt/) for more detailed information. 
+
 #### extensions
 
 This contains Elhub's arcanist extensions.
-
-#### intellij
-
-This contains code styles for IntelliJ. Use File > Settings > Editor > Code Styles and import the XML schema. 
 
 #### templates
 
