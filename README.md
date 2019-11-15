@@ -4,22 +4,25 @@ dev-phabricator contains settings and utility scripts and tools for the Phabrica
 
 ## Getting Started
 
-It is recommended that elhubdev is installed into the development workspace in the "phabricator" directory (which should
-also contain arcanist and libphutil). Doing so allows arcanist to find elhubdev without having to specify an absolute
-path.
+The following instructions assumes a standard Windows 10 PC with WSL and Ubuntu installed. If you have other systems,
+you will need to correct your setup accordingly. 
 
-    $ git clone http://your.username@stash.elhub.org/scm/tt/elhubdev.git
+We strongly recommend installing this script in C:\ProgramData\Phabricator. From Ubuntu:
 
-The bin of the new path should be added to the path environment variable; i.e., if elhubdev is installed at
+    $ git clone https://phabricator.elhub.cloud/diffusion/DPHABRICATOR/dev-phabricator.git /mnt/c/ProgramData/Phabricator
 
-    c:\elhub\phabricator\elhubdev
+Set up the paths to Phabricator:
 
-Then add the following to path: 
+    export PATH="$PATH:/mnt/c/ProgramData/Phabricator/arcanist/bin:/mnt/c/ProgramData/Phabricator/scripts"
 
-    c:\elhub\phabricator\elhubdev\bin
+Set up the same path in Windows, if you wish to run arcanist from there (recommended).
 
-You can verify that the new path is set up correctly by running "checkstyle" from the command line. It will return an
-error code, but should find the checkstyle command-line tool (and request an input file).
+Then run the phabricator installer script:
+
+    $ phabricator install
+
+Once it is done, you can verYou can verify that everything is set up correctly by running the checkstyle and
+detekt scripts from the command line.
  
 ### Prerequisites
 

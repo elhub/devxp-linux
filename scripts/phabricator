@@ -108,10 +108,10 @@ ensure_checkstyle()
   cd "$SCRIPT_PATH"/.. || exit 1
   git clone https://github.com/checkstyle/checkstyle.git "$REPO_CHECKSTYLE" 2> /dev/null || (cd "$REPO_CHECKSTYLE" || exit 1; git pull)
   cd $REPO_CHECKSTYLE || exit 1
-  mvn -DskipTests -q package
+  mvn -DskipTests -q clean package
   cd ../..
   rm $REPO_CHECKSTYLE/target/*tests.jar
-  ln -f -s $REPO_CHECKSTYLE/target/`ls -rt $REPO_CHECKSTYLE/target | tail -n1` checkstyle/checkstyle.jar
+  mv $REPO_CHECKSTYLE/target/`ls -rt $REPO_CHECKSTYLE/target | tail -n1` checkstyle/checkstyle.jar
 }
 
 ensure_detekt()
@@ -119,9 +119,9 @@ ensure_detekt()
   cd "$SCRIPT_PATH"/.. || exit 1
   git clone https://github.com/arturbosch/detekt.git "$REPO_DETEKT" 2> /dev/null || (cd "$REPO_DETEKT" || exit 1; git pull)
   cd $REPO_DETEKT || exit 1
-  ./gradlew build -x test -q
+  ./gradlew clean build -x test -q
   cd ../..
-  ln -f -s $REPO_DETEKT/build/libs/`ls -rt $REPO_DETEKT/build/libs | tail -n1` detekt/detekt.jar
+  mv $REPO_DETEKT/build/libs/`ls -rt $REPO_DETEKT/build/libs | tail -n1` detekt/detekt.jar
 }
 
 ensure_arcanist()
