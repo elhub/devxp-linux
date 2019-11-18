@@ -108,10 +108,10 @@ ensure_checkstyle()
   cd "$SCRIPT_PATH"/.. || exit 1
   git clone https://github.com/checkstyle/checkstyle.git "$REPO_CHECKSTYLE" 2> /dev/null || (cd "$REPO_CHECKSTYLE" || exit 1; git pull)
   cd $REPO_CHECKSTYLE || exit 1
-  mvn -DskipTests -q clean install
+  mvn -DskipTests -P assembly -q clean package
   cd ../..
   rm $REPO_CHECKSTYLE/target/*tests.jar
-  mv `ls -rt $REPO_CHECKSTYLE/target/*jar | tail -n1` lib/checkstyle.jar
+  mv `ls -rt $REPO_CHECKSTYLE/target/*-all.jar | tail -n1` lib/checkstyle.jar
   chmod 755 lib/checkstyle.jar
 }
 
