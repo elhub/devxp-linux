@@ -27,26 +27,6 @@ final class DetektLinter extends ArcanistExternalLinter {
     return 'detekt';
   }
 
-  public function getLinterConfigurationOptions() {
-    $options = array(
-      'detekt.config' => array(
-        'type' => 'string',
-        'help' => pht("Configuration file to use."),
-      ),
-    );
-
-    return $options + parent::getLinterConfigurationOptions();
-  }
-
-  public function setLinterConfigurationValue($key, $value) {
-    switch ($key) {
-      case 'detekt.config':
-        $this->config = $value;
-        return;
-    }
-    return parent::setLinterConfigurationValue($key, $value);
-  }
-
   public function getDefaultBinary() {
     return 'detekt';
   }

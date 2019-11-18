@@ -42,27 +42,6 @@ final class CheckstyleLinter extends ArcanistExternalLinter {
     return 'checkstyle';
   }
 
-  public function getLinterConfigurationOptions() {
-    $options = array(
-      'checkstyle.config' => array(
-        'type' => 'string',
-        'help' => pht("Configuration file to use."),
-      ),
-    );
-
-    return $options + parent::getLinterConfigurationOptions();
-  }
-
-  public function setLinterConfigurationValue($key, $value) {
-    switch ($key) {
-      case 'checkstyle.config':
-        $this->config = $value;
-        return;
-    }
-
-    return parent::setLinterConfigurationValue($key, $value);
-  }
-
   public function getDefaultBinary() {
     return 'checkstyle';
   }
