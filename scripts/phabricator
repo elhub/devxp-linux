@@ -111,7 +111,8 @@ ensure_checkstyle()
   mvn -DskipTests -q clean install
   cd ../..
   rm $REPO_CHECKSTYLE/target/*tests.jar
-  mv $REPO_CHECKSTYLE/target/`ls -rt $REPO_CHECKSTYLE/target | tail -n1` lib/checkstyle.jar
+  mv $REPO_CHECKSTYLE/target/`ls -rt $REPO_CHECKSTYLE/target/*jar | tail -n1` lib/checkstyle.jar
+  chmod 755 lib/checkstyle.jar
 }
 
 ensure_detekt()
@@ -119,9 +120,10 @@ ensure_detekt()
   cd "$SCRIPT_PATH"/.. || exit 1
   git clone https://github.com/arturbosch/detekt.git "$REPO_DETEKT" 2> /dev/null || (cd "$REPO_DETEKT" || exit 1; git pull)
   cd $REPO_DETEKT || exit 1
-  ./gradlew clean build -x test -q
+  ./gradlew clean build shadowJar -x test -q
   cd ../..
-  mv $REPO_DETEKT/build/libs/`ls -rt $REPO_DETEKT/build/libs | tail -n1` lib/detekt.jar
+  mv $REPO_DETEKT/build/libs/`ls -rt $REPO_DETEKT/build/libs/*-all.jar | tail -n1` lib/detekt.jar
+  chmod 755 lib/detekt.jar
 }
 
 ensure_arcanist()
