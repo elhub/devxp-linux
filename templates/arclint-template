@@ -7,12 +7,12 @@
        "checkstyle": {
             "type": "checkstyle",
             "include": "(\\.java$)",
-            "checkstyle.config": "../phabricator/elhubdev/checkstyle/elhub-checks.xml"
+            "checkstyle.config": "../lint/checkstyle-config.xml"
         },
         "detekt": {
             "type": "detekt",
             "include": "(\\.kt$)",
-            "detekt.config": "../phabricator/elhubdev/detekt/elhub-config.yml"
+            "detekt.config": "../lint/detekt-config.yml"
         },
         "filename": {
             "type": "filename"

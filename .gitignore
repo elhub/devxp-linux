@@ -3,5 +3,7 @@
 *.iml
 *.iws
 *.jar
-checkstyle/repo
-detekt/repo
+lib/arcanist
+lib/libphutil
+lib/checkstyle
+lib/detekt

@@ -5,8 +5,7 @@ SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [ ! -z "$SCRIPT_PATH" ]
 then
-  cd "$SCRIPT_PATH"
-  cd "../checkstyle"
+  cd "$SCRIPT_PATH/../lib"
 
   if [ -f "checkstyle.jar" ]
   then

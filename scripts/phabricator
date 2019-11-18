@@ -100,8 +100,8 @@ assign_positional_args 1 "${_positionals[@]}"
 
 ORIGIN_PATH=`pwd`
 SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_CHECKSTYLE="checkstyle/repo"
-REPO_DETEKT="detekt/repo"
+REPO_CHECKSTYLE="lib/checkstyle"
+REPO_DETEKT="lib/detekt"
 
 ensure_checkstyle()
 {
@@ -111,7 +111,7 @@ ensure_checkstyle()
   mvn -DskipTests -q clean install
   cd ../..
   rm $REPO_CHECKSTYLE/target/*tests.jar
-  mv $REPO_CHECKSTYLE/target/`ls -rt $REPO_CHECKSTYLE/target | tail -n1` checkstyle/checkstyle.jar
+  mv $REPO_CHECKSTYLE/target/`ls -rt $REPO_CHECKSTYLE/target | tail -n1` lib/checkstyle.jar
 }
 
 ensure_detekt()
@@ -121,14 +121,14 @@ ensure_detekt()
   cd $REPO_DETEKT || exit 1
   ./gradlew clean build -x test -q
   cd ../..
-  mv $REPO_DETEKT/build/libs/`ls -rt $REPO_DETEKT/build/libs | tail -n1` detekt/detekt.jar
+  mv $REPO_DETEKT/build/libs/`ls -rt $REPO_DETEKT/build/libs | tail -n1` lib/detekt.jar
 }
 
 ensure_arcanist()
 {
   cd "$SCRIPT_PATH"/.. || exit 1
-  git clone https://github.com/phacility/libphutil.git libphutil 2> /dev/null || (cd libphutil || exit 1; git pull)
-  git clone https://github.com/phacility/arcanist.git arcanist 2> /dev/null || (cd arcanist || exit 1; git pull)
+  git clone https://github.com/phacility/libphutil.git lib/libphutil 2> /dev/null || (cd lib/libphutil || exit 1; git pull)
+  git clone https://github.com/phacility/arcanist.git lib/arcanist 2> /dev/null || (cd lib/arcanist || exit 1; git pull)
 }
 
 if [ "$_arg_action" == "install" ] || [ "$_arg_action" == "upgrade" ]
