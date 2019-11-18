@@ -111,7 +111,7 @@ ensure_checkstyle()
   mvn -DskipTests -q clean install
   cd ../..
   rm $REPO_CHECKSTYLE/target/*tests.jar
-  mv $REPO_CHECKSTYLE/target/`ls -rt $REPO_CHECKSTYLE/target/*jar | tail -n1` lib/checkstyle.jar
+  mv `ls -rt $REPO_CHECKSTYLE/target/*jar | tail -n1` lib/checkstyle.jar
   chmod 755 lib/checkstyle.jar
 }
 
@@ -122,7 +122,7 @@ ensure_detekt()
   cd $REPO_DETEKT || exit 1
   ./gradlew clean build shadowJar -x test -q
   cd ../..
-  mv $REPO_DETEKT/build/libs/`ls -rt $REPO_DETEKT/build/libs/*-all.jar | tail -n1` lib/detekt.jar
+  mv `ls -rt $REPO_DETEKT/detekt-cli/build/libs/*-all.jar | tail -n1` lib/detekt.jar
   chmod 755 lib/detekt.jar
 }
 
