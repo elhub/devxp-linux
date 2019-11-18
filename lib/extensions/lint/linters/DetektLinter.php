@@ -62,7 +62,7 @@ final class DetektLinter extends ArcanistExternalLinter {
   }
 
   protected function getMandatoryFlags() {
-    return array('-c', $this->config, '-i');
+    return array('-i');
   }
 
   protected function parseLinterOutput($path, $err, $stdout, $stderr) {

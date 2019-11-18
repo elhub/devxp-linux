@@ -87,10 +87,6 @@ final class CheckstyleLinter extends ArcanistExternalLinter {
       'apt-get install checkstyle');
   }
 
-  protected function getMandatoryFlags() {
-    return array('-c', $this->config);
-  }
-
   protected function parseLinterOutput($path, $err, $stdout, $stderr) {
     $lines = phutil_split_lines($stdout, false);
 
