@@ -9,7 +9,7 @@ then
 
   if [ -f "detekt.jar" ]
   then
-    java -jar detekt.jar  -c ../detekt-config.yml $*
+    java -jar detekt.jar  -c ../lint/detekt-config.yml $*
   else
     echo 'detekt.jar can not be found'
   fi
