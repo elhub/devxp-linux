@@ -21,7 +21,7 @@ We strongly recommend installing this script in C:\ProgramData\Phabricator. From
 
 Set up the paths to Phabricator:
 
-    export PATH="$PATH:/mnt/c/ProgramData/Phabricator/arcanist/bin:/mnt/c/ProgramData/Phabricator/scripts"
+    export PATH="$PATH:/mnt/c/ProgramData/Phabricator/lib/arcanist/bin:/mnt/c/ProgramData/Phabricator/scripts"       
 
 Set up the same path in Windows, if you wish to run arcanist from there (recommended).
 
