@@ -4,5 +4,5 @@
 if exist %~dp0/../detekt/detekt.jar (
     java -jar %~dp0/../lib/detekt.jar  -c ../lint/detekt-config.yml %*
 ) else (
-    java -jar c:/ProgramData/Phabricator/lib/detekt.jar -c ../lint/detekt-config.yml %*
+    java -jar C:/ProgramData/Phabricator/lib/detekt.jar -c C:/ProgramData/Phabricator/lint/detekt-config.yml %*
 )

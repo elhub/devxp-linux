@@ -4,5 +4,5 @@
 if exist %~dp0/../lib/checkstyle.jar (
     java -jar %~dp0/../lib/checkstyle.jar -c=../lint/checkstyle-config.xml %*
 ) else (
-    java -jar c:/ProgramData/Phabricator/libchecks/checkstyle.jar -c=../lint/checkstyle-config.xml %*
+    java -jar C:/ProgramData/Phabricator/lib/checkstyle.jar  -c=C:/ProgramData/Phabricator/lint/checkstyle-config.xml %*
 )
