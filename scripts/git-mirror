@@ -1,0 +1,5 @@
+#!/bin/bash
+git clone --mirror $1
+dirName=$(basename $1)
+cd $dirName
+git push --mirror $2
