@@ -1,6 +1,8 @@
-# dev-phabricator
+# dev-tools
 
-dev-phabricator contains settings and utility scripts and tools for the Phabricator system at Elhub.
+dev-tools contains and installs utility scripts and tools that should be used
+when developing on the Elhub system. This includes the scripts and libraries
+used with Phabricator.
 
 ## Getting Started
 
@@ -9,88 +11,130 @@ dev-phabricator contains settings and utility scripts and tools for the Phabrica
 * Git
 * PHP
 
-The following instructions assumes a standard Windows 10 PC with WSL and Ubuntu installed. Both Git and PHP should
-be installed by default if your PC is installed with the Elhub window-dev-box setup. If you have other systems,
-you will need to correct your setup accordingly.
+The following instructions assumes a standard Windows 10 PC with WSL and Ubuntu
+installed. Both Git and PHP should be installed by default if your PC is
+installed with the Elhub window-dev-box setup. If you have another system,
+you will need to set it up accordingly.
 
-### Install
+### Installing
 
-We strongly recommend installing this script in C:\ProgramData\Phabricator. From Ubuntu:
+Determine where you will install dev-tools. It should be a directory that is
+accessible to Windows as well as Linux.
 
-    $ git clone https://phabricator.elhub.cloud/diffusion/DPHABRICATOR/dev-phabricator.git /mnt/c/ProgramData/Phabricator
+Clone the repository into the chosen path (assuming C:\Workspace\dev-tools is the chosen install directory):
 
-Set up the paths to Phabricator:
+    $ git clone https://phabricator.elhub.cloud/diffusion/DPHABRICATOR/dev-tools.git /mnt/c/Workspace/dev-tools
 
-    export PATH="$PATH:/mnt/c/ProgramData/Phabricator/lib/arcanist/bin:/mnt/c/ProgramData/Phabricator/scripts"       
+Link the arc config to the default location for Linux.
 
-Set up the same path in Windows, if you wish to run arcanist from there (recommended).
+     $ ln -s /mnt/c/Workspace/arcanist/config /etc/arcconfig
 
-Then run the phabricator installer script:
+Set up the path to the scripts:
 
-    $ phabricator install
+    export PATH="$PATH:/mnt/c/Workspace/lib/arcanist/bin:/mnt/c/Workspace/lib/adrtools/src:/mnt/c/Workspace/scripts"
 
-Link the arc config to the default location for Linux. 
+Run the dev-tools script to install and build the tools:
 
-     $ ln -s /mnt/c/ProgramData/Phabricator/arcanist/config /etc/arcconfig
+    $ dev-tools install
 
-You can verify that everything is set up correctly by running the checkstyle and detekt scripts from the
-command line in both Ubuntu and Windows cmd.
- 
+You can then run dev-tools upgrade in future to update the repository and
+the tools. Set up the following paths in Windows, if you wish to run arcanist
+from there (recommended).
+
+    c:\Workspace\lib\arcanist\bin
+    c:\Workspace\scripts
+
+Set up a symbolic link in Windows to c:\ProgramData\Phabricator (from an
+elevated command prompt):
+
+    mklink /D c:\ProgramData\Phabricator c:\Workspace\dev-tools
+
+To use adr, set up ADR_HOME:
+
+    export ADR_HOME="/mnt/c/Workspace/lib/adr-j"
+
+Do the same in Windows, if you wish to use it from the Windows command prompt.
+You should also set up the EDITOR variable with your text editor of choice, if
+you haven't already done so.
+
 ### Troubleshooting
 
 Arcanist requires php.curl; ensure the following is set in your php.ini:
 
     extension=php_curl.dll
 
-Do not clone from Windows. Doing so will likely give you issues with git autocrlf option. If you find uch issues,
-consider deleting the directory and setting:
+Do not clone from Windows. Doing so will likely give you issues with git
+autocrlf option. Ensure you have configured core.autocrlf appropriately:
 
-    $ git config --global core.autocrlf false
-    
-Before cloning the repository. Once arcanist has been installed, you can re-enable core.autocrlf.
+    $ git config --global core.autocrlf input
 
-### Structure
+## Testing
 
-#### arcanist
+You can verify that everything is set up correctly by running the checkstyle
+and detekt scripts from the command line in both Linux and Windows cmd.
 
-Configuration for arcanist. This includes definitions for a number of recommended arc aliases:
+To verify that arcanist is set up correctly, run ''''arc help'''' in Linux
+and Windows. To validate adr, run ''''adr help'''' in Linux and Windows.
 
-**cleanup**: Cleans up the directory. Be careful (in particular, don't use it with terraform projects).
+## Deployment
+
+See installation instructions. These utilities are always intended for
+deployment on a Statnett Developer PC. Installation on under configurations
+may or may not work.
+
+## Usage
+
+This repository contains a number of tools that are of use to developers.
+
+### adr
+
+This is a Java implementation of the adr script-based toold by Nat Pryce. It
+allows for the simple creation and maintenance of light-weight architecture
+decision records.
+
+### arcanist
+
+This contains arcanist configurations. This includes definitions for a number
+of recommended arc aliases:
+
+**cleanup**: Cleans up the directory. Be careful (in particular, don't use it
+with terraform projects).
 
 **log**: Displays git log nicely.
 
-**patch-clean**: Cleans up arcpatch branches. 
+**patch-clean**: Cleans up arcpatch branches.
 
-#### bin
+The arcanist script itself is cloned into lib/arcanist.
 
-Contains useful scripts and applications.
+### lint
 
-#### Checkstyle
+This contains the linting rules used at Elhub for Checkstyle and Detekt.
 
-Checkstyle be used as a command line tool to check that your Java code conforms with a given Java style. This
-directory contains the latest jar, and the checkstyle configuration style that conforms to the Elhub Java style. 
+### scripts
 
-See the [checkstyle documentation](http://checkstyle.sourceforge.net/cmdline.html) for more detailed information. 
+This directory contains a number of utility scripts, including shell and
+command scripts to run checkstyle and detekt.
 
-#### Detekt
+**Checkstyle** can be used as a command line tool to check that your Java code
+conforms with a given Java style. The script uses the jar built in the lib
+directory and the checkstyle configuration style that conforms to the Elhub
+Java style.
 
-Detekt can be used as a command line tool to check that your Kotlin code conforms with a given Java style. This
-directory contains the latest jar, and the kotlin configuration style that conforms to the Elhub Java style. 
+See the [checkstyle documentation](http://checkstyle.sourceforge.net/cmdline.html)
+for more detailed information.
 
-See the [detekt documentation](https://arturbosch.github.io/detekt/) for more detailed information. 
+**Detekt** can be used as a command line tool to check that your Kotlin code
+conforms with a given code style. The script uses the jar built in the lib
+directory and uses the detekt configuration style that conforms to the Elhub
+Kotlin style.
 
-#### extensions
+See the [detekt documentation](https://arturbosch.github.io/detekt/) for more
+detailed information.
 
-This contains Elhub's arcanist extensions.
+### templates
 
-#### templates
-
-This contains templates for various development project artifacts.
+This directory contains templates for various development project artifacts.
 
 ## Meta
 
-[Elhub Tool Repository][confluence]
-
-<!-- Markdown link & img dfn's -->
-[confluence]: http://confluence.elhub.org/display/ELTOR
-
+* [Development Handbook](https://confluence.elhub.org/display/DEV/Handbook)

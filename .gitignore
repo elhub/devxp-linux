@@ -3,7 +3,13 @@
 *.iml
 *.iws
 *.jar
+
+# Downloaded Libraries
+lib/adr-j
 lib/arcanist
 lib/libphutil
 lib/checkstyle
 lib/detekt
+
+# Created Scripts
+scripts/adr
