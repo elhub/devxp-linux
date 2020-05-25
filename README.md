@@ -23,26 +23,27 @@ accessible to Windows as well as Linux.
 
 Clone the repository into the chosen path (assuming C:\Workspace\dev-tools is the chosen install directory):
 
-    $ git clone https://phabricator.elhub.cloud/diffusion/DPHABRICATOR/dev-tools.git /mnt/c/Workspace/dev-tools
+    $ git clone https://phabricator.elhub.cloud/diffusion/DEVTOOLS/dev-tools.git /mnt/c/Workspace/dev-tools
 
 Link the arc config to the default location for Linux.
 
-     $ ln -s /mnt/c/Workspace/arcanist/config /etc/arcconfig
+     $ ln -s /mnt/c/Workspace/dev-tools/arcanist/config /etc/arcconfig
 
 Set up the path to the scripts:
 
-    export PATH="$PATH:/mnt/c/Workspace/lib/arcanist/bin:/mnt/c/Workspace/lib/adrtools/src:/mnt/c/Workspace/scripts"
+    export PATH="$PATH:/mnt/c/Workspace/dev-tools/lib/arcanist/bin:/mnt/c/Workspace/dev-tools/scripts"
 
 Run the dev-tools script to install and build the tools:
 
     $ dev-tools install
 
 You can then run dev-tools upgrade in future to update the repository and
-the tools. Set up the following paths in Windows, if you wish to run arcanist
-from there (recommended).
+the tools. Note that the first time, this will take quite a long time (due to
+the full compilation). Set up the following paths in Windows, if you wish to
+run arcanist from there (recommended).
 
-    c:\Workspace\lib\arcanist\bin
-    c:\Workspace\scripts
+    c:\Workspace\dev-tools\lib\arcanist\bin
+    c:\Workspace\dev-tools\scripts
 
 Set up a symbolic link in Windows to c:\ProgramData\Phabricator (from an
 elevated command prompt):
@@ -51,7 +52,7 @@ elevated command prompt):
 
 To use adr, set up ADR_HOME:
 
-    export ADR_HOME="/mnt/c/Workspace/lib/adr-j"
+    export ADR_HOME="/mnt/c/Workspace/dev-tools/lib/adr-j"
 
 Do the same in Windows, if you wish to use it from the Windows command prompt.
 You should also set up the EDITOR variable with your text editor of choice, if
