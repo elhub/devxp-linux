@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+awk '!/nameserver/ || !(f++ > 1)' /etc/resolv.conf | sed '1a nameserver 10.141.1.130' > ~/tempresolve && mv -f ~/tempresolve /etc/resolv.conf
