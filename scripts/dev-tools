@@ -101,10 +101,27 @@ assign_positional_args 1 "${_positionals[@]}"
 ORIGIN_PATH=`pwd`
 SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DEV_HOME="$SCRIPT_PATH"/..
+REPO_MVNW="lib/maven-wrapper"
 REPO_ADRJ="lib/adr-j"
 REPO_CHECKSTYLE="lib/checkstyle"
 REPO_DETEKT="lib/detekt"
 
+ensure_mvnw() {
+  cd "$DEV_HOME" || exit 1
+
+  if [ "$_arg_action" == "install" ]; then
+    rm -rf $REPO_MVNW
+  fi
+
+  if [ -d "$REPO_MVNW" ]; then
+    cd "$REPO_MVNW" || exit 1
+    if [[ `git status --porcelain` ]]; then
+      git pull
+    fi
+  else
+    git clone https://github.com/takari/maven-wrapper.git "$REPO_MVNW" 2> /dev/null
+  fi
+}
 
 build_adrj()
 {
@@ -142,8 +159,10 @@ ensure_arcanist()
 
 build_checkstyle()
 {
-  cd "$DEV_HOME"/$REPO_CHECKSTYLE || exit 1
-  mvn -DskipTests -P assembly -q clean package
+  cd "$DEV_HOME"/"$REPO_CHECKSTYLE" || exit 1
+  cp -r "$DEV_HOME"/"$REPO_MVNW"/.mvn .
+  cp "$DEV_HOME"/"$REPO_MVNW"/mvnw* .
+  ./mvnw -DskipTests -P assembly -q clean package
   cd "$DEV_HOME" || exit 1
   rm $REPO_CHECKSTYLE/target/*tests.jar
   mv $(ls -rt $REPO_CHECKSTYLE/target/*-all.jar | tail -n1) lib/checkstyle.jar
@@ -198,6 +217,7 @@ ensure_detekt()
 if [ "$_arg_action" == "install" ] || [ "$_arg_action" == "upgrade" ]; then
   cd "$SCRIPT_PATH"/.. || exit 1
   git pull
+  ensure_mvnw
   ensure_adrj
   ensure_arcanist
   ensure_checkstyle
