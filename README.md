@@ -132,6 +132,12 @@ Kotlin style.
 See the [detekt documentation](https://arturbosch.github.io/detekt/) for more
 detailed information.
 
+**make-release** can be used to create release branches according to the used conventions.
+It ensures the following:
+- the base branch for the release is always 'origin/master', so even if local
+master is ahead/behind origin this will not affect the release branch.
+- only allowed branch names are used for releases.
+
 ### templates
 
 This directory contains templates for various development project artifacts.
