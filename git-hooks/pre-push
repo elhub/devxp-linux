@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Called by "git push" after it has checked the remote status,
+# but before anything has been pushed.
+#
+# If this script exits with a non-zero status nothing will be pushed.
+#
+# Steps to install, from the root directory of your repo...
+# 1. Copy the file into your repo at `.git/hooks/pre-push`
+# 2. Set executable permissions, run `chmod +x .git/hooks/pre-push`
+# 3. Or create a symlink
+#
+# Try a push to master, you should get a message `[Policy] never push...`
+#
+# The commands below will not be allowed...
+# `git push origin master`
+# `git push origin :master`
+#
+# Nor will a force push while on the master branch be allowed...
+# `git co master; git push origin`
+#
+# Requires git 1.8.2 or newer
+#
+# Git 1.8.2 release notes cover the new pre-push hook:
+# <https://github.com/git/git/blob/master/Documentation/RelNotes/1.8.2.txt>
+#
+# See Sample pre-push script:
+# <https://github.com/git/git/blob/87c86dd14abe8db7d00b0df5661ef8cf147a72a3/templates/hooks--pre-push.sample>
+
+protected_branch='master'
+
+policy='[Policy] Never push to the '$protected_branch' branch! Use "arc land" instead. (Prevented with pre-push hook.)'
+
+current_branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+
+git_command=$(ps -ocommand= -p $PPID)
+
+do_exit(){
+  echo $policy
+  exit 1
+}
+
+# Workaround for command issued by 'arc land'^
+_regex='^git push -- origin [A-Za-z0-9]+:(refs/heads/)?master$'
+
+if [[ $git_command =~ $_regex ]]; then
+  unset do_exit
+  unset _regex
+  exit 0
+fi
+
+if [[ $git_command =~ "push" ]] && [[ $current_branch = $protected_branch ]]; then
+  do_exit
+fi
+
+if [[ $git_command =~ "push" ]] && [[ $git_command =~ $protected_branch ]]; then
+  do_exit
+fi
+
+unset do_exit
+unset _regex
+
+exit 0

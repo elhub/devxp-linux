@@ -138,6 +138,21 @@ It ensures the following:
 master is ahead/behind origin this will not affect the release branch.
 - only allowed branch names are used for releases.
 
+**copy-git-hooks** can be used as a "glue" to copy/refresh all available git-hooks from dev-tools into another repository.
+This can be combined with an `init` make target that should be a part of the target repo.
+See also D456 for sample usage.
+
+### git-hooks
+
+This directory contains various git hooks. These should be copied to the
+`.git/hooks` directory in the target repository.
+More detailed installation/usage details are available in each script.
+
+See also `copy-git-hooks`.
+
+**pre-push** prevents direct pushes to master. It does work with `arc land` though,
+which is what everyone should be using for landing diff changes.
+
 ### templates
 
 This directory contains templates for various development project artifacts.
