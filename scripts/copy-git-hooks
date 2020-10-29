@@ -10,7 +10,8 @@ GIT_HOOKS_PATH="$DEV_HOME"/git-hooks
 
 if [[ $(git rev-parse --is-inside-work-tree) == "true" ]]; then
   cd $SCRIPT_PATH
-  git pull 1> /dev/null
+  git checkout master 2>&1 >/dev/null
+  git pull >/dev/null
   cd $ORIGIN_PATH
   _git_dir=$(git rev-parse --git-dir)
   find $_git_dir/hooks -type l -exec rm {} \;
