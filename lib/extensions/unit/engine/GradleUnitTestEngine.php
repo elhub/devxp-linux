@@ -10,7 +10,7 @@ final class GradleUnitTestEngine extends AbstractXUnitTestEngine {
         $regex = new RegexIterator($iterator,
             '/^.*build.test-results.TEST.*\.xml$/i',
             RecursiveRegexIterator::GET_MATCH);
-        //'/^.*target.surefire-reports.TEST.*\.xml$/i',
+        // '/^.*target.surefire-reports.TEST.*\.xml$/i',
         //    '/^.+build\/test-results\/.*\/TEST.*\.xml$/i', -- Not compatible
         $matches = iterator_to_array($regex);
         $files = array();
@@ -26,7 +26,7 @@ final class GradleUnitTestEngine extends AbstractXUnitTestEngine {
     }
     public function getDefaultBinary() {
         $config = $this->getConfigurationManager();
-        return $config->getConfigFromAnySource('bin.gradle', 'gradle');
+        return $config->getConfigFromAnySource('bin.gradlew', './gradlew');
     }
     public function getMandatoryFlags() {
         return array('test', '--daemon');
