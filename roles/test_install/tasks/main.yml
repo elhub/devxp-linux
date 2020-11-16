@@ -1,0 +1,25 @@
+---
+# Do basic validation that things are set up right
+
+- name: Test arc
+  shell: arc help --
+  args:
+    executable: /bin/bash
+  register: result
+  failed_when:
+    - result.rc != 77
+
+- name: Test checkstyle
+  shell: checkstyle --version
+  args:
+    executable: /bin/bash
+
+- name: Test detekt
+  shell: detekt --version
+  args:
+    executable: /bin/bash
+
+#- name: Test adr
+#  shell: adr
+#  args:
+#    executable: /bin/bash

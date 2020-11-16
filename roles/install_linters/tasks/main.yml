@@ -1,0 +1,68 @@
+---
+# Set up all the linters
+
+# Paths
+- name: Ensure install path exists
+  file:
+    path: "{{ install_path }}"
+    state: directory
+    mode: 0755
+
+# Checkstyle
+- name: Ensure detekt
+  get_url:
+    url: https://github.com/checkstyle/checkstyle/releases/download/checkstyle-{{ checkstyle_version }}/checkstyle-{{ checkstyle_version }}-all.jar
+    dest: /usr/local/lib/checkstyle.jar
+    mode: 0755
+  become: yes
+
+- name: Write checkstyle config
+  template:
+    src: checkstyle-config.xml.j2
+    dest: "{{ install_path }}/checkstyle-config.xml"
+    mode: 0644
+
+- name: Create checkstyle script
+  template:
+    src: checkstyle.sh.j2
+    dest: /usr/local/bin/checkstyle
+    mode: 0755
+  become: yes
+
+# Detekt
+- name: Ensure detekt
+  get_url:
+    url: https://github.com/detekt/detekt/releases/download/{{ detekt_version }}/detekt
+    dest: /usr/local/bin/detekt-cli
+    mode: 0755
+  become: yes
+
+- name: Write detekt config
+  template:
+    src: detekt-config.yml.j2
+    dest: "{{ install_path }}/detekt-config.yml"
+    mode: 0644
+
+- name: Create detekt script
+  template:
+    src: detekt.sh.j2
+    dest: /usr/local/bin/detekt
+    mode: 0755
+  become: yes
+
+# Install nvm and npm for esLint
+- include: nvm.yml
+
+- name: Create checkstyle script
+  template:
+    src: checkstyle.sh.j2
+    dest: /usr/local/bin/checkstyle
+    mode: 0755
+  become: yes
+
+# Yamllint
+- name: Ensure yamlling
+  apt:
+    name: yamllint
+    state: latest
+  become: yes

@@ -1,0 +1,108 @@
+---
+# Set up arcanist on the workstation
+#
+# We use the repos on github in order to control the location of the installation,
+# and keep up to speed with the latest version.
+
+- name: Ensure install path exists
+  file:
+    path: "{{ install_path }}"
+    state: directory
+    mode: 0755
+
+- name: Ensure libphutil
+  git:
+    repo: https://github.com/phacility/libphutil.git
+    dest: "{{ install_path }}/libphutil"
+
+- name: Ensure arcanist
+  git:
+    repo: https://github.com/phacility/arcanist.git
+    dest: "{{ install_path }}/arcanist"
+
+- name: Ensure dev-tools-arcanist extensions
+  git:
+    repo: https://github.com/elhub/dev-tools-arcanist.git
+    dest: "{{ install_path }}/extensions"
+
+- name: Write arcconfig
+  template:
+    src: arcconfig.j2
+    dest: "{{ install_path }}/config"
+    mode: 0644
+
+- name: Link /etc/arcconfig
+  file:
+    src: "{{ install_path }}/config"
+    dest: /etc/arcconfig
+    state: link
+  become: yes
+
+- name: Link arc
+  file:
+    src: "{{ install_path }}/arcanist/bin/arc"
+    dest: /usr/local/bin/arc
+    state: link
+  become: yes
+
+- name: Link phage
+  file:
+    src: "{{ install_path }}/arcanist/bin/phage"
+    dest: /usr/local/bin/phage
+    state: link
+  become: yes
+
+- name: Set up arc-init
+  template:
+    src: arc-init.sh.j2
+    dest: /usr/local/bin/arc-init
+    mode: 0755
+  become: yes
+
+- name: Ensure template path exists
+  file:
+    path: "{{ install_path }}/templates"
+    state: directory
+    mode: 0755
+
+- name: Set up templates (arcconfig)
+  template:
+    src: arcconfig-template.j2
+    dest: "{{ install_path }}/templates/.arcconfig"
+    mode: 0644
+
+- name: Set up templates (arcconfig-gradle)
+  template:
+    src: arcconfig-gradle.j2
+    dest: "{{ install_path }}/templates/.arcconfig-gradle"
+    mode: 0644
+
+- name: Set up templates (arcconfig-maven)
+  template:
+    src: arcconfig-maven.j2
+    dest: "{{ install_path }}/templates/.arcconfig-maven"
+    mode: 0644
+
+- name: Set up templates (arclint)
+  template:
+    src: arclint-template.j2
+    dest: "{{ install_path }}/templates/.arclint"
+    mode: 0644
+
+- name: Set up templates (gitattributes)
+  template:
+    src: gitattributes-template.j2
+    dest: "{{ install_path }}/templates/.gitattributes"
+    mode: 0644
+
+- name: Set up templates (gitignore)
+  template:
+    src: gitignore-template.j2
+    dest: "{{ install_path }}/templates/.gitignore"
+    mode: 0644
+
+- name: Set up templates (README.md)
+  template:
+    src: README-template.md.j2
+    dest: "{{ install_path }}/templates/README.md"
+    mode: 0644

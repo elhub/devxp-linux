@@ -1,0 +1,18 @@
+---
+- name: Deploy DEV-TOOLS
+  hosts:
+    - localhost
+
+  roles:
+    # Install arcanist on the workstation
+    - role: arcanist_workstation
+      vars:
+        install_path: "{{ devtools_path }}"
+    # Install linters used by arcanist/dev workflow
+    - role: install_linters
+      vars:
+        install_path: "{{ devtools_path }}/linters"
+    # Install utility scripts/applications
+    - role: install_utils
+    # Install utility scripts/applications
+    - role: test_install

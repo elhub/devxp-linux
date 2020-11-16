@@ -1,0 +1,10 @@
+{
+    "load": ["extensions/src"],
+    "aliases" : {
+        "cleanup"      : ["!git clean -df && git checkout -- ."],
+        "init"         : ["!arc-init"],
+        "log"          : ["!git log --graph --topo-order --date=short --abbrev-commit --decorate --all --boundary --pretty=format:'%Cgreen%ad %Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue[%cn]%Creset %Cblue%G?%Creset'"],
+        "patch-clean"  : ["!git branch | cut -c3- | grep arcpatch- | xargs -n1 git branch -D"],
+        "set-exe"      : ["!git update-index --chmod=+x"]
+    }
+}

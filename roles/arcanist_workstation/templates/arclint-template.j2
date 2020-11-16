@@ -1,0 +1,70 @@
+{
+    "exclude": [
+        "(\\.idea$)",
+        "(^target/)"
+    ],
+    "linters": {
+        "nolint": {
+            "type": "nolint"
+        },
+        "generated": {
+            "type": "generated"
+        },
+        "chmod": {
+            "type": "chmod"
+        },
+        "filename": {
+            "type": "filename"
+        },
+        "spelling": {
+            "type": "spelling"
+        },
+        "text": {
+            "type": "text",
+            "severity": {
+                "1": "disabled",
+                "3": "disabled",
+                "5": "disabled"
+            }
+        },
+        "checkstyle": {
+            "type": "checkstyle",
+            "include": "(\\.java$)"
+        },
+        "detekt": {
+            "type": "detekt",
+            "include": [
+                "(\\.kt$)",
+                "(\\.kts$)"
+            ]
+        },
+        "json": {
+            "type": "json",
+            "include": [
+                "(^\\.arcconfig)",
+                "(^\\.arclint)",
+                "(\\.json$)"
+            ]
+        },
+        "xml": {
+            "type": "xml",
+            "include": "(\\.xml$)"
+        },
+        "xhpast": {
+          "type": "xhpast",
+          "include": "(\\.php$)",
+          "standard": "phutil.xhpast"
+        },
+        "phutil-library": {
+            "type": "phutil-library",
+            "include": "(\\.php$)"
+        },
+        "yamllint": {
+            "type": "yamllint",
+            "include": [
+                "(\\.yml$)",
+                "(\\.yaml$)"
+            ]
+        }
+    }
+}

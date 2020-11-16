@@ -1,0 +1,58 @@
+---
+# Add utility scripts/applications
+
+- name: Ensure copy-git-hooks
+  template:
+    src: copy-git-hooks.j2
+    dest: /usr/local/bin/copy-git-hooks
+    mode: 0755
+  become: yes
+
+- name: Ensure git-mirror
+  template:
+    src: git-mirror.j2
+    dest: /usr/local/bin/git-mirror
+    mode: 0755
+  become: yes
+
+- name: Ensure make-release
+  template:
+    src: make-release.j2
+    dest: /usr/local/bin/make-release
+    mode: 0755
+  become: yes
+
+- name: Ensure install path exists
+  file:
+    path: /usr/local/etc/git-hooks
+    state: directory
+    mode: 0755
+  become: yes
+
+- name: Ensure pre-push
+  template:
+    src: pre-push.j2
+    dest: /usr/local/etc/git-hooks/pre-push
+    mode: 0644
+  become: yes
+
+- name: Ensure resolv-fix
+  template:
+    src: resolv-fix.j2
+    dest: /usr/local/bin/resolv-fix
+    mode: 0755
+  become: yes
+
+- name: Unpack adr-j lib
+  unarchive:
+    src: "{{ repository }}/elhub-bin/adr-j/{{ adr_version }}/adr-j.zip"
+    dest: /usr/local/lib
+    remote_src: yes
+  become: yes
+
+- name: Link adr
+  file:
+    src: /usr/local/lib/adr-j-{{ adr_version }}/bin/adr-j
+    dest: /usr/local/bin/adr
+    state: link
+  become: yes
