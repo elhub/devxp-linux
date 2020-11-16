@@ -43,6 +43,8 @@
             "include": [
                 "(^\\.arcconfig)",
                 "(^\\.arclint)",
+                "(^\\.eslintrc)",
+                "(^\\.prettierrc)",
                 "(\\.json$)"
             ]
         },
@@ -65,6 +67,25 @@
                 "(\\.yml$)",
                 "(\\.yaml$)"
             ]
+        },
+        "prettier": {
+            "type": "prettier",
+            "include": [
+                "(\\.js$)",
+                "(\\.jsx$)",
+                "(\\.ts$)",
+                "(\\.tsx$)"
+            ]
+        },
+        "eslint": {
+            "type": "eslint",
+            "include": [
+                "(\\.js$)",
+                "(\\.jsx$)",
+                "(\\.ts$)",
+                "(\\.tsx$)"
+            ],
+            "eslint.fix": true
         }
     }
 }

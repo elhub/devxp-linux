@@ -61,7 +61,7 @@
   become: yes
 
 # Yamllint
-- name: Ensure yamlling
+- name: Ensure yamllint
   apt:
     name: yamllint
     state: latest
