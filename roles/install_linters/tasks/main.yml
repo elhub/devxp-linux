@@ -9,12 +9,13 @@
     mode: 0755
 
 # Checkstyle
-- name: Ensure detekt
+- name: Ensure checkstyle
   get_url:
     url: https://github.com/checkstyle/checkstyle/releases/download/checkstyle-{{ checkstyle_version }}/checkstyle-{{ checkstyle_version }}-all.jar
     dest: /usr/local/lib/checkstyle.jar
     mode: 0755
   become: yes
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Write checkstyle config
   template:
@@ -28,6 +29,7 @@
     dest: /usr/local/bin/checkstyle
     mode: 0755
   become: yes
+  ignore_errors: "{{ ansible_check_mode }}"
 
 # Detekt
 - name: Ensure detekt
@@ -36,6 +38,7 @@
     dest: /usr/local/bin/detekt-cli
     mode: 0755
   become: yes
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Write detekt config
   template:
@@ -49,16 +52,10 @@
     dest: /usr/local/bin/detekt
     mode: 0755
   become: yes
+  ignore_errors: "{{ ansible_check_mode }}"
 
 # Install nvm and npm for esLint
 - include: nvm.yml
-
-- name: Create checkstyle script
-  template:
-    src: checkstyle.sh.j2
-    dest: /usr/local/bin/checkstyle
-    mode: 0755
-  become: yes
 
 # Yamllint
 - name: Ensure yamllint
@@ -66,3 +63,4 @@
     name: yamllint
     state: latest
   become: yes
+  ignore_errors: "{{ ansible_check_mode }}"
