@@ -13,8 +13,8 @@ project {
     }
 
     val check = Config(
-            id = "Build",
-            name = "Build"
+            id = "Check",
+            name = "Check"
     )
 
     listOf(check).forEach { buildType(Build(it)) }
@@ -47,6 +47,8 @@ class Build(config: Config) : BuildType({
             name = "Sonar Scan"
             type = "sonar-plugin"
             param("sonarProjectSources", ".")
+            param("sonarProjectName", "dev-tools")
+            param("sonarProjectKey", "no.elhub.tools:dev-tools")
             param("sonarServer", "c2635de0-ee28-443d-b7df-a7aa80b0ded7")
         }
 
