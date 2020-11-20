@@ -110,3 +110,9 @@
     src: README-template.md.j2
     dest: "{{ install_path }}/templates/README.md"
     mode: 0644
+
+- name: Set up templates (CONTRIBUTING.md)
+  template:
+    src: CONTRIBUTING-template.md.j2
+    dest: "{{ install_path }}/templates/CONTRIBUTING.md"
+    mode: 0644

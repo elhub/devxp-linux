@@ -18,8 +18,3 @@
   shell: detekt --version
   args:
     executable: /bin/bash
-
-#- name: Test adr
-#  shell: adr
-#  args:
-#    executable: /bin/bash

@@ -1,12 +1,14 @@
 # dev-tools
 
-<!-- PROJECT SHIELDS -->
-<!--
-*** Add Project Shields here. Several of Elhubs systems provide shields, so why not use them to give info at a glance.
-*** [TeamCity Builds][SonarQube Quality Gate][SonarQube Vulnerabilities][SonarQube bugs][SonarQube smells][SonarQube Coverage]
--->
+![TeamCity Build](https://teamcity.elhub.cloud/app/rest/builds/buildType:(id:Tools_DevTools_Check)/statusIcon)
+[![Quality Gate Status](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools&metric=alert_status)](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools)
+[![Lines of Code](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools&metric=ncloc)](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools)
 
-<!-- TABLE OF CONTENTS -->
+[![Vulnerabilities](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools&metric=vulnerabilities)](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools)
+[![Bugs](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools&metric=bugs)](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools)
+[![Code Smells](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools&metric=code_smells)](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools)
+
+
 ## Table of Contents
 
 * [About](#about)
@@ -22,14 +24,12 @@
 * [Meta](#meta)
 
 
-<!-- ABOUT THE PROJECT -->
 ## About
 
 The dev-tools project install development scripts and applications used by Elhub development team.
 In particular, this includes the code and extensitons for Phabricator.
 
 
-<!-- GETTING STARTED -->
 ## Getting Started
 
 ### Prerequisites
@@ -130,13 +130,11 @@ See also `copy-git-hooks`.
 **pre-push** prevents direct pushes to master. It does work with `arc land` though, which is what everyone should be using for landing diff changes.
 
 
-<!-- TESTING -->
 ## Testing
 
 The project runs tests automatically (the test_install role) after install.
 
 
-<!-- META -->
 ## Meta
 
 * [Development Handbook](https://confluence.elhub.cloud/display/DEV/Handbook)
