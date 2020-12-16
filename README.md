@@ -48,7 +48,7 @@ directory accessible to Windows as well as Linux (i.e., in /mnt/c).
 
 Then run the ansible-pull:
 
-    $ ansible-pull -U https://phabricator.elhub.cloud/source/dev-tools.git -d /tmp/ --purge -K install.yml
+    $ ansible-pull -U https://phabricator.elhub.cloud/source/dev-tools.git -d /tmp/devtools --purge -K install.yml
 
 The process will prompt you for your sudo password.
 
