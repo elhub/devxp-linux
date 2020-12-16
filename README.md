@@ -27,7 +27,7 @@
 ## About
 
 The dev-tools project install development scripts and applications used by Elhub development team.
-In particular, this includes the code and extensitons for Phabricator.
+In particular, this includes the code and extensions for Phabricator.
 
 
 ## Getting Started
@@ -54,7 +54,7 @@ The process will prompt you for your sudo password.
 
 To set a path other than the default, add and option with -e:
 
-    -e "devtools_path=<INSTALL_PATH>"
+    -e "devtools_path=<INSTALL_PATH>"arc w
 
 You can (and should) re-run the script from time to time to update the scripts and tools.
 
