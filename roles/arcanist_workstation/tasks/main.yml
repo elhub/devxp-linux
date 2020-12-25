@@ -65,54 +65,24 @@
 
 - name: Ensure template path exists
   file:
-    path: "{{ install_path }}/templates"
+    path: "{{ install_path }}/templates/repo"
     state: directory
     mode: 0755
 
-- name: Set up templates (arcconfig)
+- name: Set up repo-related templates
   template:
-    src: arcconfig-template.j2
-    dest: "{{ install_path }}/templates/.arcconfig"
+    src: "repo/{{ item }}.j2"
+    dest: "{{ install_path }}/templates/repo/{{ item }}"
     mode: 0644
-
-- name: Set up templates (arcconfig-gradle)
-  template:
-    src: arcconfig-gradle.j2
-    dest: "{{ install_path }}/templates/.arcconfig-gradle"
-    mode: 0644
-
-- name: Set up templates (arcconfig-maven)
-  template:
-    src: arcconfig-maven.j2
-    dest: "{{ install_path }}/templates/.arcconfig-maven"
-    mode: 0644
-
-- name: Set up templates (arclint)
-  template:
-    src: arclint-template.j2
-    dest: "{{ install_path }}/templates/.arclint"
-    mode: 0644
-
-- name: Set up templates (gitattributes)
-  template:
-    src: gitattributes-template.j2
-    dest: "{{ install_path }}/templates/.gitattributes"
-    mode: 0644
-
-- name: Set up templates (gitignore)
-  template:
-    src: gitignore-template.j2
-    dest: "{{ install_path }}/templates/.gitignore"
-    mode: 0644
-
-- name: Set up templates (README.md)
-  template:
-    src: README-template.md.j2
-    dest: "{{ install_path }}/templates/README.md"
-    mode: 0644
-
-- name: Set up templates (CONTRIBUTING.md)
-  template:
-    src: CONTRIBUTING-template.md.j2
-    dest: "{{ install_path }}/templates/CONTRIBUTING.md"
-    mode: 0644
+  loop:
+    - ansible-lint-template
+    - arcconfig-gradle-template
+    - arcconfig-maven-template
+    - arcconfig-none-template
+    - arclint-template
+    - CONTRIBUTING-template.md
+    - gitattributes-template
+    - gitignore-template
+    - Makefile-template
+    - README-template.md
+    - yamllint-template
