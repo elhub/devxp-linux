@@ -11,9 +11,10 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.sequential
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.VcsTrigger
 import jetbrains.buildServer.configs.kotlin.v2019_2.version
 import no.elhub.common.build.configuration.AutoRelease
-import no.elhub.common.build.configuration.ProjectType
 import no.elhub.common.build.configuration.SonarScan
 import no.elhub.common.build.configuration.constants.GlobalTokens
+import no.elhub.common.build.configuration.ProjectType
+import no.elhub.common.build.configuration.ProjectType.ANSIBLE
 
 version = "2020.2"
 
@@ -28,9 +29,8 @@ project {
             SonarScan(
                 SonarScan.Config(
                     vcsRoot = DslContext.settingsRoot,
-                    sonarId = "no.elhub.tools:dev-tools",
-                    sonarProjectSources = "src/main",
-                    sonarProjectTests = "src/test"
+                    type = ANSIBLE,
+                    sonarId = "no.elhub.tools:dev-tools"
                 )
             )
         )
