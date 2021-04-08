@@ -28,30 +28,28 @@ project {
             SonarScan(
                 SonarScan.Config(
                     vcsRoot = DslContext.settingsRoot,
-                    sonarId = "no.elhub.tools:dev-tools-auto-release",
+                    sonarId = "no.elhub.tools:dev-tools",
                     sonarProjectSources = "src/main",
                     sonarProjectTests = "src/test"
                 )
             )
         )
 
+        val githubAuth = SshAgent({
+            teamcitySshKey = "teamcity_github_rsa"
+            param("secure:passphrase", GlobalTokens.githubSshPassphrase)
+        })
+
         buildType(
             AutoRelease(
                 AutoRelease.Config(
                     vcsRoot = DslContext.settingsRoot,
-                    type = ProjectType.ANSIBLE
+                    type = ProjectType.ANSIBLE,
+                    sshAgent = githubAuth
                 )
             ) {
+
                 VcsTrigger ()
-
-                features {
-
-                    sshAgent {
-                        teamcitySshKey = "teamcity_github_rsa"
-                        param("secure:passphrase", GlobalTokens.githubSshPassphrase)
-                    }
-
-                }
 
             })
 
