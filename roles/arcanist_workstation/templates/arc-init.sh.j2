@@ -117,19 +117,19 @@ if ! echo "$_arg_action" | egrep '(gradle|maven|none)' >/dev/null; then
 fi
 
 cp "${TEMPLATE_PATH}/arcconfig-${_arg_action}-template" ./.arcconfig
-cp $TEMPLATE_PATH/arclint-template ./.arclint
-cp $TEMPLATE_PATH/CONTRIBUTING-template.md ./CONTRIBUTING.md
-cp $TEMPLATE_PATH/gitattributes-template ./.gitattributes
-cp $TEMPLATE_PATH/gitignore-template ./.gitignore
-cp $TEMPLATE_PATH/Makefile-template ./Makefile
-cp $TEMPLATE_PATH/README-template.md ./README.md
+cp "${TEMPLATE_PATH}/arclint-template" ./.arclint
+cp "${TEMPLATE_PATH}/CONTRIBUTING-template.md" ./CONTRIBUTING.md
+cp "${TEMPLATE_PATH}/gitattributes-template" ./.gitattributes
+cp "${TEMPLATE_PATH}/gitignore-template" ./.gitignore
+cp "${TEMPLATE_PATH}/Makefile-template" ./Makefile
+cp -i "${TEMPLATE_PATH}/README-template.md" ./README.md
 
 IFS=',' read -ra EXTRAS <<< "$_arg_extras"
 unset IFS
 
 if [[ "${EXTRAS[@]}" =~ "ansible" ]]; then
-  cp $TEMPLATE_PATH/yamllint-template ./.yamllint
-  cp $TEMPLATE_PATH/ansible-lint-template ./.ansible-lint
+  cp ${TEMPLATE_PATH}/yamllint-template ./.yamllint
+  cp ${TEMPLATE_PATH}/ansible-lint-template ./.ansible-lint
 fi
 
 if [[ $(git rev-parse --is-inside-work-tree) == "true" ]]; then

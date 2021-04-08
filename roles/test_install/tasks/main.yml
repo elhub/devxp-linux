@@ -19,11 +19,6 @@
   args:
     executable: /bin/bash
 
-- name: Test nvm
-  shell: nvm --version
-  args:
-    executable: /bin/bash
-
 - name: Test npm
   shell: npm --version
   args:

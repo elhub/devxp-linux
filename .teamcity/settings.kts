@@ -1,62 +1,61 @@
+import jetbrains.buildServer.configs.kotlin.v2019_2.BuildFeatures
 import jetbrains.buildServer.configs.kotlin.v2019_2.BuildType
 import jetbrains.buildServer.configs.kotlin.v2019_2.DslContext
+import jetbrains.buildServer.configs.kotlin.v2019_2.Trigger
+import jetbrains.buildServer.configs.kotlin.v2019_2.VcsRoot
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.SshAgent
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.gradle
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2019_2.project
+import jetbrains.buildServer.configs.kotlin.v2019_2.sequential
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.VcsTrigger
-import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.v2019_2.version
+import no.elhub.common.build.configuration.AutoRelease
+import no.elhub.common.build.configuration.ProjectType
+import no.elhub.common.build.configuration.SonarScan
+import no.elhub.common.build.configuration.constants.GlobalTokens
 
-version = "2020.1"
+version = "2020.2"
 
 project {
     params {
         param("teamcity.ui.settings.readOnly", "true")
     }
 
-    val check = Config(
-            id = "Check",
-            name = "Check"
-    )
+    val buildChain = sequential {
 
-    listOf(check).forEach { buildType(Build(it)) }
+        buildType(
+            SonarScan(
+                SonarScan.Config(
+                    vcsRoot = DslContext.settingsRoot,
+                    sonarId = "no.elhub.tools:dev-tools-auto-release",
+                    sonarProjectSources = "src/main",
+                    sonarProjectTests = "src/test"
+                )
+            )
+        )
+
+        buildType(
+            AutoRelease(
+                AutoRelease.Config(
+                    vcsRoot = DslContext.settingsRoot,
+                    type = ProjectType.ANSIBLE
+                )
+            ) {
+                VcsTrigger ()
+
+                features {
+
+                    sshAgent {
+                        teamcitySshKey = "teamcity_github_rsa"
+                        param("secure:passphrase", GlobalTokens.githubSshPassphrase)
+                    }
+
+                }
+
+            })
+
+    }
+
+    buildChain.buildTypes().forEach { buildType(it) }
 }
-
-data class Config(
-        val id: String,
-        val name: String
-)
-
-class Build(config: Config) : BuildType({
-    id(config.id)
-    name = config.name
-
-    vcs {
-        root(DslContext.settingsRoot)
-        cleanCheckout = true
-    }
-
-    steps {
-
-        step {
-            name = "Ansible Dry Run"
-            type = "elinyo_ansible_runner"
-            param("elinyo_ar_options", "--check")
-            param("elinyo_ar_playbook_file", "install.yml")
-        }
-
-        step {
-            name = "Sonar Scan"
-            type = "sonar-plugin"
-            param("sonarProjectSources", ".")
-            param("sonarProjectName", "dev-tools")
-            param("sonarProjectKey", "no.elhub.tools:dev-tools")
-            param("sonarServer", "c2635de0-ee28-443d-b7df-a7aa80b0ded7")
-        }
-
-    }
-
-    triggers {
-        vcs {
-            quietPeriodMode = VcsTrigger.QuietPeriodMode.USE_DEFAULT
-        }
-    }
-})

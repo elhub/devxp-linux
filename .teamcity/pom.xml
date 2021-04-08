@@ -12,11 +12,14 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <repositories>
+        <repository>
+            <id>artifactory</id>
+            <url>https://jfrog.elhub.cloud:443/artifactory/elhub-mvn/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
         <repository>
             <id>jetbrains-all</id>
             <url>https://download.jetbrains.com/teamcity-repository</url>
@@ -80,6 +83,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>no.elhub.common</groupId>
+            <artifactId>common-build-configuration</artifactId>
+            <version>[0.3.0, 1.0.0)</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>org.jetbrains.teamcity</groupId>
             <artifactId>configs-dsl-kotlin</artifactId>
             <version>${teamcity.dsl.version}</version>
@@ -105,5 +114,4 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-
 </project>
