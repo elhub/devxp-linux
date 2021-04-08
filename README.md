@@ -1,6 +1,6 @@
 # dev-tools
 
-![TeamCity Build](https://teamcity.elhub.cloud/app/rest/builds/buildType:(id:Tools_DevTools_Check)/statusIcon)
+![TeamCity Build](https://teamcity.elhub.cloud/app/rest/builds/buildType:(id:Tools_DevTools_AutoRelease)/statusIcon)
 [![Quality Gate Status](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools&metric=alert_status)](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools)
 [![Lines of Code](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools&metric=ncloc)](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools)
 
@@ -26,7 +26,7 @@
 
 ## About
 
-The dev-tools project install development scripts and applications used by Elhub development team.
+The dev-tools project installs development scripts and applications used by Elhub development team.
 In particular, this includes the code and extensions for Phabricator.
 
 
@@ -86,7 +86,7 @@ aliases:
 **cleanup**: Cleans up the directory. Be careful (in particular, don't use it with terraform projects).
 
 **init**: Use with parameters "none", "maven", or "gradle". This copies appropriate default files (arcconfig, gitignore, gitattributes, etc) for a project
-directory.
+directory. This command can also be run using the arc-init script.
 
 **log**: Displays git log nicely.
 
@@ -94,6 +94,8 @@ directory.
 
 **set-exe**: Use with filename. Sets it to be executable and updates the git index..
 
+**status**: When run in your workspace directory (i.e., the dir where you keep your repositories, will iterate through all available git repos and inform
+which repositories have modified or untracked files. This command can also be run using the arc-status script.
 
 ### Linters
 

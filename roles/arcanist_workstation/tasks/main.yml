@@ -63,6 +63,15 @@
   become: yes
   ignore_errors: "{{ ansible_check_mode }}"
 
+- name: Set up arc-status
+  template:
+    src: arc-status.sh.j2
+    dest: /usr/local/bin/arc-status
+    mode: 0755
+  become: yes
+  ignore_errors: "{{ ansible_check_mode }}"
+
+
 - name: Ensure template path exists
   file:
     path: "{{ install_path }}/templates/repo"
