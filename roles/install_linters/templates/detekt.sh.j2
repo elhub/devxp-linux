@@ -1,2 +1,2 @@
 #!/bin/bash
-detekt-cli -c {{ install_path }}/detekt-config.yml $*
+detekt-cli -c {{ install_path }}/detekt-config.yml $* || true

@@ -19,6 +19,9 @@ import no.elhub.common.build.configuration.ProjectType.ANSIBLE
 version = "2020.2"
 
 project {
+
+    val projectId = "no.elhub.tools:dev-tools"
+
     params {
         param("teamcity.ui.settings.readOnly", "true")
     }
@@ -30,7 +33,7 @@ project {
                 SonarScan.Config(
                     vcsRoot = DslContext.settingsRoot,
                     type = ANSIBLE,
-                    sonarId = "no.elhub.tools:dev-tools"
+                    sonarId = projectId
                 )
             )
         )
@@ -56,4 +59,15 @@ project {
     }
 
     buildChain.buildTypes().forEach { buildType(it) }
+
+    buildType(
+        CodeReview(
+            CodeReview.Config(
+                vcsRoot = DslContext.settingsRoot,
+                type = ProjectType.ANSIBLE,
+                sonarId = projectId
+            )
+        )
+    )
+
 }
