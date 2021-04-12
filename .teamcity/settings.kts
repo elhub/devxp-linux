@@ -48,7 +48,7 @@ project {
             AutoRelease(
                 AutoRelease.Config(
                     vcsRoot = DslContext.settingsRoot,
-                    type = ProjectType.ANSIBLE,
+                    type = ANSIBLE,
                     sshAgent = githubAuth
                 )
             ) {
