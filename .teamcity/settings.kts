@@ -11,7 +11,7 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.sequential
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.VcsTrigger
 import jetbrains.buildServer.configs.kotlin.v2019_2.version
 import no.elhub.common.build.configuration.AutoRelease
-import no.elhub.common.build.configuration.CodeRe
+import no.elhub.common.build.configuration.CodeReview
 import no.elhub.common.build.configuration.SonarScan
 import no.elhub.common.build.configuration.constants.GlobalTokens
 import no.elhub.common.build.configuration.ProjectType
