@@ -48,13 +48,13 @@ directory accessible to Windows as well as Linux (i.e., in /mnt/c).
 
 Then run the ansible-pull:
 
-    $ ansible-pull -U https://phabricator.elhub.cloud/source/dev-tools.git -d /tmp/devtools --purge -K install.yml
+    $ ansible-pull -U https://github.com/elhub/dev-tools.git -d /tmp/dev-tools --purge -K install.yml
 
 The process will prompt you for your sudo password.
 
-To set a path other than the default, add and option with -e:
+To set a path other than the default (which is ~/.dev-tools), add and option with -e:
 
-    -e "devtools_path=<INSTALL_PATH>"arc w
+    -e "devtools_path=<INSTALL_PATH>"
 
 You can (and should) re-run the script from time to time to update the scripts and tools.
 
@@ -67,7 +67,6 @@ Arcanist requires php.curl; ensure the following is set in your php.ini:
     extension=php_curl.dll
 
 
-<!-- USAGE EXAMPLES -->
 ## Usage
 
 This project install a large number of tools, scripts, and applications used for day-to-day development.
