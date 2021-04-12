@@ -34,7 +34,8 @@ project {
                 SonarScan.Config(
                     vcsRoot = DslContext.settingsRoot,
                     type = ANSIBLE,
-                    sonarId = projectId
+                    sonarId = projectId,
+                    sonarProjectSources = "."
                 )
             )
         )
