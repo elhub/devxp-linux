@@ -17,11 +17,10 @@
   * [Installation](#installation)
 * [Usage](#usage)
 * [Testing](#testing)
-* [Issues](https://jira.elhub.cloud/browse/TD-464?jql=project%20%3D%20TD%20AND%20component%20%3D%20%22Dev%20Tools%22%20AND%20resolution%20%3D%20Unresolved%20)
-* [Contributing](CONTRIBUTING.md)
-* [License](LICENSE.md)
-* [Owners](CODEOWNERS)
-* [Meta](#meta)
+* [Roadmap](#roadmap)
+* [Contributing](#contributing)
+* [Owners](#owners)
+* [License](#license)
 
 
 ## About
@@ -135,7 +134,20 @@ See also `copy-git-hooks`.
 
 The project runs tests automatically (the test_install role) after install.
 
+## Roadmap
 
-## Meta
+See the [open issues](https://jira.elhub.cloud/issues/?jql=project%20%3D%20TD%20AND%20component%20%3D%20dev-tools%20AND%20resolution%20%3D%20Unresolved) for a list of proposed features (and known issues).
 
-* [Development Handbook](https://confluence.elhub.cloud/display/DEV/Handbook)
+## Contributing
+
+Contributing, issues and feature requests are welcome. See the
+[Contributing](https://github.com/elhub/dev-tools/blob/main/CONTRIBUTING.md) file.
+
+## Owners
+
+This project is developed by [Elhub](https://elhub.no). For the specific development group responsible for this
+code, see the [Codeowners](https://github.com/elhub/dev-tools/blob/main/CODEOWNERS) file.
+
+## License
+
+This project is [MIT](https://github.com/elhub/dev-tools/blob/main/LICENSE.md) licensed.
