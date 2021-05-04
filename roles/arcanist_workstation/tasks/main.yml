@@ -92,6 +92,5 @@
     - CONTRIBUTING-template.md
     - gitattributes-template
     - gitignore-template
-    - Makefile-template
     - README-template.md
     - yamllint-template
