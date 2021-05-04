@@ -1,2 +1,0 @@
-init:
-	copy-git-hooks

@@ -121,7 +121,6 @@ cp "${TEMPLATE_PATH}/arclint-template" ./.arclint
 cp "${TEMPLATE_PATH}/CONTRIBUTING-template.md" ./CONTRIBUTING.md
 cp "${TEMPLATE_PATH}/gitattributes-template" ./.gitattributes
 cp "${TEMPLATE_PATH}/gitignore-template" ./.gitignore
-cp "${TEMPLATE_PATH}/Makefile-template" ./Makefile
 cp -i "${TEMPLATE_PATH}/README-template.md" ./README.md
 
 IFS=',' read -ra EXTRAS <<< "$_arg_extras"
@@ -136,6 +135,6 @@ if [[ $(git rev-parse --is-inside-work-tree) == "true" ]]; then
     git init
 fi
 
-make init
+copy-git-hooks
 
 # ] <-- needed because of Argbash
