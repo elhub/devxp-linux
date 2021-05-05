@@ -17,7 +17,12 @@
             "type": "chmod"
         },
         "filename": {
-            "type": "filename"
+            "type": "filename",
+            "exclude": [
+                "(operations#env=test\\d)",
+                "(operations#env=exa\\d)",
+                "(operations#env=prod\\d)"
+            ]
         },
         "spelling": {
             "type": "spelling"
