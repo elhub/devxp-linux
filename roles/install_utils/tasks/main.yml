@@ -37,7 +37,7 @@
   template:
     src: pre-push.j2
     dest: /usr/local/etc/git-hooks/pre-push
-    mode: 0755
+    mode: 0644
   become: yes
   ignore_errors: "{{ ansible_check_mode }}"
 

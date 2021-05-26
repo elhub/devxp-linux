@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# ARG_POSITIONAL_SINGLE([action],[Valid actions are 'gradle', 'maven' and 'none'.],[])
-# ARG_OPTIONAL_SINGLE([extras],[],[A coma-separated list of additional config files. Valid values are 'ansible'.],[])
+# ARG_POSITIONAL_SINGLE([action],[Valid actions are 'gradle', 'maven', 'npm' and 'none'.],[])
+# ARG_OPTIONAL_SINGLE([extras],[],[A coma-separated list of additional config files. Valid values are 'ansible' and 'teamcity'.],[])
 # ARG_HELP([Utility script to initialize a code directory for arcanist.])
 # ARGBASH_GO()
 # needed because of Argbash --> m4_ignore([
@@ -9,7 +9,6 @@
 # Argbash is a bash code generator used to get arguments parsing right.
 # Argbash is FREE SOFTWARE, see https://argbash.io for more info
 # Generated online by https://argbash.io/generate
-
 
 die()
 {
@@ -129,6 +128,10 @@ unset IFS
 if [[ "${EXTRAS[@]}" =~ "ansible" ]]; then
   cp ${TEMPLATE_PATH}/yamllint-template ./.yamllint
   cp ${TEMPLATE_PATH}/ansible-lint-template ./.ansible-lint
+elif [[ "${EXTRAS[@]}" =~ "teamcity" ]]; then
+  mkdir -p .teamcity/
+  cp ${TEMPLATE_PATH}/teamcity-pom-template.xml .teamcity/pom.xml
+  cp -i ${TEMPLATE_PATH}/teamcity-settings-${_arg_action}-template.kts .teamcity/settings.kts
 fi
 
 if [[ $(git rev-parse --is-inside-work-tree) == "true" ]]; then
