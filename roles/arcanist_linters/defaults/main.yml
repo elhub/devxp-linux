@@ -1,5 +1,6 @@
 ---
-install_path: "{{ devtools_path }}/lint-config"
+install_path: ""
+lint_config_path: "{{ install_path }}/lint-config"
 # Version of checkstyle to install
 checkstyle_version: 8.37
 # Version of detekt to install

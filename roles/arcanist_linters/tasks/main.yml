@@ -4,7 +4,7 @@
 # Paths
 - name: Ensure install path exists
   file:
-    path: "{{ install_path }}"
+    path: "{{ lint_config_path }}"
     state: directory
     mode: 0755
 
@@ -20,7 +20,7 @@
 - name: Write checkstyle config
   template:
     src: checkstyle-config.xml.j2
-    dest: "{{ install_path }}/checkstyle-config.xml"
+    dest: "{{ lint_config_path }}/checkstyle-config.xml"
     mode: 0644
 
 - name: Create checkstyle script
@@ -43,7 +43,7 @@
 - name: Write detekt config
   template:
     src: detekt-config.yml.j2
-    dest: "{{ install_path }}/detekt-config.yml"
+    dest: "{{ lint_config_path }}/detekt-config.yml"
     mode: 0644
 
 - name: Create detekt script

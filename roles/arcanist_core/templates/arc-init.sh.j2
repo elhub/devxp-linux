@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# ARG_POSITIONAL_SINGLE([action],[Valid actions are 'gradle', 'maven', 'npm' and 'none'.],[])
+# ARG_POSITIONAL_SINGLE([action],[Valid actions are 'generic', 'gradle', 'maven' and 'npm'.],[])
 # ARG_OPTIONAL_SINGLE([extras],[],[A coma-separated list of additional config files. Valid values are 'ansible' and 'teamcity'.],[])
 # ARG_HELP([Utility script to initialize a code directory for arcanist.])
 # ARGBASH_GO()
@@ -36,8 +36,8 @@ print_help()
 {
   printf '%s\n' "Utility script to initialize a code directory for arcanist."
   printf 'Usage: %s [--extras <arg>] [-h|--help] <action>\n' "$0"
-  printf '\t%s\n' "<action>: Valid actions are 'gradle', 'maven' and 'none'."
-  printf '\t%s\n' "--extras: A coma-separated list of additional config files. Valid values are 'ansible'. (no default)"
+  printf '\t%s\n' "<action>: Valid actions are 'generic', 'gradle', 'maven' and 'npm'."
+  printf '\t%s\n' "--extras: A coma-separated list of additional config files. Valid values are 'ansible' and 'teamcity'. (no default)"
   printf '\t%s\n' "-h, --help: Prints help"
 }
 
@@ -110,7 +110,7 @@ set -eE
 
 TEMPLATE_PATH={{ devtools_path}}/templates/repo
 
-if ! echo "$_arg_action" | egrep '(gradle|maven|none)' >/dev/null; then
+if ! echo "$_arg_action" | egrep '(generic|gradle|maven|npm)' >/dev/null; then
     print_help
     exit 1;
 fi
@@ -130,8 +130,8 @@ if [[ "${EXTRAS[@]}" =~ "ansible" ]]; then
   cp ${TEMPLATE_PATH}/ansible-lint-template ./.ansible-lint
 elif [[ "${EXTRAS[@]}" =~ "teamcity" ]]; then
   mkdir -p .teamcity/
-  cp ${TEMPLATE_PATH}/teamcity-pom-template.xml .teamcity/pom.xml
-  cp -i ${TEMPLATE_PATH}/teamcity-settings-${_arg_action}-template.kts .teamcity/settings.kts
+  cp ${TEMPLATE_PATH}/teamcity/pom-template.xml .teamcity/pom.xml
+  cp -i ${TEMPLATE_PATH}/teamcity/settings-${_arg_action}-template.kts .teamcity/settings.kts
 fi
 
 if [[ $(git rev-parse --is-inside-work-tree) == "true" ]]; then

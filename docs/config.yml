@@ -1,0 +1,18 @@
+site:
+  baseUrl: "https://docs.elhub.cloud/tools/dev-tools"
+  #baseUrl: "http://localhost:8080"
+  about:
+    siteName: dev-tools
+
+BsDoc:
+  legacySearch: false
+  metaComponents:
+      - type: 'orchidSearch'
+  menu:
+      - type: "wiki"
+        asSubmenu: true
+        submenuTitle: Guide Book
+      - type: "pages"
+        group: "adr"
+        asSubmenu: true
+        submenuTitle: "Decisions"

@@ -3,11 +3,9 @@
 ![TeamCity Build](https://teamcity.elhub.cloud/app/rest/builds/buildType:(id:Tools_DevTools_AutoRelease)/statusIcon)
 [![Quality Gate Status](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools&metric=alert_status)](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools)
 [![Lines of Code](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools&metric=ncloc)](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools)
-
 [![Vulnerabilities](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools&metric=vulnerabilities)](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools)
 [![Bugs](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools&metric=bugs)](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools)
 [![Code Smells](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools&metric=code_smells)](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools)
-
 
 ## Table of Contents
 
@@ -47,13 +45,9 @@ directory accessible to Windows as well as Linux (i.e., in /mnt/c).
 
 Then run the ansible-pull:
 
-    $ ansible-pull -U https://github.com/elhub/dev-tools.git -d /tmp/dev-tools --purge -K install.yml
+    $ ansible-pull -U https://github.com/elhub/dev-tools.git --purge -K install.yml
 
 The process will prompt you for your sudo password.
-
-To set a path other than the default (which is ~/.dev-tools), add and option with -e:
-
-    -e "devtools_path=<INSTALL_PATH>"
 
 You can (and should) re-run the script from time to time to update the scripts and tools.
 

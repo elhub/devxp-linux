@@ -3,16 +3,29 @@
   hosts:
     - localhost
 
+  pre_tasks:
+    - name: get the username running the deploy
+      become: false
+      local_action: command whoami
+      register: whoami
+    - name: set the dev-tools user
+      set_fact:
+        devtools_user: "{{ whoami.stdout }}"
+    - name: set the dev-tools path
+      set_fact:
+        devtools_path: "/home/{{ devtools_user }}/.dev-tools"
+
+
   roles:
     # Install arcanist on the workstation
-    - role: arcanist_workstation
+    - role: arcanist_core
       vars:
         install_path: "{{ devtools_path }}"
     # Install linters used by arcanist/dev workflow
-    - role: install_linters
+    - role: arcanist_linters
       vars:
-        install_path: "{{ devtools_path }}/linters"
+        install_path: "{{ devtools_path }}"
     # Install utility scripts/applications
     - role: install_utils
-    # Install utility scripts/applications
+    # Inspection tests of the install
     - role: test_install
