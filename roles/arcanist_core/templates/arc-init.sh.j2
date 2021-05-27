@@ -117,6 +117,7 @@ fi
 
 cp "${TEMPLATE_PATH}/arcconfig-${_arg_action}-template" ./.arcconfig
 cp "${TEMPLATE_PATH}/arclint-template" ./.arclint
+cp -n "${TEMPLATE_PATH}/CODEOWNERS-template.md" ./CODEOWNERS
 cp "${TEMPLATE_PATH}/CONTRIBUTING-template.md" ./CONTRIBUTING.md
 cp "${TEMPLATE_PATH}/gitattributes-template" ./.gitattributes
 cp "${TEMPLATE_PATH}/gitignore-template" ./.gitignore
@@ -131,7 +132,7 @@ if [[ "${EXTRAS[@]}" =~ "ansible" ]]; then
 elif [[ "${EXTRAS[@]}" =~ "teamcity" ]]; then
   mkdir -p .teamcity/
   cp ${TEMPLATE_PATH}/teamcity/pom-template.xml .teamcity/pom.xml
-  cp -i ${TEMPLATE_PATH}/teamcity/settings-${_arg_action}-template.kts .teamcity/settings.kts
+  cp -n ${TEMPLATE_PATH}/teamcity/settings-${_arg_action}-template.kts .teamcity/settings.kts
 fi
 
 if [[ $(git rev-parse --is-inside-work-tree) == "true" ]]; then

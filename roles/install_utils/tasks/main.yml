@@ -1,12 +1,28 @@
 ---
 # Add utility scripts/applications
 
+- name: Set up dev-tools update in /etc/cron.d
+  cron:
+    name: dev-tools autoupdate
+    weekday: "3"
+    minute: "30"
+    hour: "11"
+    user: root
+    job: "ansible-pull -U https://github.com/elhub/dev-tools.git --purge install.yml -e \"devtools_user={{ install_user}}\""
+    cron_file: dev-tools-autoupdate
+
+- name: Ensure dev-tools-update
+  template:
+    src: dev-tools-update.j2
+    dest: /etc/cron.weekly/dev-tools-update
+    mode: 0755
+  ignore_errors: "{{ ansible_check_mode }}"
+
 - name: Ensure copy-git-hooks
   template:
     src: copy-git-hooks.j2
     dest: /usr/local/bin/copy-git-hooks
     mode: 0755
-  become: yes
   ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Ensure git-mirror
@@ -14,7 +30,6 @@
     src: git-mirror.j2
     dest: /usr/local/bin/git-mirror
     mode: 0755
-  become: yes
   ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Ensure make-release
@@ -22,7 +37,6 @@
     src: make-release.j2
     dest: /usr/local/bin/make-release
     mode: 0755
-  become: yes
   ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Ensure install path exists
@@ -30,7 +44,6 @@
     path: /usr/local/etc/git-hooks
     state: directory
     mode: 0755
-  become: yes
   ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Ensure pre-push
@@ -38,7 +51,6 @@
     src: pre-push.j2
     dest: /usr/local/etc/git-hooks/pre-push
     mode: 0644
-  become: yes
   ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Ensure resolv-fix
@@ -46,7 +58,6 @@
     src: resolv-fix.j2
     dest: /usr/local/bin/resolv-fix
     mode: 0755
-  become: yes
   ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Unpack adr-j lib
@@ -54,7 +65,6 @@
     src: "{{ repository }}/elhub-bin/adr-j/{{ adr_version }}/adr-j.zip"
     dest: /usr/local/lib
     remote_src: yes
-  become: yes
   ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Link adr
@@ -62,5 +72,4 @@
     src: /usr/local/lib/adr-j-{{ adr_version }}/bin/adr-j
     dest: /usr/local/bin/adr
     state: link
-  become: yes
   ignore_errors: "{{ ansible_check_mode }}"

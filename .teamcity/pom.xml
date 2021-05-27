@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <project>
     <modelVersion>4.0.0</modelVersion>
-    <name>Tools_DevTools Config DSL Script</name>
-    <groupId>Tools_DevTools</groupId>
-    <artifactId>Tools_DevTools_dsl</artifactId>
+    <name>TeamCity Elhub Config DSL Script</name>
+    <groupId>no.elhub.teamcity</groupId>
+    <artifactId>TeamCityElhub_dsl</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <parent>
@@ -13,7 +13,8 @@
     </parent>
 
     <properties>
-        <c-b-c.version>0.12.3</c-b-c.version>
+        <common-build-configuration.version>0.12.3</common-build-configuration.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <repositories>
@@ -89,7 +90,7 @@
         <dependency>
             <groupId>no.elhub.common</groupId>
             <artifactId>common-build-configuration</artifactId>
-            <version>${c-b-c.version}</version>
+            <version>${common-build-configuration.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

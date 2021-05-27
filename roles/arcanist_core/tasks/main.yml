@@ -36,6 +36,7 @@
     src: "{{ install_path }}/config"
     dest: /etc/arcconfig
     state: link
+  become_user: root
   become: yes
   ignore_errors: "{{ ansible_check_mode }}"
 
@@ -44,6 +45,7 @@
     src: "{{ install_path }}/arcanist/bin/arc"
     dest: /usr/local/bin/arc
     state: link
+  become_user: root
   become: yes
   ignore_errors: "{{ ansible_check_mode }}"
 
@@ -52,6 +54,7 @@
     src: "{{ install_path }}/arcanist/bin/phage"
     dest: /usr/local/bin/phage
     state: link
+  become_user: root
   become: yes
   ignore_errors: "{{ ansible_check_mode }}"
 
@@ -60,6 +63,7 @@
     src: "{{ item }}.sh.j2"
     dest: /usr/local/bin/{{ item }}
     mode: 0755
+  become_user: root
   become: yes
   loop:
     - arc-init
@@ -91,6 +95,7 @@
     - arcconfig-maven-template
     - arcconfig-npm-template
     - arclint-template
+    - CODEOWNERS-template
     - CONTRIBUTING-template.md
     - gitattributes-template
     - gitignore-template
