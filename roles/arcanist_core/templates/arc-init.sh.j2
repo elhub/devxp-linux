@@ -110,7 +110,8 @@ set -eE
 
 TEMPLATE_PATH={{ devtools_path}}/templates/repo
 
-if ! echo "$_arg_action" | egrep '(generic|gradle|maven|npm)' >/dev/null; then
+# shellcheck disable=SC2154
+if ! echo "$_arg_action" | grep -E '(generic|gradle|maven|npm)' >/dev/null; then
     print_help
     exit 1;
 fi
@@ -122,6 +123,11 @@ cp "${TEMPLATE_PATH}/CONTRIBUTING-template.md" ./CONTRIBUTING.md
 cp "${TEMPLATE_PATH}/gitattributes-template" ./.gitattributes
 cp "${TEMPLATE_PATH}/gitignore-template" ./.gitignore
 cp -i "${TEMPLATE_PATH}/README-template.md" ./README.md
+
+# Copy maven wrapper files for maven projects
+if echo "$_arg_action" | grep -E 'maven' >/dev/null; then
+  cp -r "${TEMPLATE_PATH}"/maven/* .
+fi
 
 IFS=',' read -ra EXTRAS <<< "$_arg_extras"
 unset IFS
