@@ -1,0 +1,15 @@
+---
+namespace: elhub
+name: dev-tools
+version: 1.0-SNAPSHOT
+readme: README.md
+authors:
+  - "@elhub/tools"
+description: Ansible script for installing development tools for Team Dev.
+license:
+  - MIT
+tags: []
+dependencies: {}
+repository: git@github.com:elhub/dev-tools.git
+documentation: git@github.com:elhub/dev-tools.git
+issues: https://jira.elhub.cloud/projects/TD/issues
