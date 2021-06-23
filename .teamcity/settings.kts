@@ -11,13 +11,12 @@ import no.elhub.common.build.configuration.ProjectType
 import no.elhub.common.build.configuration.SonarScan
 import no.elhub.common.build.configuration.constants.GlobalTokens
 
-
 version = "2020.2"
 
 project {
 
     val projectId = "no.elhub.tools:dev-tools"
-    val projectType = ProjectType.GRADLE
+    val projectType = ProjectType.ANSIBLE
     val artifactoryRepository = "elhub-bin-release-local"
 
     params {
