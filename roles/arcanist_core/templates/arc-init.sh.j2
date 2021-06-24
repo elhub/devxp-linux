@@ -126,7 +126,12 @@ cp -i "${TEMPLATE_PATH}/README-template.md" ./README.md
 
 # Copy maven wrapper files for maven projects
 if echo "$_arg_action" | grep -E 'maven' >/dev/null; then
-  cp -r "${TEMPLATE_PATH}"/maven/* .
+  cp -r "${TEMPLATE_PATH}"/maven/. .
+fi
+
+# Copy gradle wrapper files for gradle projects
+if echo "$_arg_action" | grep -E 'gradle' >/dev/null; then
+  cp -r "${TEMPLATE_PATH}"/gradle/. .
 fi
 
 IFS=',' read -ra EXTRAS <<< "$_arg_extras"

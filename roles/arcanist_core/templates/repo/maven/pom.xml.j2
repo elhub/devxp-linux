@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <name><!-- TODO --></name>
+    <artifactId><!-- TODO --></artifactId>
+    <packaging><!-- TODO --></packaging>
+
+    <!--
+    Do not modify! This is a "placeholder".
+    The actual version will be set by 'auto-release'.
+    -->
+    <version>0.0.0</version>
+
+    <repositories>
+        <repository>
+            <id>elhub-mvn</id>
+            <name>elhub-mvn</name>
+            <url>https://jfrog.elhub.cloud/artifactory/elhub-mvn</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>elhub-mvn</id>
+            <name>elhub-mvn</name>
+            <url>https://jfrog.elhub.cloud/artifactory/elhub-mvn</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <!-- TODO
+    <scm>
+        <connection>scm:git:${scm.url}/${project.name}.git</connection>
+        <url>https://code.elhub.cloud/projects/ELH/repos/${project.name}/browse</url>
+        <tag>master</tag>
+    </scm>
+    -->
+
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>releases</id>
+            <name>Elhub release repo</name>
+            <url>https://jfrog.elhub.cloud:443/artifactory/elhub-mvn-release-local/</url>
+            <layout>default</layout>
+        </repository>
+
+        <snapshotRepository>
+            <uniqueVersion>true</uniqueVersion>
+            <id>snapshots</id>
+            <name>Elhub snapshot repo</name>
+            <url>https://jfrog.elhub.cloud:443/artifactory/elhub-mvn-snapshot-local/</url>
+            <layout>default</layout>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <dependencies>
+        <!-- TODO -->
+    </dependencies>
+
+    <build>
+        <!-- TODO -->
+    </build>
+</project>

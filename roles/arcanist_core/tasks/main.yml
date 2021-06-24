@@ -71,17 +71,15 @@
     - arc-status
   ignore_errors: "{{ ansible_check_mode }}"
 
-- name: Ensure template path exists
+- name: Ensure template paths exist
   file:
-    path: "{{ install_path }}/templates/repo"
+    path: "{{ install_path }}/templates/repo/{{ item }}"
     state: directory
     mode: 0755
-
-- name: Ensure teamcity template path exists
-  file:
-    path: "{{ install_path }}/templates/repo/teamcity"
-    state: directory
-    mode: 0755
+  loop:
+    - teamcity
+    - gradle/gradle/wrapper
+    - maven/.mvn/wrapper
 
 - name: Ensure ansible template paths exist
   file:
@@ -137,3 +135,44 @@
     - main.yml.j2
     - README.md.j2
     - requirements.yml.j2
+
+- name: Set up maven templates
+  template:
+    src: "repo/maven/{{ item }}.j2"
+    dest: "{{ install_path }}/templates/repo/maven/{{ item }}"
+    mode: 0644
+  loop:
+    - .mvn/wrapper/maven-wrapper.properties
+    - .mvn/wrapper/MavenWrapperDownloader.java
+    - mvnw.cmd
+    - mvnw
+    - pom.xml
+
+- name: Set up gradle templates
+  template:
+    src: "repo/gradle/{{ item }}.j2"
+    dest: "{{ install_path }}/templates/repo/gradle/{{ item }}"
+    mode: 0644
+  loop:
+    - gradle/wrapper/gradle-wrapper.properties
+    - build.gradle.kts
+    - gradle.properties
+    - gradlew.bat
+    - gradlew
+    - settings.gradle.kts
+
+- name: Copy gradle-wrapper.jar to templates
+  copy:
+    src: "repo/gradle/wrapper/gradle-wrapper.jar"
+    dest: "{{ install_path }}/templates/repo/gradle/gradle/wrapper/gradle-wrapper.jar"
+    state: file
+    mode: 0755
+
+- name: Ensure file mode for maven/gradle wrapper scripts
+  file:
+    src: "{{ install_path }}/templates/repo/{{ item }}"
+    state: file
+    mode: 0755
+  loop:
+    - gradle/gradlew
+    - maven/mvnw
