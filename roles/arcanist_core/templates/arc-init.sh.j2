@@ -135,6 +135,7 @@ unset IFS
 if [[ "${EXTRAS[@]}" =~ "ansible" ]]; then
   cp ${TEMPLATE_PATH}/yamllint-template ./.yamllint
   cp ${TEMPLATE_PATH}/ansible-lint-template ./.ansible-lint
+  cp -rn ${TEMPLATE_PATH}/ansible .
 elif [[ "${EXTRAS[@]}" =~ "teamcity" ]]; then
   mkdir -p .teamcity/
   cp ${TEMPLATE_PATH}/teamcity/pom-template.xml .teamcity/pom.xml

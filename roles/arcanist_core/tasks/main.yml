@@ -83,6 +83,15 @@
     state: directory
     mode: 0755
 
+- name: Ensure ansible template paths exist
+  file:
+    path: "{{ install_path }}/templates/repo/ansible/{{ item }}"
+    state: directory
+    mode: 0755
+  loop:
+    - galaxy
+    - inventories
+
 - name: Set up repo-related templates
   template:
     src: "repo/{{ item }}.j2"
@@ -113,3 +122,18 @@
     - settings-gradle-template.kts
     - settings-maven-template.kts
     - settings-npm-template.kts
+
+- name: Set up ansible templates
+  template:
+    src: "repo/ansible/{{ item }}.j2"
+    dest: "{{ install_path }}/templates/repo/ansible/{{ item }}"
+    mode: 0644
+  loop:
+    - galaxy/.gitkeep
+    - inventories/.gitkeep
+    - ansible.cfg.j2
+    - inventories.yml.j2
+    - log_deploy.yml.j2
+    - main.yml.j2
+    - README.md.j2
+    - requirements.yml.j2

@@ -1,0 +1,11 @@
+---
+- name: Log deploy result
+  hosts: localhost
+
+  collections:
+    - elhub.commons
+
+  roles:
+    - role: deploy_logger
+      vars:
+        command: post
