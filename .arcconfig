@@ -1,3 +1,4 @@
 {
-    "phabricator.uri" : "https://phabricator.elhub.cloud"
+    "phabricator.uri" : "https://phabricator.elhub.cloud",
+    "arc.land.onto": ["main"]
 }
