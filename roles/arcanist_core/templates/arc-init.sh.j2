@@ -126,12 +126,12 @@ cp -i "${TEMPLATE_PATH}/README-template.md" ./README.md
 
 # Copy maven wrapper files for maven projects
 if echo "$_arg_action" | grep -E 'maven' >/dev/null; then
-  cp -r "${TEMPLATE_PATH}"/maven/. .
+  cp -ri "${TEMPLATE_PATH}"/maven/. .
 fi
 
 # Copy gradle wrapper files for gradle projects
 if echo "$_arg_action" | grep -E 'gradle' >/dev/null; then
-  cp -r "${TEMPLATE_PATH}"/gradle/. .
+  cp -ri "${TEMPLATE_PATH}"/gradle/. .
 fi
 
 IFS=',' read -ra EXTRAS <<< "$_arg_extras"
@@ -141,7 +141,9 @@ if [[ "${EXTRAS[@]}" =~ "ansible" ]]; then
   cp ${TEMPLATE_PATH}/yamllint-template ./.yamllint
   cp ${TEMPLATE_PATH}/ansible-lint-template ./.ansible-lint
   cp -rn ${TEMPLATE_PATH}/ansible .
-elif [[ "${EXTRAS[@]}" =~ "teamcity" ]]; then
+fi
+
+if [[ "${EXTRAS[@]}" =~ "teamcity" ]]; then
   mkdir -p .teamcity/
   cp ${TEMPLATE_PATH}/teamcity/pom-template.xml .teamcity/pom.xml
   cp -n ${TEMPLATE_PATH}/teamcity/settings-${_arg_action}-template.kts .teamcity/settings.kts
