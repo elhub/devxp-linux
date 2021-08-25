@@ -129,12 +129,12 @@
   loop:
     - galaxy/.gitkeep
     - inventories/.gitkeep
-    - ansible.cfg.j2
-    - inventories.yml.j2
-    - log_deploy.yml.j2
-    - main.yml.j2
-    - README.md.j2
-    - requirements.yml.j2
+    - ansible.cfg
+    - inventories.yml
+    - log_deploy.yml
+    - main.yml
+    - README.md
+    - requirements.yml
 
 - name: Set up maven templates
   template:
@@ -163,14 +163,13 @@
 
 - name: Copy gradle-wrapper.jar to templates
   copy:
-    src: "repo/gradle/wrapper/gradle-wrapper.jar"
+    src: "templates/repo/gradle/gradle/wrapper/gradle-wrapper.jar"
     dest: "{{ install_path }}/templates/repo/gradle/gradle/wrapper/gradle-wrapper.jar"
-    state: file
     mode: 0755
 
 - name: Ensure file mode for maven/gradle wrapper scripts
   file:
-    src: "{{ install_path }}/templates/repo/{{ item }}"
+    path: "{{ install_path }}/templates/repo/{{ item }}"
     state: file
     mode: 0755
   loop:
