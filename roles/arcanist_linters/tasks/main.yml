@@ -57,3 +57,15 @@
   become_user: root
   become: yes
   ignore_errors: "{{ ansible_check_mode }}"
+
+# Install nvm and npm for esLint
+- include: nvm.yml
+
+# Yamllint
+- name: Ensure yamllint
+  apt:
+    name: yamllint
+    state: latest
+  become_user: root
+  become: yes
+  ignore_errors: "{{ ansible_check_mode }}"

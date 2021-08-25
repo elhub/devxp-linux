@@ -19,7 +19,7 @@
   args:
     executable: /bin/bash
 
-# - name: Test npm
-#   shell: npm --version
-#   args:
-#     executable: /bin/bash
+- name: Test npm
+  shell: npm --version
+  args:
+    executable: /bin/bash
