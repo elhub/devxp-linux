@@ -4,8 +4,8 @@ name: dev-tools
 version: 1.0-SNAPSHOT
 readme: README.md
 authors:
-  - "@elhub/tools"
-description: Ansible script for installing development tools for Team Dev.
+  - "@elhub/dev-tools"
+description: Ansible script for installing the Linux development environment for Elhub's Dev Team.
 license:
   - MIT
 tags: []

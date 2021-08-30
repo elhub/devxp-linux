@@ -8,14 +8,15 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.version
 import no.elhub.common.build.configuration.AutoRelease
 import no.elhub.common.build.configuration.CodeReview
 import no.elhub.common.build.configuration.ProjectType
+import no.elhub.common.build.configuration.PublishDocs
 import no.elhub.common.build.configuration.SonarScan
 import no.elhub.common.build.configuration.constants.GlobalTokens
 
-version = "2020.2"
+version = "2021.1"
 
 project {
 
-    val projectId = "no.elhub.tools:dev-tools"
+    val projectId = "no.elhub.tools:dev-tools-linux"
     val projectType = ProjectType.ANSIBLE
     val artifactoryRepository = "elhub-bin-release-local"
 
@@ -47,6 +48,22 @@ project {
                     vcsRoot = DslContext.settingsRoot,
                     type = projectType,
                     sshAgent = githubAuth
+                )
+            ) {
+                triggers {
+                    vcs {
+                        branchFilter = "+:<default>"
+                        quietPeriodMode = VcsTrigger.QuietPeriodMode.USE_DEFAULT
+                    }
+                }
+            })
+
+        buildType(
+            PublishDocs(
+                PublishDocs.Config(
+                    vcsRoot = DslContext.settingsRoot,
+                    type = projectType,
+                    dest = "tools/dev-tools-linux"
                 )
             ) {
                 triggers {

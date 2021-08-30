@@ -1,13 +1,13 @@
 # dev-tools
 
-[![Git Repository](https://img.shields.io/badge/repo-github-blue)](https://github.com/elhub/dev-tools)
-[![Jira Issues](https://img.shields.io/badge/issues-jira-orange)](https://jira.elhub.cloud/issues/?jql=project%20%3D%20%22Team%20Dev%22%20AND%20component%20%3D%20common-build-configuration%20AND%20status%20!%3D%20Done)
-![TeamCity Build](https://teamcity.elhub.cloud/app/rest/builds/buildType:(id:Tools_DevTools_AutoRelease)/statusIcon)
-[![Quality Gate Status](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools&metric=alert_status)](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools)
-[![Lines of Code](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools&metric=ncloc)](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools)
-[![Bugs](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools&metric=bugs)](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools)
-[![Vulnerabilities](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools&metric=vulnerabilities)](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools)
-[![Coverage](https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.test%3Atest-data-gen&metric=coverage)](https://sonar.elhub.cloud/dashboard?id=no.elhub.test%3Atest-data-gen)
+[<img src="https://img.shields.io/badge/repo-github-blue" alt="">](https://github.com/elhub/dev-tools-linux)
+[<img src="https://img.shields.io/badge/issues-jira-orange" alt="">](https://jira.elhub.cloud/issues/?jql=project%20%3D%20%22Team%20Dev%22%20AND%20component%20%3D%20dev-tools-linux%20AND%20status%20!%3D%20Done)
+[<img src="https://teamcity.elhub.cloud/app/rest/builds/buildType:(id:Tools_DevToolsLinux_PublishDocs)/statusIcon" alt="">](https://teamcity.elhub.cloud/buildConfiguration/Tools_DevToolsLinux_PublishDocs)
+[<img src="https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools-linux&metric=alert_status" alt="">](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools-linux)
+[<img src="https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools-linux&metric=ncloc" alt="">](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools-linux)
+[<img src="https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools-linux&metric=bugs" alt="">](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools-linux)
+[<img src="https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools-linux&metric=vulnerabilities" alt="">](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools-linux)
+[<img src="https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.test%3Adev-tools-linux&metric=coverage" alt="">](https://sonar.elhub.cloud/dashboard?id=no.elhub.test%3Adev-tools-linux)
 
 
 ## Table of Contents

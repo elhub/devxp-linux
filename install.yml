@@ -20,6 +20,10 @@
         devtools_path: "/home/{{ devtools_user }}/.dev-tools"
 
   roles:
+    # Install utility scripts/applications
+    - role: base_install
+      become_user: "{{ devtools_user }}"
+      become: yes
     # Install arcanist on the workstation
     - role: arcanist_core
       vars:
@@ -33,6 +37,11 @@
       become_user: "{{ devtools_user }}"
       become: yes
     # Install utility scripts/applications
+    - role: sdk_install
+      vars:
+        install_user: "{{ devtools_user }}"
+      become_user: "{{ devtools_user }}"
+      become: yes
     - role: install_utils
       vars:
         install_user: "{{ devtools_user }}"

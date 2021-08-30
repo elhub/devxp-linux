@@ -1,0 +1,18 @@
+---
+# Install and update important Linux Apps
+
+- name: Ensure Basic Packages
+  apt:
+    name:
+      - build-essential
+      - curl
+      - git
+      - nano
+      - unzip
+      - zip
+
+- name: Ensure WSL Utilities
+  apt:
+    name:
+      - ubuntu-wsl
+

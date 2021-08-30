@@ -1,0 +1,25 @@
+---
+# Use SDKMan to manage SDKs
+- name: Check if sdkman is installed
+  shell: test -d {{sdkman_folder}} && echo "yes" || echo "no"
+  register: is_sdkman_installed
+
+- name: Install SDKMan Package Manager
+  shell: curl -s {{sdkman_script_install_url }} | bash executable=/bin/bash
+  when : is_sdkman_installed.stdout == "no"
+
+- name: Ensure presense of .bashrc file
+  file: state=touch path={{user_home}}/.bashrc
+
+- name: Add SDKMan in .bashrc file
+  lineinfile: dest={{user_home}}/.bashrc regexp="\/.sdkman/bin\/sdkman\-init\.sh" line='[[ -s "{{sdkman_folder}}/bin/sdkman-init.sh" && ! $(which sdkman-init.sh) ]] && source "{{sdkman_folder}}/bin/sdkman-init.sh"'
+
+- name: Ensure Kotlin is installed
+  shell: "source {{sdkman_folder}}/bin/sdkman-init.sh && sdk install kotlin"
+  args:
+    executable: /bin/bash
+
+- name: Ensure kscript is installed
+  shell: "source {{sdkman_folder}}/bin/sdkman-init.sh && sdk install kscript"
+  args:
+    executable: /bin/bash
