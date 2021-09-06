@@ -34,12 +34,15 @@ In particular, this includes the code and extensions for Phabricator.
 
 ### Prerequisites
 
-* [windows-dev-box](https://github.com/elhub/windows-dev-box)
 * Windows Subsystem for Linux (WSL)
+* Ubuntu 20.04
+* Ansible
 
-The following instructions assumes a standard Elhub Windows 10 developer PC installed using
-windows-dev-box. If you have another system, you will need to set it up accordingly. In particular,
-you need ansible installed.
+The following instructions assumes a standard Elhub Windows 10 developer PC with Windows Subsystem for
+Linux version 2. You will need ansible to run this; to install Ansible in Ubuntu 20.04, you can download
+and run the bootstrap script in this project:
+
+    $ ./bootstrap.sh
 
 ### Installation
 
