@@ -7,7 +7,7 @@
 [<img src="https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools-linux&metric=ncloc" alt="">](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools-linux)
 [<img src="https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools-linux&metric=bugs" alt="">](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools-linux)
 [<img src="https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools-linux&metric=vulnerabilities" alt="">](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools-linux)
-[<img src="https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.test%3Adev-tools-linux&metric=coverage" alt="">](https://sonar.elhub.cloud/dashboard?id=no.elhub.test%3Adev-tools-linux)
+[<img src="https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.tools%3Adev-tools-linux&metric=coverage" alt="">](https://sonar.elhub.cloud/dashboard?id=no.elhub.tools%3Adev-tools-linux)
 
 
 ## Table of Contents
@@ -18,7 +18,6 @@
   * [Installation](#installation)
 * [Usage](#usage)
 * [Testing](#testing)
-* [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [Owners](#owners)
 * [License](#license)
@@ -133,10 +132,6 @@ See also `copy-git-hooks`.
 ## Testing
 
 The project runs tests automatically (the test_install role) after install.
-
-## Roadmap
-
-See the [open issues](https://jira.elhub.cloud/issues/?jql=project%20%3D%20TD%20AND%20component%20%3D%20dev-tools%20AND%20resolution%20%3D%20Unresolved) for a list of proposed features (and known issues).
 
 ## Contributing
 
