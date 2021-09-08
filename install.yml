@@ -36,7 +36,6 @@
       vars:
         user_name: "{{devtools_user}}"
         real_name: "{{devtools_name}}"
-      become: yes
     # Install utility scripts/applications
     - role: install_sdks
       vars:
@@ -50,6 +49,5 @@
       vars:
         install_path: "{{devtools_path}}"
     - role: install_utils
-      become: yes
     # Inspection tests of the install
     - role: validate

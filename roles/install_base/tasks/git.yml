@@ -3,6 +3,7 @@
   apt:
     name:
       - git
+  become: yes
 
 - name: Set git global config
   shell: >
