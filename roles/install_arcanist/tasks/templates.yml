@@ -1,0 +1,105 @@
+---
+- name: Ensure template paths exist
+  file:
+    path: "{{install_path}}/templates/repo/{{item}}"
+    state: directory
+    mode: 0755
+  loop:
+    - teamcity
+    - gradle/gradle/wrapper
+    - maven/.mvn/wrapper
+
+- name: Ensure ansible template paths exist
+  file:
+    path: "{{install_path}}/templates/repo/ansible/{{item}}"
+    state: directory
+    mode: 0755
+  loop:
+    - galaxy
+    - inventories
+
+- name: Set up repo-related templates
+  template:
+    src: "repo/{{item}}.j2"
+    dest: "{{install_path}}/templates/repo/{{item}}"
+    mode: 0644
+  loop:
+    - ansible-lint-template
+    - arcconfig-generic-template
+    - arcconfig-gradle-template
+    - arcconfig-maven-template
+    - arcconfig-npm-template
+    - arclint-template
+    - CODEOWNERS-template
+    - CONTRIBUTING-template.md
+    - gitattributes-template
+    - gitignore-template
+    - README-template.md
+    - yamllint-template
+
+- name: Set up teamcity templates
+  template:
+    src: "repo/teamcity/{{item}}.j2"
+    dest: "{{install_path}}/templates/repo/teamcity/{{item}}"
+    mode: 0644
+  loop:
+    - pom-template.xml
+    - settings-generic-template.kts
+    - settings-gradle-template.kts
+    - settings-maven-template.kts
+    - settings-npm-template.kts
+
+- name: Set up ansible templates
+  template:
+    src: "repo/ansible/{{item}}.j2"
+    dest: "{{install_path}}/templates/repo/ansible/{{item}}"
+    mode: 0644
+  loop:
+    - galaxy/.gitkeep
+    - inventories/.gitkeep
+    - ansible.cfg
+    - inventories.yml
+    - log_deploy.yml
+    - main.yml
+    - README.md
+    - requirements.yml
+
+- name: Set up maven templates
+  template:
+    src: "repo/maven/{{item}}.j2"
+    dest: "{{install_path}}/templates/repo/maven/{{item}}"
+    mode: 0644
+  loop:
+    - .mvn/wrapper/maven-wrapper.properties
+    - .mvn/wrapper/MavenWrapperDownloader.java
+    - mvnw.cmd
+    - mvnw
+    - pom.xml
+
+- name: Set up gradle templates
+  template:
+    src: "repo/gradle/{{item}}.j2"
+    dest: "{{install_path}}/templates/repo/gradle/{{item}}"
+    mode: 0644
+  loop:
+    - gradle/wrapper/gradle-wrapper.properties
+    - build.gradle.kts
+    - gradle.properties
+    - gradlew.bat
+    - gradlew
+    - settings.gradle.kts
+
+- name: Copy gradle-wrapper.jar to templates
+  copy:
+    src: "templates/repo/gradle/gradle/wrapper/gradle-wrapper.jar"
+    dest: "{{install_path}}/templates/repo/gradle/gradle/wrapper/gradle-wrapper.jar"
+    mode: 0755
+
+- name: Ensure file mode for maven/gradle wrapper scripts
+  file:
+    path: "{{install_path}}/templates/repo/{{item}}"
+    state: file
+    mode: 0755
+  loop:
+    - gradle/gradlew
+    - maven/mvnw

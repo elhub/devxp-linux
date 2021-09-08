@@ -1,0 +1,12 @@
+---
+user_name: ""
+user_home: "/home/{{user_name}}"
+
+sdkman_folder: "{{user_home}}/.sdkman"
+sdkman_script_install_url: "http://get.sdkman.io"
+
+java_version: 8.0.302-open
+
+nodejs_version: "lts"
+
+python_version: 3.9

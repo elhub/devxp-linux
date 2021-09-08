@@ -83,7 +83,8 @@ project {
             CodeReview.Config(
                 vcsRoot = DslContext.settingsRoot,
                 type = projectType,
-                sonarId = projectId
+                sonarId = projectId,
+                sonarProjectSources = "."
             )
         )
     )

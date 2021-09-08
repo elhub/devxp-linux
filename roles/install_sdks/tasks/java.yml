@@ -1,0 +1,5 @@
+---
+- name: Ensure openjdk java version 8 is installed
+  shell: "source {{sdkman_folder}}/bin/sdkman-init.sh && sdk install java {{java_version}}"
+  args:
+    executable: /bin/bash

@@ -10,3 +10,9 @@
 ## Evaluation
 
 No other known risks or technical debt.
+
+
+apt update
+ModuleNotFoundError: No module named 'apt_pkg'
+
+sudo ln -s apt_pkg.cpython-38-x86_64-linux-gnu.so /usr/lib/python3/dist-packages/apt_pkg.so

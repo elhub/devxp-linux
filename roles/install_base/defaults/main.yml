@@ -1,0 +1,13 @@
+---
+user_name: ""
+user_home: "/home/{{user_name}}"
+real_name: ""
+dev_default_packages:
+  - build-essential
+  - curl
+  - nano
+  - ubuntu-wsl
+  - unzip
+  - zip
+
+dev_config_packages:

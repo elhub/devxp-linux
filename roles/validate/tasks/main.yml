@@ -1,0 +1,20 @@
+---
+# Do basic validation that things are set up right
+
+- name: Test arc
+  shell: arc help --
+  args:
+    executable: /bin/bash
+  register: result
+  failed_when:
+    - result.rc != 77
+
+- name: Test checkstyle
+  shell: "source {{sdkman_folder}}/bin/sdkman-init.sh && checkstyle --version"
+  args:
+    executable: /bin/bash
+
+- name: Test detekt
+  shell: "source {{sdkman_folder}}/bin/sdkman-init.sh && detekt --version"
+  args:
+    executable: /bin/bash

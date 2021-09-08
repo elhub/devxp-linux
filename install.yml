@@ -1,53 +1,55 @@
 ---
-- name: Deploy DEV-TOOLS
+- name: Deploy dev-tools-linux
   hosts:
     - localhost
 
   pre_tasks:
-    - name: get the username running the deploy
+    - name: Get the username running the deploy
       become: false
-      local_action: command whoami
-      register: whoami
+      shell: whoami
+      register: dev_whoami
 
-    - name: set the devtools_user
+    - name: Set the devtools_user
       set_fact:
-        devtools_user: "{{ whoami.stdout }}"
+        devtools_user: "{{dev_whoami.stdout}}"
       when:
         - (devtools_user is not defined)
 
-    - name: set the devtools_path
+    - name: Determine the actual name of the user
+      become: false
+      shell: echo {{devtools_user}} | sed -e 's/\./\ /g' | sed -e 's/\b\(.\)/\u\1/g'
+      register: dev_name
+
+    - name: Set the devtools_name
       set_fact:
-        devtools_path: "/home/{{ devtools_user }}/.dev-tools"
+        devtools_name: "{{dev_name.stdout}}"
+      when:
+        - (devtools_name is not defined)
+
+    - name: Set the devtools_path
+      set_fact:
+        devtools_path: "/home/{{devtools_user}}/.dev-tools"
 
   roles:
     # Install utility scripts/applications
-    - role: base_install
-      become_user: "{{ devtools_user }}"
-      become: yes
-    # Install arcanist on the workstation
-    - role: arcanist_core
+    - role: install_base
       vars:
-        install_path: "{{ devtools_path }}"
-      become_user: "{{ devtools_user }}"
-      become: yes
-    # Install linters used by arcanist/dev workflow
-    - role: arcanist_linters
-      vars:
-        install_path: "{{ devtools_path }}"
-      become_user: "{{ devtools_user }}"
+        user_name: "{{devtools_user}}"
+        real_name: "{{devtools_name}}"
       become: yes
     # Install utility scripts/applications
-    - role: sdk_install
+    - role: install_sdks
       vars:
-        install_user: "{{ devtools_user }}"
-      become_user: "{{ devtools_user }}"
-      become: yes
+        user_name: "{{devtools_user}}"
+    # Install arcanist on the workstation
+    - role: install_arcanist
+      vars:
+        install_path: "{{devtools_path}}"
+    # Install linters used by arcanist/dev workflow
+    - role: install_linters
+      vars:
+        install_path: "{{devtools_path}}"
     - role: install_utils
-      vars:
-        install_user: "{{ devtools_user }}"
-      become_user: root
       become: yes
     # Inspection tests of the install
-    - role: test_install
-      become_user: "{{ devtools_user }}"
-      become: yes
+    - role: validate

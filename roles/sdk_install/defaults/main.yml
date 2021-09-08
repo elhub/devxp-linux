@@ -1,7 +1,0 @@
----
-# Vars for gradle
-install_user: ""
-user_home: "/home/{{ install_user }}"
-sdkman_folder: "{{ user_home }}/.sdkman"
-sdkman_script_install_url: "http://get.sdkman.io"
-gradle_version: 6.5

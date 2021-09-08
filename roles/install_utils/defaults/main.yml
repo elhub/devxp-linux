@@ -1,5 +1,4 @@
 ---
-install_user: ""
 repository: https://jfrog.elhub.cloud/artifactory
 
 # ADR

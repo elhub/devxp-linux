@@ -1,0 +1,5 @@
+---
+- name: Ensure kscript is installed
+  shell: "source {{sdkman_folder}}/bin/sdkman-init.sh && sdk install kscript"
+  args:
+    executable: /bin/bash

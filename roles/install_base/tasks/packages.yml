@@ -1,0 +1,17 @@
+---
+- name: Upgrade packages
+  apt:
+    upgrade: yes
+    update_cache: yes
+
+- name: Ensure common packages
+  package:
+    name: "{{dev_default_packages}}"
+    state: present
+  retries: 3
+
+- name: Ensure configured packages
+  package:
+    name: "{{dev_config_packages}}"
+    state: present
+  retries: 3
