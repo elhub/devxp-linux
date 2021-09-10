@@ -5,6 +5,7 @@ real_name: ""
 dev_default_packages:
   - build-essential
   - curl
+  - jq
   - nano
   - ubuntu-wsl
   - unzip
