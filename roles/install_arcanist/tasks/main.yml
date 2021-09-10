@@ -68,7 +68,6 @@
   loop:
     - arc-init
     - arc-patch-clean
-    - arc-status
   ignore_errors: "{{ansible_check_mode}}"
 
 - include_tasks: templates.yml

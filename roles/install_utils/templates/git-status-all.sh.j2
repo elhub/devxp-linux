@@ -1,6 +1,6 @@
-# Inspired by a script from https://gist.github.com/mzabriskie
-#
 #!/bin/bash
+#
+# Inspired by a script from https://gist.github.com/mzabriskie
 
 dir="$1"
 
@@ -19,7 +19,7 @@ do
     # Only interested in directories
     [ -d "${f}" ] || continue
 
-    echo "\033[0;35m${f}\033[0m"
+    echo -e "\033[0;35m${f}\033[0m"
 
     # Check if directory is a git repository
     if [ -d "$f/.git" ]
@@ -31,21 +31,21 @@ do
         if [ $(git status | grep modified -c) -ne 0 ]
         then
             mod=1
-            echo "\033[0;31mModified files\033[0m"
+            echo -e "\033[0;31mModified files\033[0m"
         fi
 
         # Check for untracked files
         if [ $(git status | grep Untracked -c) -ne 0 ]
         then
             mod=1
-            echo "\033[0;31mUntracked files\033[0m"
+            echo -e "\033[0;31mUntracked files\033[0m"
         fi
 
         # Check for unpushed changes
         if [ $(git status | grep 'Your branch is ahead' -c) -ne 0 ]
         then
                 mod=1
-                echo "\033[0;31mUnpushed commit\033[0m"
+                echo -e "\033[0;31mUnpushed commit\033[0m"
         fi
 
         # Check if everything is peachy keen

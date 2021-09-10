@@ -1,18 +1,26 @@
 ---
-- name: Ensure clone-all
-  template:
-    src: git-clone-all.j2
-    dest: /usr/local/bin/git-clone-all
-    mode: 0755
+
+- name: Delete old scripts
+  file:
+    state: absent
+    path: /usr/local/bin/{{item}}
+  become_user: root
   become: yes
+  loop:
+    - arc-status
   ignore_errors: "{{ansible_check_mode}}"
 
-- name: Ensure git-mirror
+- name: Set up arcanist scripts
   template:
-    src: git-mirror.j2
-    dest: /usr/local/bin/git-mirror
+    src: "{{item}}.sh.j2"
+    dest: /usr/local/bin/{{item}}
     mode: 0755
+  become_user: root
   become: yes
+  loop:
+    - git-clone-all
+    - git-mirror
+    - git-status-all
   ignore_errors: "{{ansible_check_mode}}"
 
 - name: Ensure make-release
