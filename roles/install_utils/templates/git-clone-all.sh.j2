@@ -97,19 +97,21 @@ assign_positional_args 1 "${_positionals[@]}"
 # [ <-- needed because of Argbash
 
 clone_repo() {
+    repo_name=$2
     if [ $1 == "bitbucket" ]; then
         repo_uri="https://code.elhub.cloud/scm"
+        repo_path=$3/$repo_name
     elif [ $1 == "github" ]; then
         repo_uri="git://github.com/elhub"
+        repo_path=$repo_name
     else
         echo "Unknown repo type $1"
         exit -1
     fi
-    repo_path=$2
 
-    if [ ! -d $repo_path ]; then
+    if [ ! -d $repo_name ]; then
         echo "Cloning $repo_path..."
-        git clone $repo_uri/$repo_path
+        git clone $repo_uri/$repo_path.git
     else
         echo $repo_path "exists. Skipping..."
     fi
@@ -121,12 +123,12 @@ clone_all_repos() {
 
     for repo in $(curl --silent --user $(whoami) https://code.elhub.cloud/rest/api/1.0/projects/$callsign/repos?limit=100 | jq -r '.values[] | .slug' | grep -e $slug)
     do
-        clone_repo "bitbucket" $callsign/$repo.git
+        clone_repo "bitbucket" $repo $callsign
     done
 
     for repo in $(curl --silent  "https://api.github.com/orgs/elhub/repos?page=$page&per_page=100" | jq -r '.[].name' | grep -e $slug)
     do
-        clone_repo "github" $repo.git
+        clone_repo "github" $repo
     done
 }
 
