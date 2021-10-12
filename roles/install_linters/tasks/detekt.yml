@@ -1,17 +1,17 @@
 ---
 - name: Ensure detekt
   get_url:
-    url: https://github.com/detekt/detekt/releases/download/v{{detekt_version}}/detekt-cli-{{detekt_version}}-all.jar
+    url: https://github.com/detekt/detekt/releases/download/v{{ detekt_version }}/detekt-cli-{{ detekt_version }}-all.jar
     dest: /usr/local/bin/detekt-cli.jar
     mode: 0755
   become_user: root
   become: yes
-  ignore_errors: "{{ansible_check_mode}}"
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Write detekt config
   template:
     src: detekt-config.yml.j2
-    dest: "{{lint_config_path}}/detekt-config.yml"
+    dest: "{{ lint_config_path }}/detekt-config.yml"
     mode: 0644
 
 - name: Create detekt script
@@ -21,4 +21,4 @@
     mode: 0755
   become_user: root
   become: yes
-  ignore_errors: "{{ansible_check_mode}}"
+  ignore_errors: "{{ ansible_check_mode }}"

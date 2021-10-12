@@ -7,16 +7,16 @@
 
 - name: Set git global config
   shell: >
-    test "$(git config --global {{item.key}})" == "{{item.value}}"
+    test "$(git config --global {{ item.key }})" == "{{ item.value }}"
     && echo "unchanged"
-    || git config --global {{item.key}} "{{item.value}}"
+    || git config --global {{ item.key }} "{{ item.value }}"
   register: git_config
   changed_when: git_config.stdout != "unchanged"
   args:
     executable: /bin/bash
   loop:
-    - {key: "user.name", value: "{{real_name}}"}
-    - {key: "user.email", value: "{{user_name}}@statnett.no"}
+    - {key: "user.name", value: "{{ real_name }}"}
+    - {key: "user.email", value: "{{ user_name }}@statnett.no"}
     - {key: "core.autocrlf", value: "input"}
     - {key: "core.eol", value: "lf"}
     - {key: "credential.helper", value: "cache --timeout=144000"}

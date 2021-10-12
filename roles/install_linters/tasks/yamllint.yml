@@ -2,7 +2,7 @@
 - name: Ensure yamllint
   apt:
     name: yamllint
-    state: latest
+    state: "{{ yamllint_version }}"
   become_user: root
   become: yes
-  ignore_errors: "{{ansible_check_mode}}"
+  ignore_errors: "{{ ansible_check_mode }}"

@@ -1,20 +1,23 @@
 ---
 # Do basic validation that things are set up right
 
-- name: Test arc
-  shell: arc help --
+- name: Test arc # noqa command-instead-of-shell
+  shell: "arc help --"
   args:
     executable: /bin/bash
   register: result
   failed_when:
     - result.rc != 77
+  changed_when: false
 
 - name: Test checkstyle
-  shell: "source {{sdkman_folder}}/bin/sdkman-init.sh && checkstyle --version"
+  shell: "source {{ sdkman_folder }}/bin/sdkman-init.sh && checkstyle --version"
   args:
     executable: /bin/bash
+  changed_when: false
 
 - name: Test detekt
-  shell: "source {{sdkman_folder}}/bin/sdkman-init.sh && detekt --version"
+  shell: "source {{ sdkman_folder }}/bin/sdkman-init.sh && detekt --version"
   args:
     executable: /bin/bash
+  changed_when: false

@@ -1,7 +1,7 @@
 ---
 - name: Ensure install path exists
   file:
-    path: "{{lint_config_path}}"
+    path: "{{ lint_config_path }}"
     state: directory
     mode: 0755
 

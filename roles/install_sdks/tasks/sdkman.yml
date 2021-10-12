@@ -1,19 +1,22 @@
 ---
 - name: Check if sdkman is installed
-  shell: test -d {{sdkman_folder}} && echo "yes" || echo "no"
+  shell: test -d {{ sdkman_folder }} && echo "yes" || echo "no"
   register: is_sdkman_installed
+  changed_when: false
 
-- name: Install sdkman package manager
-  shell: curl -s {{sdkman_script_install_url}} | bash executable=/bin/bash
+- name: Install sdkman package manager # noqa command-instead-of-module
+  shell: curl -s {{ sdkman_script_install_url }} | bash executable=/bin/bash
   when: is_sdkman_installed.stdout == "no"
+  register: result
+  changed_when: result.rc == 0
 
 - name: Ensure presense of .bashrc file
   file:
     state: touch
-    path: "{{user_home}}/.bashrc"
+    path: "{{ user_home }}/.bashrc"
 
 - name: Add sdkman in .bashrc file
   lineinfile:
-    path: "{{user_home}}/.bashrc"
+    path: "{{ user_home }}/.bashrc"
     regexp: \/.sdkman\/bin\/sdkman\-init\.sh
-    line: '[[ -s "{{sdkman_folder}}/bin/sdkman-init.sh" && ! $(which sdkman-init.sh) ]] && source "{{sdkman_folder}}/bin/sdkman-init.sh"'
+    line: '[[ -s "{{ sdkman_folder }}/bin/sdkman-init.sh" && ! $(which sdkman-init.sh) ]] && source "{{ sdkman_folder }}/bin/sdkman-init.sh"'

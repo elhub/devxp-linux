@@ -1,5 +1,7 @@
 ---
 - name: Ensure kscript is installed
-  shell: "source {{sdkman_folder}}/bin/sdkman-init.sh && sdk install kscript"
+  shell: "source {{ sdkman_folder }}/bin/sdkman-init.sh && sdk install kscript"
   args:
     executable: /bin/bash
+  register: kscript_response
+  changed_when: kscript_response.stdout is search('Done installing')
