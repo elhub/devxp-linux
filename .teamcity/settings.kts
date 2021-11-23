@@ -1,4 +1,4 @@
-import jetbrains.buildServer.configs.kotlin.v2019_2.DslContext
+gimport jetbrains.buildServer.configs.kotlin.v2019_2.DslContext
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.SshAgent
 import jetbrains.buildServer.configs.kotlin.v2019_2.project
 import jetbrains.buildServer.configs.kotlin.v2019_2.sequential
@@ -12,11 +12,11 @@ import no.elhub.common.build.configuration.PublishDocs
 import no.elhub.common.build.configuration.SonarScan
 import no.elhub.common.build.configuration.constants.GlobalTokens
 
-version = "2021.1"
+version = "2021.2"
 
 project {
 
-    val projectId = "no.elhub.tools:dev-tools-linux"
+    val projectId = "no.elhub.devxp:devxp-linux"
     val projectType = ProjectType.ANSIBLE
     val artifactoryRepository = "elhub-bin-release-local"
 
@@ -63,7 +63,7 @@ project {
                 PublishDocs.Config(
                     vcsRoot = DslContext.settingsRoot,
                     type = projectType,
-                    dest = "tools/dev-tools-linux"
+                    dest = "devxp/devxp-linux"
                 )
             ) {
                 triggers {
