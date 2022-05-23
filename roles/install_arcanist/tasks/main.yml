@@ -1,21 +1,3 @@
----
-# Set up arcanist on the workstation
-#
-# We use the repos on GitHub in order to control the location of the installation,
-# and keep up to speed with the latest version.
-
-- name: Ensure install path exists
-  file:
-    path: "{{ install_path }}"
-    state: directory
-    mode: 0755
-
-- name: Ensure libphutil
-  git:
-    repo: https://github.com/phacility/libphutil.git
-    dest: "{{ install_path }}/libphutil"
-    version: master
-
 - name: Ensure arcanist
   git:
     repo: https://github.com/phacility/arcanist.git

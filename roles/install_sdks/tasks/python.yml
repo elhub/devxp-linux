@@ -4,9 +4,10 @@
     name:
       - python3
       - python3-pip
+      - python-is-python3
   become: yes
 
-- name: Install requirements for python-ldap
+- name: Install python package requirements
   apt:
     name:
       - python3-dev
@@ -15,9 +16,10 @@
       - libssl-dev
   become: yes
 
-- name: Install python-ldap
+- name: Install python packages
   pip:
     name:
       - python-ldap
       - epdb
+      - oci
   become: yes
