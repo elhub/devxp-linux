@@ -1,9 +1,0 @@
----
-- include_tasks: sdkman.yml
-- include_tasks: java.yml
-- include_tasks: kotlin.yml
-- include_tasks: kscript.yml
-- include_tasks: node.yml
-- include_tasks: php.yml
-- include_tasks: python.yml
-- include_tasks: ansible.yml

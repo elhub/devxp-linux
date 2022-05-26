@@ -1,8 +1,0 @@
----
-- name: Ensure php
-  apt:
-    name:
-      - php7.4
-      - php7.4-curl
-      - php7.4-xml
-  become: yes

@@ -1,6 +1,5 @@
 ---
-# Do basic validation that things are set up right
-
+# Do some basic sanity checking that things are set up correctly
 - name: Test arc # noqa command-instead-of-shell
   shell: "arc help --"
   args:
@@ -11,13 +10,13 @@
   changed_when: false
 
 - name: Test checkstyle
-  shell: "source {{ sdkman_folder }}/bin/sdkman-init.sh && checkstyle --version"
+  shell: "source ~/.sdkman/bin/sdkman-init.sh && ~/.local/bin/checkstyle --version"
   args:
     executable: /bin/bash
   changed_when: false
 
 - name: Test detekt
-  shell: "source {{ sdkman_folder }}/bin/sdkman-init.sh && detekt --version"
+  shell: "source ~/.sdkman/bin/sdkman-init.sh && ~/.local/bin/detekt --version"
   args:
     executable: /bin/bash
   changed_when: false

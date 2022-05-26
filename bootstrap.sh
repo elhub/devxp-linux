@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Bootstrap script using dev-tools-linux. Run this the first time you set up your WSL2 system.
+# Bootstrap script for devxp-linux. Run this the first time you set up your WSL system.
 
 # Upgrade
 sudo apt update
@@ -7,7 +7,7 @@ sudo apt-get -y dist-upgrade
 
 # Python
 sudo apt update
-sudo apt install -y python3 python3-pip
+sudo apt install -y git python3 python3-pip
 
 # Ansible
 sudo apt remove -y ansible

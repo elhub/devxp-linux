@@ -1,15 +1,17 @@
 ---
 namespace: elhub
-name: dev-tools
+name: devxp-linux
 version: 1.0-SNAPSHOT
 readme: README.md
 authors:
   - "@elhub/dev-tools"
-description: Ansible script for installing the Linux development environment for Elhub's Dev Team.
+description: >
+  Ansible script for installing the Linux development environment for Elhub's Development Team.
 license:
   - MIT
 tags: []
-dependencies: {}
-repository: git@github.com:elhub/dev-tools.git
-documentation: git@github.com:elhub/dev-tools.git
+dependencies:
+  - elhub.ansible-collection-wsl
+repository: https://github.com/elhub/devxp-linux.git
+documentation: https://github.com/elhub/devxp-linux/blob/main/README.md
 issues: https://jira.elhub.cloud/projects/TD/issues

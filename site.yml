@@ -1,0 +1,25 @@
+---
+- name: Deploy devxp-linux
+  hosts:
+    - localhost
+  collections:
+    - elhub.ansible_collection_wsl
+  roles:
+    # Install basics
+    - role: base
+    - role: git
+    - role: docker
+    - role: molecule
+    # Install SDK
+    - role: python
+    - role: ansible
+    - role: java
+    - role: kotlin
+    - role: node
+    # Install Workflow
+    - role: adr
+    - role: arcanist
+    - role: git_utils
+    - role: linters
+    # Test
+    - role: validate

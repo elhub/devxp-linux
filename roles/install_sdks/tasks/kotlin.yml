@@ -1,7 +1,0 @@
----
-- name: Ensure kotlin is installed
-  shell: "source {{ sdkman_folder }}/bin/sdkman-init.sh && sdk install kotlin"
-  args:
-    executable: /bin/bash
-  register: kotlin_response
-  changed_when: kotlin_response.stdout is search('Done installing')

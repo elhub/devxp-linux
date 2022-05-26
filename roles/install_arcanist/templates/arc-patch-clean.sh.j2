@@ -1,4 +1,0 @@
-#!/bin/bash
-#
-# Clean up all arcpatch branches
-git branch | cut -c3- | grep arcpatch- | xargs -n1 git branch -D

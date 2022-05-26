@@ -1,5 +1,0 @@
----
-- name: Install ansible using pip
-  pip:
-    name: ansible
-    extra_args: --user

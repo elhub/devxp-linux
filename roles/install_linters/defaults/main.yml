@@ -1,9 +1,0 @@
----
-install_path: ""
-lint_config_path: "{{install_path}}/lint-config"
-# Version of checkstyle to install
-checkstyle_version: 9.0
-# Version of detekt to install
-detekt_version: 1.18.1
-# Version of yamllint
-yamllint_version: 1.20.0
