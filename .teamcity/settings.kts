@@ -12,7 +12,7 @@ import no.elhub.common.build.configuration.PublishDocs
 import no.elhub.common.build.configuration.SonarScan
 import no.elhub.common.build.configuration.constants.GlobalTokens
 
-version = "2021.2"
+version = "2022.04"
 
 project {
 
@@ -24,17 +24,16 @@ project {
         param("teamcity.ui.settings.readOnly", "true")
     }
 
+    val sonarScanConfig = SonarScan.Config(
+        vcsRoot = DslContext.settingsRoot,
+        type = projectType,
+        sonarId = projectId
+    )
+
     val buildChain = sequential {
 
         buildType(
-            SonarScan(
-                SonarScan.Config(
-                    vcsRoot = DslContext.settingsRoot,
-                    type = projectType,
-                    sonarId = projectId,
-                    sonarProjectSources = "."
-                )
-            )
+            SonarScan(sonarScanConfig)
         )
 
         val githubAuth = SshAgent({
@@ -83,8 +82,7 @@ project {
             CodeReview.Config(
                 vcsRoot = DslContext.settingsRoot,
                 type = projectType,
-                sonarId = projectId,
-                sonarProjectSources = "."
+                sonarScanConfig = sonarScanConfig
             )
         )
     )
