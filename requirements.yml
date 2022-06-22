@@ -1,5 +1,5 @@
 ---
 collections:
-   - name: git@github.com:elhub/ansible-collection-wsl.git
+   - name: https://github.com/elhub/ansible-collection-wsl.git
      type: git
      version: main

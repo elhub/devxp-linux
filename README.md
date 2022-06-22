@@ -133,6 +133,12 @@ The project installs a number of git utility scripts on the dev box.
 
 The project runs basic sanity tests automatically (the validate role) after installation.
 
+### With Docker
+
+```
+docker build .
+```
+
 ## Contributing
 
 Contributing, issues and feature requests are welcome. See the
