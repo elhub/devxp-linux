@@ -3,10 +3,10 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.project
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.VcsTrigger
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.v2019_2.version
-import no.elhub.common.build.configuration.CodeReview
-import no.elhub.common.build.configuration.ProjectType
-import no.elhub.common.build.configuration.PublishDocs
-import no.elhub.common.build.configuration.SonarScan
+import no.elhub.devxp.build.configuration.CodeReview
+import no.elhub.devxp.build.configuration.ProjectType
+import no.elhub.devxp.build.configuration.PublishDocs
+import no.elhub.devxp.build.configuration.SonarScan
 
 version = "2022.04"
 

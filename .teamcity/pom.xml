@@ -13,7 +13,7 @@
     </parent>
 
     <properties>
-        <common-build-configuration.version>0.34.0</common-build-configuration.version>
+        <devxp-build-configuration.version>0.41.0</devxp-build-configuration.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -88,9 +88,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>no.elhub.common</groupId>
-            <artifactId>common-build-configuration</artifactId>
-            <version>${common-build-configuration.version}</version>
+            <groupId>no.elhub.devxp</groupId>
+            <artifactId>devxp-build-configuration</artifactId>
+            <version>${devxp-build-configuration.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
