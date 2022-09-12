@@ -11,8 +11,8 @@ import no.elhub.devxp.build.configuration.SonarScan
 version = "2022.04"
 
 project {
-
-    val projectId = "no.elhub.devxp:devxp-linux"
+    val projectName = "devxp-linux"
+    val projectId = "no.elhub.devxp:$projectName"
     val projectType = ProjectType.ANSIBLE
 
     params {
@@ -33,15 +33,7 @@ project {
         )
     )
 
-    val sonarScan = SonarScan(sonarScanConfig)
-
-    val publishDocs = PublishDocs(
-        PublishDocs.Config(
-            vcsRoot = DslContext.settingsRoot,
-            type = projectType,
-            dest = "devxp/devxp-linux"
-        )
-    ) {
+    val sonarScan = SonarScan(sonarScanConfig){
         triggers {
             vcs {
                 branchFilter = "+:<default>"
@@ -50,5 +42,6 @@ project {
         }
     }
 
-    listOf(codeReview, sonarScan, publishDocs).forEach { buildType(it) }
+    listOf(codeReview, sonarScan).forEach { buildType(it) }
+
 }

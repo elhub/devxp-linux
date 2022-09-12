@@ -1,5 +1,4 @@
 # devxp-linux
-
 [<img src="https://img.shields.io/badge/repo-github-blue" alt="">](https://github.com/elhub/devxp-linux)
 [<img src="https://img.shields.io/badge/issues-jira-orange" alt="">](https://jira.elhub.cloud/issues/?jql=project%20%3D%20%22Team%20Dev%22%20AND%20component%20%3D%20devxp-linux%20AND%20status%20!%3D%20Done)
 [<img src="https://teamcity.elhub.cloud/app/rest/builds/buildType:(id:DevXp_DevXpLinux_PublishDocs)/statusIcon" alt="">](https://teamcity.elhub.cloud/project/DevXp_DevXpLinux?mode=builds#all-projects)
@@ -7,18 +6,6 @@
 [<img src="https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.devxp%3Adevxp-linux&metric=ncloc" alt="">](https://sonar.elhub.cloud/dashboard?id=no.elhub.devxp%3Adevxp-linux)
 [<img src="https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.devxp%3Adevxp-linux&metric=bugs" alt="">](https://sonar.elhub.cloud/dashboard?id=no.elhub.devxp%3Adevxp-linux)
 [<img src="https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.devxp%3Adevxp-linux&metric=vulnerabilities" alt="">](https://sonar.elhub.cloud/dashboard?id=no.elhub.devxp%3Adevxp-linux)
-
-## Table of Contents
-
-* [About](#about)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-* [Usage](#usage)
-* [Testing](#testing)
-* [Contributing](#contributing)
-* [Owners](#owners)
-* [License](#license)
 
 ## About
 
