@@ -13,7 +13,7 @@
     </parent>
 
     <properties>
-        <devxp-build-configuration.version>0.41.3</devxp-build-configuration.version>
+        <devxp-build-configuration.version>0.42.7</devxp-build-configuration.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -49,7 +49,7 @@
     </pluginRepositories>
 
     <build>
-        <sourceDirectory>.</sourceDirectory>
+        <sourceDirectory></sourceDirectory>
         <plugins>
             <plugin>
                 <artifactId>kotlin-maven-plugin</artifactId>
