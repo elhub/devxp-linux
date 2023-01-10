@@ -1,4 +1,5 @@
 ### Elhub-Ansible
+galaxy
 ansible/galaxy/*
 ansible/inventories/*
 ansible/vault_ids/*

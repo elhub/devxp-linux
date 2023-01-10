@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:jammy
 
 RUN apt-get update && apt-get -y install sudo
 
@@ -28,6 +28,4 @@ RUN sed -i 's/\s\+\- role: adr//g' site.yml
 RUN \
     . ~/.profile && \
     export PATH=$PATH:/home/foo/.local/bin && \
-    ./bootstrap.sh && \
-    ansible-galaxy install -r requirements.yml --force && \
-    ansible-playbook site.yml
+    ./bootstrap.sh
