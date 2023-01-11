@@ -1,4 +1,4 @@
-# devxp-linux
+# DevXP Linux bootstrap script (devxp-linux)
 [<img src="https://img.shields.io/badge/repo-github-blue" alt="">](https://github.com/elhub/devxp-linux)
 [<img src="https://img.shields.io/badge/issues-jira-orange" alt="">](https://jira.elhub.cloud/issues/?jql=project%20%3D%20%22Team%20Dev%22%20AND%20component%20%3D%20devxp-linux%20AND%20status%20!%3D%20Done)
 [<img src="https://teamcity.elhub.cloud/app/rest/builds/buildType:(id:DevXp_DevXpLinux_PublishDocs)/statusIcon" alt="">](https://teamcity.elhub.cloud/project/DevXp_DevXpLinux?mode=builds#all-projects)
@@ -9,59 +9,70 @@
 
 ## About
 
-The devxp-linux script is used to bootstrap Ubuntu WSL on an Elhub developer PC. It ensures that all the required
+The ```devxp-linux``` script is used to bootstrap Ubuntu WSL on an Elhub developer PC. It ensures that all the required
 tools, SDKs and scripts are installed and set up correctly. In addition, it is also used to upgrade an existing
 developer PC setup; when rerun, the scripts will validate existing installations and upgrade tools and scripts as
 appropriate.
 
 ## Getting Started
 
-### Prerequisites
+The following instructions assumes you have gotten a developer computer from 3020@statnett.no, which is a Lenovo ThinkPad-laptop that runs Windows 11 as its main operating system.
 
-* Windows Subsystem for Linux (WSL)
-* Ubuntu 20.04 installed in WSL
-* Ansible
+To install __Windows Subsystem for Linux__, run these commands inside __Windows PowerShell__ or __Windows Command Prompt__:
 
-The following instructions assumes a standard Elhub Windows 10 developer PC with Windows Subsystem for
-Linux version 2. You will need ansible to run this; to install Ansible in Ubuntu 20.04, you can download
-and run the bootstrap script in this project:
+```powershell
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+```
+
+which enables **WSL**, and
+
+```powershell
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+
+which enables **Hyper-V** that **WSL** needs.
+
+Then execute this line to install **Ubuntu 22.04.1 LTS**:
+
+```powershell
+wsl.exe --install Ubuntu
+```
+
+Determine where you will install the git-repository ```devxp-linux``` (we suggest ```$HOME/workspace/git```) on the file system inside Ubuntu in WSL (using __cd__ to navigate to your preferred directory and/or use __mkdir__ to create a new one), and then clone this repository in that location by executing:
+
+```bash
+git clone git@github.com:elhub/devxp-linux.git
+```
+
+To install necessary developer tools, execute:
 
 ```bash
 ./bootstrap.sh
 ```
 
-### Installation
+The script will prompt you for your Ubuntu WSL sudo password while it is executing.
 
-We assume that the bootstrap script mentioned above has been run. Determine where you will install devxp-linux (we
-suggest ```$HOME/workspace/git```), and clone this repository in that location:
-
-```bash
-$ git clone git@github.com:elhub/devxp-linux.git
-```
-
-Run ansible-galaxy to pull down dependencies:
+When the script is finished running, it should at the end output a text that is similar to this:
 
 ```bash
-$ ansible-galaxy install -r requirements.yml --force
+PLAY RECAP *********************************************************************
+localhost                  : ok=88   changed=53   unreachable=0    failed=0    skipped=3    rescued=0    ignored=0
 ```
 
-Then run ansible-playbook to install the devxp tools:
+You can (and should) pull new commits (using *git pull*) and re-run this script from time to time to update your setup with new scripts and tools.
+
+You should also set up the environment variable $EDITOR with your default text editor of your choice, if you haven't already done so. This can be done by executing:
 
 ```bash
-$ ansible-playbook site.yml --ask-become-pass
+sudo update-alternatives --config editor
 ```
-
-The process will prompt you for your (ubuntu wsl) sudo password.
-
-You can (and should) re-run the script from time to time to update the scripts and tools.
-
-You should also set up the EDITOR variable with your text editor of choice, if you haven't already done so.
 
 ## Usage
 
 This project install a large number of tools, scripts, SDKs, and applications used for day-to-day development.
 
 It installs the following programming languages/SDKs:
+
 * Ansible
 * Java
 * Kotlin
