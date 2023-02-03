@@ -127,6 +127,22 @@ The project installs a number of git utility scripts on the dev box.
 
 **git-status-all** carries out a ```git status``` on all the repositories in a directory.
 
+### Docker
+
+To execute the subcommands in ```docker``` in WSL, you need to start the service ```docker``` which will run the Docker daemon:
+
+```bash
+sudo service docker start
+```
+
+then you will not get this error message anymore when executing the subcommands in ```docker```:
+
+```bash
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+```
+
+There is no need for Docker Desktop or anything similar installed.
+
 ## Testing
 
 The project runs basic sanity tests automatically (the validate role) after installation.

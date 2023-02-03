@@ -12,6 +12,7 @@ RUN \
     echo "foo user:";  su - foo -c id
 
 USER foo
+ENV USER foo
 
 WORKDIR '/home/foo/devxp-linux/'
 
