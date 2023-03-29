@@ -35,7 +35,7 @@ which enables **Hyper-V** that **WSL** needs.
 Then execute this line to install **Ubuntu 22.04.1 LTS**:
 
 ```powershell
-wsl.exe --install Ubuntu
+wsl.exe --install -d Ubuntu
 ```
 
 Determine where you will install the git-repository ```devxp-linux``` (we suggest ```$HOME/workspace/git```) on the file system inside Ubuntu in WSL (using __cd__ to navigate to your preferred directory and/or use __mkdir__ to create a new one), and then clone this repository in that location by executing:
