@@ -135,13 +135,45 @@ To execute the subcommands in ```docker``` in WSL, you need to start the service
 sudo service docker start
 ```
 
-then you will not get this error message anymore when executing the subcommands in ```docker```:
+then you will not get this error message when executing the subcommands in ```docker```:
 
 ```bash
 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
 ```
 
 There is no need for Docker Desktop or anything similar installed.
+
+If you are getting the error above after starting the _docker_-service, execute
+
+```bash
+sudo service docker status
+```
+
+to see if it is running.
+
+If not, it may not start due to a change to _iptables_ in Ubuntu 22.04 LTS that sets it to _iptables-nft_ by default which does not work in WSL2. To fix that, either [execute](https://askubuntu.com/a/1406159):
+
+```
+sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
+```
+
+or [do](https://askubuntu.com/a/1437129):
+
+1. Execute this command:
+
+```bash
+sudo update-alternatives --config iptables
+```
+
+2. Type number "1" and press Enter to select "iptables-legacy".
+
+After _iptables_ has been set to _iptables-legacy_, then execute again
+
+```bash
+sudo service docker start
+```
+
+to see if it starts now.
 
 ## Testing
 
