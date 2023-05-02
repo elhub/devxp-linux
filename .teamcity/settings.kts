@@ -5,10 +5,9 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.v2019_2.version
 import no.elhub.devxp.build.configuration.CodeReview
 import no.elhub.devxp.build.configuration.ProjectType
-import no.elhub.devxp.build.configuration.PublishDocs
 import no.elhub.devxp.build.configuration.SonarScan
 
-version = "2022.04"
+version = "2022.10"
 
 project {
     val projectName = "devxp-linux"
@@ -33,7 +32,7 @@ project {
         )
     )
 
-    val sonarScan = SonarScan(sonarScanConfig){
+    val sonarScan = SonarScan(sonarScanConfig) {
         triggers {
             vcs {
                 branchFilter = "+:<default>"
