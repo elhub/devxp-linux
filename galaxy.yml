@@ -1,7 +1,7 @@
 ---
 namespace: elhub
 name: devxp-linux
-version: 1.0-SNAPSHOT
+version: "*"
 readme: README.md
 authors:
   - "@elhub/dev-tools"
@@ -10,8 +10,7 @@ description: >
 license:
   - MIT
 tags: []
-dependencies:
-  - elhub.ansible-collection-wsl
+dependencies: {}
 repository: https://github.com/elhub/devxp-linux.git
 documentation: https://github.com/elhub/devxp-linux/blob/main/README.md
 issues: https://jira.elhub.cloud/projects/TD/issues
