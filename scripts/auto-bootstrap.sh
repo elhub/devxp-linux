@@ -37,5 +37,5 @@ python3 -m pip install ansible
 source ~/.profile
 
 # Run Ansible-runbooks to install necessary command-line tools.
-/root/.local/bin/ansible-galaxy install -r /usr/local/bin/devxp-linux/requirements.yml --force # pulls down necessary dependencies for Ansible.
-/root/.local/bin/ansible-playbook /usr/local/bin/devxp-linux/site.yml --user="$USER" # installs devxp tools.
+ansible-galaxy install -r /usr/local/bin/devxp-linux/requirements.yml --force # pulls down necessary dependencies for Ansible.
+ansible-playbook /usr/local/bin/devxp-linux/site.yml --user="$USER" # installs devxp tools.

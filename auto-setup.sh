@@ -13,7 +13,7 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 # Print the first part of the prompt with the newline
-echo -e "Make sure you are running this script as your user.\n"
+echo -e "Make sure you are running this script as your user."
 
 # Prompt the user to confirm if they want to continue running the script as their user
 read -p $"It is typically ${GREEN}firstname.lastname${NC} Continue? (Y/N): " choice
@@ -37,7 +37,7 @@ fi
 user=$(whoami)
 
 # Use sudo to write to file
-echo "$user" | sudo tee /usr/local/bin/user > /dev/null # remember to remove the 2 from user before pushing
+echo "$user" | sudo tee /usr/local/bin/user > /dev/null
 
 # Continue rest of script as root
 ./scripts/root.sh
