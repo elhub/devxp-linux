@@ -60,7 +60,7 @@ if ansible-playbook /usr/local/bin/devxp-linux/site.yml --user="$USER" > "$logFi
     content="devxp-linux was last ran $(date +'%d.%m.%y %H:%M')"
 
     # Write completion message
-    echo "$content" | sudo tee "$lastRunFile" > /dev/null
+    echo "$content" | tee "$lastRunFile" > /dev/null
 
     # Write success message
     echo "${GREEN}Ansible playbook finished successfully.${NC}"
@@ -72,5 +72,5 @@ else
     content="devxp-linux failed it last run at $(date +'%d.%m.%y %H:%M') Please check $logFile for details."
 
     # Write completion message
-    echo "$content" | sudo tee "$lastRunFile" > /dev/null
+    echo "$content" | tee "$lastRunFile" > /dev/null
 fi
