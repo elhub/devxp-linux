@@ -24,14 +24,14 @@ apt-get install -y anacron
 # Check if the line already exists in /etc/anacrontab
 if ! grep -q "/usr/local/bin/devxp-linux/scripts/auto-bootstrap.sh" /etc/anacrontab; then
     # If the line doesn't exist, append it to /etc/anacrontab
-    echo "${YELLOW}Configure anacron job to run /usr/local/bin/devxp-linux/scripts/auto-bootstrap.sh once a week..${NC}"
+    echo "${YELLOW}Configured anacron job to run /usr/local/bin/devxp-linux/scripts/auto-bootstrap.sh once a week.${NC}"
     echo "${YELLOW}This can be edited in the /etc/anacrontab file.${NC}"
     cat << EOF >> /etc/anacrontab
 @weekly 15      cron.weekly             /usr/local/bin/devxp-linux/scripts/auto-bootstrap.sh
 EOF
 else
     # If the line already exists, display a message indicating that it's already configured
-    echo "Anacron job is already configured in /etc/anacrontab."
+    echo "${YELLOW}Anacron job is already configured in /etc/anacrontab.${NC}"
 fi
 
 echo "${GREEN}First time setup is complete${NC}"
