@@ -38,13 +38,20 @@ source ~/.profile
 
 # Run Ansible-runbooks to install necessary command-line tools.
 ansible-galaxy install -r /usr/local/bin/devxp-linux/requirements.yml --force # pulls down necessary dependencies for Ansible.
-ansible-playbook /usr/local/bin/devxp-linux/site.yml --user="$USER" # installs devxp tools.
+# Define the path for the log file
+logFile="/usr/local/bin/ansible-playbook.log"
 
-# Completion message path
-lastRunFile="/usr/local/bin/lastRun"
+# Run Ansible playbook and redirect output to the log file
+if ansible-playbook /usr/local/bin/devxp-linux/site.yml --user="$USER" > "$logFile" 2>&1; then
+    # Completion message path
+    lastRunFile="/usr/local/bin/lastRun"
 
-# Completion message content
-content="devxp-linux was last ran $(date +'%d.%m.%y %H:%M')"
+    # Completion message content
+    content="devxp-linux was last ran $(date +'%d.%m.%y %H:%M')"
 
-# Write completion message
-echo "$content" | sudo tee "$lastRunFile" > /dev/null
+    # Write completion message
+    echo "$content" | sudo tee "$lastRunFile" > /dev/null
+else
+    # Write failure message
+    echo "Ansible playbook execution failed. Please check $logFile for details."
+fi
