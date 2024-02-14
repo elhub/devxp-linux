@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
-# Automated bootstrap script for devxp-linux. Run this the first time you set up your WSL system.
+# Automated bootstrap script for devxp-linux.
+
+# Define text color variables
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+NC=$(tput sgr0) # No Color
+
 
 # Navigate to the directory containing the script
 cd "$(dirname "$0")" || exit
@@ -41,6 +48,9 @@ ansible-galaxy install -r /usr/local/bin/devxp-linux/requirements.yml --force # 
 # Define the path for the log file
 logFile="/usr/local/bin/ansible-playbook.log"
 
+# Write a message indicating that the Ansible playbook is starting
+echo "${YELLOW}Ansible playbook is starting, this can take some time.${NC}"
+
 # Run Ansible playbook and redirect output to the log file
 if ansible-playbook /usr/local/bin/devxp-linux/site.yml --user="$USER" > "$logFile" 2>&1; then
     # Completion message path
@@ -51,7 +61,10 @@ if ansible-playbook /usr/local/bin/devxp-linux/site.yml --user="$USER" > "$logFi
 
     # Write completion message
     echo "$content" | sudo tee "$lastRunFile" > /dev/null
+
+    # Write success message
+    echo "${GREEN}Ansible playbook finished successfully.${NC}"
 else
     # Write failure message
-    echo "Ansible playbook execution failed. Please check $logFile for details."
+    echo "${RED}Ansible playbook execution failed. Please check $logFile for details.${NC}"
 fi

@@ -2,6 +2,7 @@
 
 # Define text color variables
 GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
 NC=$(tput sgr0) # No Color
 
 # Check if script is already running as root
@@ -23,7 +24,8 @@ apt-get install -y anacron
 # Check if the line already exists in /etc/anacrontab
 if ! grep -q "/usr/local/bin/devxp-linux/scripts/auto-bootstrap.sh" /etc/anacrontab; then
     # If the line doesn't exist, append it to /etc/anacrontab
-    echo "${GREEN}Configure anacron job to run /usr/local/bin/devxp-linux/scripts/auto-bootstrap.sh once a week. This can be edited in the /etc/anacrontab file.${NC}"
+    echo "${YELLOW}Configure anacron job to run /usr/local/bin/devxp-linux/scripts/auto-bootstrap.sh once a week..${NC}"
+    echo "${YELLOW}This can be edited in the /etc/anacrontab file.${NC}"
     cat << EOF >> /etc/anacrontab
 @weekly 15      cron.weekly             /usr/local/bin/devxp-linux/scripts/auto-bootstrap.sh
 EOF
