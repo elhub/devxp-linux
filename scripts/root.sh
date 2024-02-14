@@ -34,4 +34,12 @@ else
     echo "${YELLOW}Anacron job is already configured in /etc/anacrontab.${NC}"
 fi
 
+########### Temp
+lastRun='echo "$(cat /usr/local/bin/lastRun)"'
+
+if ! grep -qF "$lastRun" ~/.bashrc; then
+    echo "$lastRun" >> ~/.bashrc
+fi
+########### Temp
+
 echo "${GREEN}First time setup is complete${NC}"
