@@ -14,8 +14,8 @@ cd "$(dirname "$0")" || exit
 # Store the current script hash
 current_hash=$(sha256sum "$0")
 
-# Perform a git pull to update the repository
-git pull
+# Perform a git pull to update the repository and suppress "Already up to date." message
+git_pull_output=$(git pull 2>&1 | grep -v 'Already up to date.')
 
 # Check if the script has changed after git pull
 new_hash=$(sha256sum "$0")
@@ -58,7 +58,7 @@ source ~/.profile
 ansible-galaxy install -r /usr/local/bin/devxp-files/devxp-linux/requirements.yml --force
 
 logFile="/usr/local/bin/devxp-files/ansible-playbook.log"
-lastRunFile="/usr/local/bin/devxp-files/lastRun"
+lastRunFile="/usr/local/bin/devxp-files/last-run"
 reminderFile="/usr/local/bin/devxp-files/reminder"
 
 # Write a message indicating that the Ansible playbook is starting
