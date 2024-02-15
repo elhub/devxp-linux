@@ -25,7 +25,8 @@ if [ "$choice" == "Y" ]; then
 elif [ "$choice" == "N" ]; then
     echo "false" > "$reminderFile"
     chmod a+rw "$reminderFile"
-    echo "If you want to be updated less frequently, you can configure the cooldown in /etc/anacrontab"
+    echo "If you want to be updated less frequently, you move the reminder.sh from /etc/cron.weekly/ to /etc/cron.monthly/"
+    echo "or configure your own custom timing using /etc/anacrontab"
     echo "We will remind you again in a a while. ${GREEN}Have a great day!${NC}"
     exit 1
 else
@@ -34,4 +35,3 @@ else
 fi
 
 /usr/local/bin/devxp-files/devxp-linux/scripts/auto-bootstrap.sh
-

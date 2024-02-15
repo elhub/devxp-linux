@@ -23,15 +23,14 @@ chmod -R u+rx /usr/local/bin/devxp-files/devxp-linux
 echo "Install anacron if not already installed"
 apt-get install -y anacron
 
-# Check if the line already exists in /etc/anacrontab
-if ! grep -q "/usr/local/bin/devxp-files/devxp-linux/scripts/reminder.sh" /etc/anacrontab; then
-    # If the line doesn't exist, append it to /etc/anacrontab
-    echo "${YELLOW}Configured anacron job to run /usr/local/bin/devxp-files/devxp-linux/scripts/reminder.sh once a week${NC}"
-    echo "${YELLOW}This can be edited in the /etc/anacrontab file${NC}"
-    cat << EOF >> /etc/anacrontab
-@weekly 15      cron.weekly             /usr/local/bin/devxp-files/devxp-linux/scripts/reminder.sh
-EOF
+# Check if the script already exists in /etc/cron.weekly
+if [ ! -f "/etc/cron.weekly/reminder.sh" ]; then
+    # If the script doesn't exist, copy it to /etc/cron.weekly
+    echo "${YELLOW}Copying script to /etc/cron.weekly and granting execution rights...${NC}"
+    cp /usr/local/bin/devxp-files/devxp-linux/scripts/reminder.sh /etc/cron.weekly/reminder.sh
+    chmod +x /etc/cron.weekly/reminder.sh
+    echo "${YELLOW}Script successfully copied and configured to run weekly.${NC}"
 else
-    # If the line already exists, display a message indicating that it's already configured
-    echo "${YELLOW}Anacron job is already configured in /etc/anacrontab${NC}"
+    # If the script already exists, display a message indicating that it's already configured
+    echo "${YELLOW}Script is already configured to run weekly.${NC}"
 fi
