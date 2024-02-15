@@ -1,9 +1,9 @@
 #!/bin/bash
 
-lastRun='echo "$(cat /usr/local/bin/devxp-files/lastRun)"'
+lastRun='/usr/local/bin/devxp-files/lastRun'
 
-if ! grep -qF "$lastRun" ~/.bashrc; then
-    echo "$lastRun" >> ~/.bashrc
+if [ -f "$lastRun" ]; then
+    echo "$(cat "$lastRun")"
 fi
 
 reminder_file="/usr/local/bin/devxp-files/reminder"
