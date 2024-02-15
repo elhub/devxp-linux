@@ -9,5 +9,5 @@ fi
 reminder_file="/usr/local/bin/reminder"
 
 if [ -f "$reminder_file" ] && [ "$(cat "$reminder_file")" == "true" ]; then
-    /usr/local/bin/devxp-linux/scripts/update.sh
+    /usr/local/bin/devxp-files/devxp-linux/scripts/update.sh
 fi

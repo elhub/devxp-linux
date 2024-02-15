@@ -11,8 +11,15 @@ NC=$(tput sgr0) # No Color
 # Navigate to the directory containing the script
 cd "$(dirname "$0")" || exit
 
+# Perform a git pull to update the repository
+git pull
+
 # Read the user from the file
-USER=$(cat /usr/local/bin/user)
+USER=$(cat /usr/local/bin/devxp-files/user)
+
+# Ensure that user has ownership of the devxp-files directory and its sub directories
+sudo chown -R $USER /usr/local/bin/devxp-files
+sudo chmod -R u+rx /usr/local/bin/devxp-files
 
 # Upgrade the distro.
 sudo apt-get update
@@ -27,7 +34,7 @@ sudo apt-get autoremove -y
 python3 -m pip install --user ansible
 
 # Give execute permission to user
-sudo chmod -R +x /usr/local/bin/devxp-linux
+sudo chmod -R +x /usr/local/bin/devxp-files/devxp-linux
 
 # Ansible should now be installed in ~/.local/bin.
 # If this directory did not exist already, then you might have to restart WSL.
@@ -39,9 +46,9 @@ source ~/.profile
 # Run Ansible-runbooks to install necessary command-line tools.
 ansible-galaxy install -r requirements.yml --force # pulls down necessary dependencies for Ansible.
 
-logFile="/usr/local/bin/ansible-playbook.log"
-lastRunFile="/usr/local/bin/lastRun"
-reminderFile="/usr/local/bin/reminder"
+logFile="/usr/local/bin/devxp-files/ansible-playbook.log"
+lastRunFile="/usr/local/bin/devxp-files/lastRun"
+reminderFile="/usr/local/bin/devxp-files/reminder"
 
 # Write a message indicating that the Ansible playbook is starting
 echo "${YELLOW}Ansible playbook is starting, this can take some time.${NC}"

@@ -33,13 +33,17 @@ else
     exit 1
 fi
 
+# Create the directory for the devxp-files anb devxp-linux
+sudo mkdir /usr/local/bin/devxp-files
+
 # Save the username for later use
 user=$(whoami)
 
 # Use sudo to write to file
-echo "$user" | sudo tee /usr/local/bin/user > /dev/null
+echo "$user" | sudo tee /usr/local/bin/devxp-files/user > /dev/null
+sudo chown -R $user /usr/local/bin/devxp-files
 
 ./scripts/root.sh
-/usr/local/bin/devxp-linux/scripts/auto-bootstrap.sh
+/usr/local/bin/devxp-files/devxp-linux/scripts/auto-bootstrap.sh
 
 echo "${GREEN}First time setup is complete${NC}"

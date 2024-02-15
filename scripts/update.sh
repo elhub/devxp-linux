@@ -30,17 +30,5 @@ else
     exit 1
 fi
 
-# Navigate to the directory containing the script
-cd "$(dirname "$0")" || exit
-
-# Perform a git pull to update the repository
-git pull
-
-# Check if the git pull was successful
-if [ $? -ne 0 ]; then
-    echo "Failed to update the repository. Please check your network connection and try again."
-    exit 1
-fi
-
-/usr/local/bin/devxp-linux/scripts/auto-bootstrap.sh
+/usr/local/bin/devxp-files/devxp-linux/scripts/auto-bootstrap.sh
 

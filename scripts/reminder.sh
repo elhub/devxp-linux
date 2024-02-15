@@ -8,7 +8,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # Define the file path
-file_path="/usr/local/bin/reminder"
+file_path="/usr/local/bin/devxp-files/reminder"
 
 # Create the file with "true" content and set permissions
 echo "true" > "$file_path"
