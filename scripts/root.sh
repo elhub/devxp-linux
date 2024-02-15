@@ -14,7 +14,7 @@ fi
 # Read the user from the file
 USER=$(cat /usr/local/bin/devxp-files/user)
 
-echo "${GREEN}Cloning repository to /usr/local/bin...${NC}"
+echo "${GREEN}Cloning repository to /usr/local/bin/devxp-files...${NC}"
 git clone -b TDX-300 https://github.com/elhub/devxp-linux.git /usr/local/bin/devxp-files/devxp-linux # remember to remove the TDX-300 after merging
 
 chown -R $USER /usr/local/bin/devxp-files/devxp-linux

@@ -44,7 +44,7 @@ sudo chmod -R +x /usr/local/bin/devxp-files/devxp-linux
 source ~/.profile
 
 # Run Ansible-runbooks to install necessary command-line tools.
-ansible-galaxy install -r requirements.yml --force # pulls down necessary dependencies for Ansible.
+ansible-galaxy install -r /usr/local/bin/devxp-files/devxp-linux/requirements.yml --force
 
 logFile="/usr/local/bin/devxp-files/ansible-playbook.log"
 lastRunFile="/usr/local/bin/devxp-files/lastRun"
@@ -54,7 +54,7 @@ reminderFile="/usr/local/bin/devxp-files/reminder"
 echo "${YELLOW}Ansible playbook is starting, this can take some time.${NC}"
 
 # Run Ansible playbook and redirect output to the log file
-if ansible-playbook site.yml --ask-become-pass > "$logFile" 2>&1; then
+if ansible-playbook /usr/local/bin/devxp-files/devxp-linux/site.yml --ask-become-pass > "$logFile" 2>&1; then
 
     # Completion message content
     content="devxp-linux was last ran $(date +'%d.%m.%y %H:%M')"
