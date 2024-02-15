@@ -39,5 +39,7 @@ user=$(whoami)
 # Use sudo to write to file
 echo "$user" | sudo tee /usr/local/bin/user > /dev/null
 
-# Continue rest of script as root
 ./scripts/root.sh
+/usr/local/bin/devxp-linux/scripts/auto-bootstrap.sh
+
+echo "${GREEN}First time setup is complete${NC}"
