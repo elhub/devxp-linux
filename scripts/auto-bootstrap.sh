@@ -90,3 +90,6 @@ fi
 
 echo "false" > "$reminderFile"
 chmod a+rw "$reminderFile"
+
+# Run the rc-injecter script to add the rc-notifications.sh script to the shell initialization files
+/usr/local/bin/devxp-files/devxp-linux/scripts/rc-injecter.sh
