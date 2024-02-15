@@ -11,8 +11,19 @@ NC=$(tput sgr0) # No Color
 # Navigate to the directory containing the script
 cd "$(dirname "$0")" || exit
 
+# Store the current script hash
+current_hash=$(sha256sum "$0")
+
 # Perform a git pull to update the repository
 git pull
+
+# Check if the script has changed after git pull
+new_hash=$(sha256sum "$0")
+
+if [ "$current_hash" != "$new_hash" ]; then
+    echo "${GREEN}Script has been updated. Reloading...${NC}"
+    exec "$0" "$@" # Reload the script
+fi
 
 # Read the user from the file
 USER=$(cat /usr/local/bin/devxp-files/user)
