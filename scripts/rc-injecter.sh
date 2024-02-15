@@ -2,7 +2,6 @@
 
 # Script to append a line to shell initialization files
 
-# Define the path to the script to be triggered
 script_to_trigger="/usr/local/bin/devxp-files/devxp-linux/scripts/rc-notifications.sh"
 
 # Function to add or edit the line in the initialization file
