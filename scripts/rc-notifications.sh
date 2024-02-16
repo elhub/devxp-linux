@@ -8,8 +8,4 @@ if [ -f "$notification" ]; then
     echo "$(cat "$lastRun")"
 fi
 
-reminder_file="/usr/local/bin/devxp-files/reminder"
-
-if [ -f "$reminder_file" ] && [ "$(cat "$reminder_file")" == "true" ]; then
-    /usr/local/bin/devxp-files/devxp-linux/scripts/update.sh
-fi
+/usr/local/bin/devxp-files/cooldown.sh

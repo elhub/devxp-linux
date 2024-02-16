@@ -59,7 +59,6 @@ ansible-galaxy install -r /usr/local/bin/devxp-files/devxp-linux/requirements.ym
 
 logFile="/usr/local/bin/devxp-files/ansible-playbook.log"
 lastRunFile="/usr/local/bin/devxp-files/last-run"
-reminderFile="/usr/local/bin/devxp-files/reminder"
 
 # Write a message indicating that the Ansible playbook is starting
 echo "${YELLOW}Ansible playbook is starting, this can take some time.${NC}"
@@ -84,12 +83,7 @@ else
 
     # Write completion message
     echo "$content" | tee "$lastRunFile" > /dev/null
-    echo "false" > "$reminderFile"
-    chmod a+rw "$reminderFile"
 fi
-
-echo "false" > "$reminderFile"
-chmod a+rw "$reminderFile"
 
 # Run the rc-injecter script to add the rc-notifications.sh script to the shell initialization files
 /usr/local/bin/devxp-files/devxp-linux/scripts/rc-injecter.sh

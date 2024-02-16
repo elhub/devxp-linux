@@ -20,17 +20,34 @@ git clone -b TDX-300 https://github.com/elhub/devxp-linux.git /usr/local/bin/dev
 chown -R $USER /usr/local/bin/devxp-files/devxp-linux
 chmod -R u+rx /usr/local/bin/devxp-files/devxp-linux
 
-echo "Install anacron if not already installed"
-apt-get install -y anacron
+# Create timestamp file and set permissions
+timestamp="/usr/local/bin/devxp-files/timestamp"
+date +%s > "$timestamp"
+chmod a+rw "$timestamp"
 
-# Check if the script already exists in /etc/cron.weekly
-if [ ! -f "/etc/cron.weekly/reminder.sh" ]; then
-    # If the script doesn't exist, copy it to /etc/cron.weekly
-    echo "${YELLOW}Copying script to /etc/cron.weekly and granting execution rights...${NC}"
-    cp /usr/local/bin/devxp-files/devxp-linux/scripts/reminder.sh /etc/cron.weekly/reminder.sh
-    chmod +x /etc/cron.weekly/reminder.sh
-    echo "${YELLOW}Script successfully copied and configured to run weekly.${NC}"
-else
-    # If the script already exists, display a message indicating that it's already configured
-    echo "${YELLOW}Script is already configured to run weekly.${NC}"
-fi
+# Generate the cooldown script
+script_content='#!/bin/bash\n\n
+timestamp="/usr/local/bin/devxp-files/timestamp"\n
+current_timestamp=$(date +%s)\n\n
+# Check if the file exists\n
+if [ -f "$timestamp" ]; then\n
+    # Get the timestamp from the file\n
+    file_timestamp=$(cat "$timestamp")\n\n
+    # Calculate the timestamp X days ago\n
+    cooldown=$(date -d "7 days ago" +%s)\n\n
+    # Compare timestamps\n
+    if [ "$file_timestamp" -lt "$cooldown" ]; then\n
+        /usr/local/bin/devxp-files/devxp-linux/scripts/update.sh\n
+    else\n
+        exit 1\n
+    fi\n
+else\n
+    date +%s > "$timestamp"\n
+    chmod a+rw "$timestamp"\n
+    exit 1\n
+fi\n'
+
+# Define the cooldown file path and write the contents
+file_path="/usr/local/bin/devxp-files/cooldown.sh"
+echo -e "$script_content" > "$file_path"
+chmod +rwx "$file_path"

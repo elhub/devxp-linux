@@ -23,10 +23,9 @@ choice=$(echo "$choice" | tr '[:lower:]' '[:upper:]')
 if [ "$choice" == "Y" ]; then
     echo "Starting up..."
 elif [ "$choice" == "N" ]; then
-    echo "false" > "$reminderFile"
-    chmod a+rw "$reminderFile"
-    echo "If you want to be updated less frequently, you move the reminder.sh from /etc/cron.weekly/ to /etc/cron.monthly/"
-    echo "or configure your own custom timing using /etc/anacrontab"
+    date +%s > "$timestamp"
+    echo "If you want to be updated less frequently you can edit the  ${GREEN}cooldown value${NC}"
+    echo "in ${YELLOW}/usr/local/bin/devxp-files/cooldown.sh${NC}, it will not be overwritten by updates."
     echo "We will remind you again in a a while. ${GREEN}Have a great day!${NC}"
     exit 1
 else
