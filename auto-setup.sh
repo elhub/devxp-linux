@@ -45,6 +45,7 @@ sudo chown -R $user /usr/local/bin/devxp-files
 
 ./scripts/root.sh
 /usr/local/bin/devxp-files/devxp-linux/scripts/auto-bootstrap.sh
+
 # Create a file to decide if the user should be reminded when the script was last run
 touch /usr/local/bin/devxp-files/startup-notification
 
