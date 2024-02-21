@@ -41,7 +41,7 @@ sudo chown -R ${user}:${user} /usr/local/bin/devxp-files
 
 # Save the username for later use
 user=$(whoami)
-echo "$user" > /usr/local/bin/devxp-files/.user
+sudo echo "$user" > /usr/local/bin/devxp-files/.user
 
 ./scripts/root.sh
 /usr/local/bin/devxp-files/devxp-linux/scripts/auto-bootstrap.sh
