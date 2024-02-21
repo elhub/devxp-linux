@@ -35,11 +35,11 @@ fi
 
 # Create the directory for the devxp-files anb devxp-linux
 sudo mkdir /usr/local/bin/devxp-files
+sudo chown -R ${user}:${user} /usr/local/bin/devxp-files
 
 # Save the username for later use
 user=$(whoami)
 echo "$user" > /usr/local/bin/devxp-files/.user
-sudo chown -R ${user}:${user} /usr/local/bin/devxp-files
 
 ./scripts/root.sh
 /usr/local/bin/devxp-files/devxp-linux/scripts/auto-bootstrap.sh
