@@ -12,11 +12,13 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
-# Print the first part of the prompt with the newline
+echo -e "Starting firstime setup of devxp-linux, note that this script will"
+echo -e "install the devxp-linux repository in /usr/local/bin/devxp-files/devxp-linux"
+echo -e "and ${YELLOW}run some commands as root.${NC}"
 echo -e "Make sure you are running this script as your user."
 
 # Prompt the user to confirm if they want to continue running the script as their user
-read -p $"It is typically ${GREEN}firstname.lastname${NC} Continue? (Y/N): " choice
+read -p "It is typically ${GREEN}firstname.lastname${NC} Continue? (Y/N): " choice
 
 
 # Convert the choice to uppercase
