@@ -20,7 +20,6 @@ echo -e "Make sure you are running this script as your user."
 # Prompt the user to confirm if they want to continue running the script as their user
 read -p "It is typically ${GREEN}firstname.lastname${NC} Continue? (Y/N): " choice
 
-
 # Convert the choice to uppercase
 choice=$(echo "$choice" | tr '[:lower:]' '[:upper:]')
 
@@ -35,12 +34,12 @@ else
     exit 1
 fi
 
+user=$(whoami)
 # Create the directory for the devxp-files anb devxp-linux
 sudo mkdir /usr/local/bin/devxp-files
 sudo chown -R ${user}:${user} /usr/local/bin/devxp-files
 
 # Save the username for later use
-user=$(whoami)
 sudo echo "$user" > /usr/local/bin/devxp-files/.user
 
 ./scripts/root.sh
