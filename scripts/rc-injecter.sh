@@ -15,7 +15,7 @@ add_or_edit_line() {
     if ! grep -Fxq "$line_to_add" "$file"; then
         echo "Line does not exist in $file. Adding the line."
         # Append the line to the file
-        echo "\n$line_to_add" >> "$file"
+        echo -e "\n$line_to_add" >> "$file"
         found=true
     fi
 }
