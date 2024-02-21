@@ -6,7 +6,7 @@ RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
 NC=$(tput sgr0) # No Color
-timestamp="/usr/local/bin/devxp-files/timestamp"
+timestamp="/usr/local/bin/devxp-files/.timestamp"
 
 # Navigate to the directory containing the script
 cd "$(dirname "$0")" || exit
@@ -23,14 +23,15 @@ new_hash=$(sha256sum "$0")
 if [ "$current_hash" != "$new_hash" ]; then
     echo "${GREEN}Script has been updated. Reloading...${NC}"
     exec "$0" "$@" # Reload the script
+    exit 0
 fi
 
 # Read the user from the file
-USER=$(cat /usr/local/bin/devxp-files/user)
+USER=$(cat /usr/local/bin/devxp-files/.user)
 
-# Ensure that user has ownership of the devxp-files directory and its sub directories
-sudo chown -R $USER /usr/local/bin/devxp-files
-sudo chmod -R u+rx /usr/local/bin/devxp-files
+# Ensure that user has ownership of the devxp scripts directory and its sub directories
+sudo chown -R ${user}:${user} /usr/local/bin/devxp-files/devxp-linux/scripts
+sudo chmod -R u+rx /usr/local/bin/devxp-files/devxp-linux/scripts
 
 # Upgrade the distro.
 sudo apt-get update
@@ -44,9 +45,6 @@ sudo apt-get remove -y ansible
 sudo apt-get autoremove -y
 python3 -m pip install --user ansible
 
-# Give execute permission to user
-sudo chmod -R +x /usr/local/bin/devxp-files/devxp-linux
-
 # Ansible should now be installed in ~/.local/bin.
 # If this directory did not exist already, then you might have to restart WSL.
 # ~/.local/bin is conditionally loaded into $PATH in ~/.profile.
@@ -58,31 +56,32 @@ source ~/.profile
 ansible-galaxy install -r /usr/local/bin/devxp-files/devxp-linux/requirements.yml --force
 
 logFile="/usr/local/bin/devxp-files/ansible-playbook.log"
-lastRunFile="/usr/local/bin/devxp-files/last-run"
+lastRunFile="/usr/local/bin/devxp-files/.last-run"
 
 # Write a message indicating that the Ansible playbook is starting
 echo "${YELLOW}Ansible playbook is starting, this can take some time.${NC}"
 
 # Run Ansible playbook and redirect output to the log file
-if ansible-playbook /usr/local/bin/devxp-files/devxp-linux/site.yml --ask-become-pass > "$logFile" 2>&1; then
+ansible-playbook /usr/local/bin/devxp-files/devxp-linux/site.yml --ask-become-pass > "$logFile" 2>&1;
+if [[ "$?" -eq 0 ]]; then
 
     # Completion message content
-    content="devxp-linux was last ran $(date +'%d.%m.%y %H:%M')"
+    content="devxp-linux was last run $(date +'%d.%m.%y %H:%M')"
 
     # Write completion message
-    echo "$content" | tee "$lastRunFile" > /dev/null
+    echo "$content" > $lastRunFile
 
     # Write success message
     echo "${GREEN}Ansible playbook finished successfully.${NC}"
 else
     # Write failure message
-    echo "${RED}Ansible playbook execution failed. Please check $logFile for details.${NC}"
+    echo "${RED}Ansible playbook execution failed. Please check ${logFile} for details.${NC}"
 
     # Completion message content
-    content="devxp-linux failed it last run at $(date +'%d.%m.%y %H:%M') Please check $logFile for details."
+    content="devxp-linux failed on its last run at $(date +'%d.%m.%y %H:%M') Please check $logFile for details."
 
     # Write completion message
-    echo "$content" | tee "$lastRunFile" > /dev/null
+    echo "$content" > $lastRunFile
 fi
 
 # Run the rc-injecter script to add the rc-notifications.sh script to the shell initialization files

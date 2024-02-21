@@ -38,15 +38,13 @@ sudo mkdir /usr/local/bin/devxp-files
 
 # Save the username for later use
 user=$(whoami)
-
-# Use sudo to write to file
-echo "$user" | sudo tee /usr/local/bin/devxp-files/user > /dev/null
-sudo chown -R $user /usr/local/bin/devxp-files
+echo "$user" > /usr/local/bin/devxp-files/.user
+sudo chown -R ${user}:${user} /usr/local/bin/devxp-files
 
 ./scripts/root.sh
 /usr/local/bin/devxp-files/devxp-linux/scripts/auto-bootstrap.sh
 
 # Create a file to decide if the user should be reminded when the script was last run
-touch /usr/local/bin/devxp-files/startup-notification
+touch /usr/local/bin/devxp-files/.startup-notification
 
 echo "${GREEN}First time setup is complete${NC}"

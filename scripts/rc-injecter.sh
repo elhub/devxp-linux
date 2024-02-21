@@ -5,23 +5,18 @@
 script_to_trigger="/usr/local/bin/devxp-files/devxp-linux/scripts/rc-notifications.sh"
 
 # Function to add or edit the line in the initialization file
+# Function to add or edit the line in the initialization file
 add_or_edit_line() {
     local file="$1"
     local line_to_add="$2"
     local found=false
 
     # Check if the line already exists in the file
-    if grep -Fxq "$line_to_add" "$file"; then
-        echo "Line already exists in $file. Editing the existing line."
-        # Edit the existing line
-        sed -i "s|^.*$line_to_add.*$|$line_to_add|" "$file"
+    if ! grep -Fxq "$line_to_add" "$file"; then
+        echo "Line does not exist in $file. Adding the line."
+        # Append the line to the file
+        echo "\n$line_to_add" >> "$file"
         found=true
-    fi
-
-    # If the line doesn't exist, append it to the file
-    if ! $found; then
-        echo "$line_to_add" >> "$file"
-        echo "Added line to $file"
     fi
 }
 
