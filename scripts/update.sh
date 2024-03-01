@@ -6,7 +6,7 @@ RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
 NC=$(tput sgr0) # No Color
-reminderFile="/usr/local/bin/devxp-files/reminder"
+timestamp="/usr/local/bin/devxp-files/timestamp"
 
 # Print the first part of the prompt with the newline
 echo -e "Hey there, looks like its been a while since you last ran ${GREEN}devxp-linux${NC}"

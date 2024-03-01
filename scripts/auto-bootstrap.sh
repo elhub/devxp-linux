@@ -6,7 +6,7 @@ RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
 NC=$(tput sgr0) # No Color
-
+timestamp="/usr/local/bin/devxp-files/timestamp"
 
 # Navigate to the directory containing the script
 cd "$(dirname "$0")" || exit
@@ -88,5 +88,6 @@ fi
 # Run the rc-injecter script to add the rc-notifications.sh script to the shell initialization files
 /usr/local/bin/devxp-files/devxp-linux/scripts/rc-injecter.sh
 chmod +x /usr/local/bin/devxp-files/devxp-linux/scripts/rc-notifications.sh
+date +%s > "$timestamp"
 
 echo "${GREEN}Update complete${NC}"
