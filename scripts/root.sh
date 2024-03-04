@@ -16,7 +16,7 @@ fi
 USER=$(cat /usr/local/bin/devxp-files/.user)
 
 echo "${GREEN}Cloning repository to /usr/local/bin/devxp-files...${NC}"
-git clone https://github.com/elhub/devxp-linux.git /usr/local/bin/devxp-files/devxp-linux # remember to remove the TDX-300 after merging
+git clone https://github.com/elhub/devxp-linux.git /usr/local/bin/devxp-files/devxp-linux
 git config --global --add safe.directory /usr/local/bin/devxp-files/devxp-linux
 
 chown -R ${user}:${user} /usr/local/bin/devxp-files/devxp-linux

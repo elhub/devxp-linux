@@ -25,7 +25,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # Zsh
-if [[ "$SHELL" == *"zsh"* ]]; then
+if command -v zsh &> /dev/null; then
     add_or_edit_line "$HOME/.zshrc" "$script_to_trigger"
 fi
 
