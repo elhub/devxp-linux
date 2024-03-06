@@ -62,7 +62,7 @@ lastRunFile="/usr/local/bin/devxp-files/.last-run"
 echo "${YELLOW}Ansible playbook is starting, this can take some time.${NC}"
 
 # Run Ansible playbook and redirect output to the log file
-ansible-playbook /usr/local/bin/devxp-files/devxp-linux/site.yml --ask-become-pass > "$logFile" 2>&1;
+ANSIBLE_FORCE_COLOR=true ansible-playbook /usr/local/bin/devxp-files/devxp-linux/site.yml --ask-become-pass 2>&1 | tee "$logFile";
 if [[ "$?" -eq 0 ]]; then
 
     # Completion message content
@@ -83,6 +83,9 @@ else
     # Write completion message
     echo "$content" > $lastRunFile
 fi
+
+# Remove ANSI color codes from the logfile for easier reading
+sed -i 's/\x1b\[[0-9;]*m//g' "$logFile"
 
 # Run the rc-injecter script to add the rc-notifications.sh script to the shell initialization files
 /usr/local/bin/devxp-files/devxp-linux/scripts/rc-injecter.sh

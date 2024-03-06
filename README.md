@@ -39,21 +39,56 @@ Then execute this line to install **Ubuntu 22.04.1 LTS**:
 wsl.exe --install -d Ubuntu
 ```
 
+
+### Automatic Setup (Recommended)
+
+#### Step 1: Clone Repository
+The `devxp-linux` repository will automatically clone itself under `/usr/local/bin/devxp-files` once executed, so where you initially clone it is not crucial. Execute the following command to clone the repository:
+
+```bash
+git clone git@github.com:elhub/devxp-linux.git
+```
+
+#### Step 2: Install Developer Tools with Weekly Update Reminders
+To install necessary developer tools and receive weekly update reminders, execute the following command:
+
+```bash
+./auto-setup.sh
+```
+The script will ask for your **sudo password** and then your **BECOME password**. Those are both the same password, which is your Ubuntu WSL password.
+
+> The reminder frequency can be changed by modifying the `cooldown` value in the `/usr/local/bin/devxp-files/cooldown.sh` script **after** the auto-setup is complete. By default it is set to 7 days.
+
+Once the script has finished, you should see an output similar to:
+
+```bash
+First time setup is complete
+```
+
+---
+
+### Manual Setup (Discouraged)
+
+> **Note:** Manual setup is discouraged because it requires you to remember to pull new commits and re-run the setup script periodically. Failure to do so can pose a security risk as updates may contain important fixes and enhancements.
+
+#### Step 1: Clone Repository
 Determine where you will install the git-repository `devxp-linux` (we suggest `$HOME/workspace/git`) on the file system inside Ubuntu in WSL (using **cd** to navigate to your preferred directory and/or use **mkdir** to create a new one), and then clone this repository in that location by executing:
 
 ```bash
 git clone git@github.com:elhub/devxp-linux.git
 ```
 
-To install necessary developer tools, execute:
+#### Step 2: Start Bootstrap Script
+Start the bootstrap script by executing the following command after navigating to the directory where the repository was cloned to.
 
 ```bash
 ./bootstrap.sh
 ```
+The script will ask for your **sudo password** and then your **BECOME password**. Those are both the same password, which is your Ubuntu WSL password.
 
-The script will prompt you for your Ubuntu WSL sudo password while it is executing.
+Remember to pull new commits (`git pull`) and re-run the setup script from time to time to update your setup with new scripts and tools.
 
-When the script is finished running, it should at the end output a text that is similar to this:
+The script will prompt you for your Ubuntu WSL sudo password while it is executing. Once completed, you should see an output similar to:
 
 ```bash
 PLAY RECAP *********************************************************************
@@ -61,6 +96,10 @@ localhost                  : ok=88   changed=53   unreachable=0    failed=0    s
 ```
 
 You can (and should) pull new commits (using _git pull_) and re-run this script from time to time to update your setup with new scripts and tools.
+
+---
+
+### Post-Installation
 
 You should also set up the environment variable $EDITOR with your default text editor of your choice, if you haven't already done so. This can be done by executing:
 
