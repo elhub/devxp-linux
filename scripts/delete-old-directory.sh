@@ -9,7 +9,7 @@ sudo rm -rf "$old_path"
 $new_path/devxp-linux/auto-bootstrap.sh
 
 ####### remove the line from the initialization file #######
-script_to_remove="$HOME/.local/devxp-files/devxp-linux/scripts/rc-notifications.sh"
+script_to_remove="$old_path/devxp-linux/scripts/rc-notifications.sh"
 
 # Function to remove the line from the initialization file
 remove_line() {
