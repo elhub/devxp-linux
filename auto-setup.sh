@@ -34,6 +34,22 @@ else
     exit 1
 fi
 
+# Define the undesired path
+old_path="/usr/local/bin/devxp-files"
+new_path="$HOME/.local/devxp-files"
+
+# Check if the current directory is the old directory
+if [ -d "$old_path" ]; then
+    echo "There were permission issues in the following directory"
+    echo "$old_path"
+    echo "They kept the script from performing git pull so "
+    echo "$new_path"
+    echo "The script will then continue from the new location."
+    read -p "Press any key to continue... " -n1 -s
+    echo
+
+fi
+
 user=$(whoami)
 # Create the directory for the devxp-files anb devxp-linux
 sudo mkdir $HOME/.local/devxp-files

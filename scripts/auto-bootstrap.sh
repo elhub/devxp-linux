@@ -28,23 +28,6 @@ if [ "$current_hash" != "$new_hash" ]; then
     exit 0
 fi
 
-# Define the undesired path
-old_path="/usr/local/bin/devxp-files/devxp-linux/scripts"
-new_path="$HOME/.local/devxp-files/devxp-linux/scripts"
-
-# Check if the current directory is the old directory
-if [ "$(realpath "$(dirname "$0")")" == "$old_path" ]; then
-    echo "${YELLOW}The directory location will change from${NC}"
-    echo "${RED}$old_path${NC}"
-    echo "${YELLOW}to${NC}"
-    echo "${GREEN}$new_path${NC}"
-    echo "${YELLOW}The script will then continue from the new location.${NC}"
-    read -p "Press any key to continue... " -n1 -s
-    echo
-    $old_path/move-directory.sh
-    exit 0
-fi
-
 # Read the user from the file
 USER=$(cat $HOME/.local/devxp-files/.user)
 
