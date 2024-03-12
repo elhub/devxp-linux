@@ -8,7 +8,7 @@ new_path="$HOME/.local/devxp-files"
 mkdir -p "$new_path"
 
 # Clone the repository to the new directory
-git clone -b move https://github.com/elhub/devxp-linux.git "$new_path"
+git clone -b move https://github.com/elhub/devxp-linux.git "$new_path/devxp-linux"
 git config --global --add safe.directory "$new_path/devxp-linux"
 
 # create the .files in the new location?
