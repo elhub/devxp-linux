@@ -1,8 +1,8 @@
 #!/bin/bash
 
-lastRun='$HOME/.local/devxp-files/.last-run'
+lastRun="$HOME/.local/devxp-files/.last-run"
 # remove or leave the file depending on if you want the startup message
-notification='$HOME/.local/devxp-files/.startup-notification'
+notification="$HOME/.local/devxp-files/.startup-notification"
 
 if [ -f "$notification" ]; then
     cat "$lastRun"
