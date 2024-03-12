@@ -5,13 +5,6 @@ GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
 NC=$(tput sgr0) # No Color
 
-# Check if script is already running as root
-if [[ $EUID -ne 0 ]]; then
-    # If not running as root, re-run this script with sudo
-    sudo "$0" "$@"
-    exit $?
-fi
-
 # Read the user from the file
 USER=$(cat $HOME/.local/devxp-files/.user)
 

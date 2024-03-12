@@ -11,6 +11,8 @@ timestamp="$HOME/.local/devxp-files/.timestamp"
 # Navigate to the directory containing the script
 cd "$(dirname "$0")" || exit
 
+git config --global --add safe.directory $HOME/.local/devxp-files/devxp-linux
+
 # Store the current script hash
 current_hash=$(sha256sum "$0")
 
@@ -39,7 +41,7 @@ if [ "$(realpath "$(dirname "$0")")" == "$old_path" ]; then
     echo "${YELLOW}The script will then continue from the new location.${NC}"
     read -p "Press any key to continue... " -n1 -s
     echo
-    echo "$old_path/move-directory.sh"
+    $old_path/move-directory.sh
     exit 0
 fi
 
