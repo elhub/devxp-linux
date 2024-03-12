@@ -50,6 +50,7 @@ if [ -d "$old_path" ]; then
     # Wait for user confirmation before proceeding
     read -p "${YELLOW}Press any key to continue... ${NC}" -n1 -s
     echo
+    ./scripts/delete-old-directory.sh
 fi
 
 user=$(whoami)
