@@ -40,14 +40,16 @@ new_path="$HOME/.local/devxp-files"
 
 # Check if the current directory is the old directory
 if [ -d "$old_path" ]; then
-    echo "There were permission issues in the following directory"
-    echo "$old_path"
-    echo "They kept the script from performing git pull so "
-    echo "$new_path"
-    echo "The script will then continue from the new location."
-    read -p "Press any key to continue... " -n1 -s
+    echo "${RED}Permission issues prevented the auto-bootstrap script from performing a git pull.${NC}"
+    echo "${RED}The directory with the following path was affected:${NC}"
+    echo "${RED}$old_path${NC}"
+    echo "${YELLOW}To address this, the repository storage location has been relocated.${NC}"
+    echo "${YELLOW}It's now situated under the home directory to maintain better structure.${NC}"
+    echo "${GREEN}The script will now proceed from the new location:${NC}"
+    echo "${GREEN}$new_path${NC}"
+    # Wait for user confirmation before proceeding
+    read -p "${YELLOW}Press any key to continue... ${NC}" -n1 -s
     echo
-
 fi
 
 user=$(whoami)
@@ -58,7 +60,7 @@ sudo chown -R ${user}:${user} $HOME/.local/devxp-files
 # Save the username for later use
 sudo echo "$user" > $HOME/.local/devxp-files/.user
 
-./scripts/root.sh
+./scripts/clone.sh
 $HOME/.local/devxp-files/devxp-linux/scripts/auto-bootstrap.sh
 
 # Create a file to decide if the user should be reminded when the script was last run
