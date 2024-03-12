@@ -43,7 +43,7 @@ wsl.exe --install -d Ubuntu
 ### Automatic Setup (Recommended)
 
 #### Step 1: Clone Repository
-The `devxp-linux` repository will automatically clone itself under `/usr/local/bin/devxp-files` once executed, so where you initially clone it is not crucial. Execute the following command to clone the repository:
+The `devxp-linux` repository will automatically clone itself under `$HOME/.local/devxp-files` once executed, so where you initially clone it is not crucial. Execute the following command to clone the repository:
 
 ```bash
 git clone git@github.com:elhub/devxp-linux.git
@@ -57,7 +57,7 @@ To install necessary developer tools and receive weekly update reminders, execut
 ```
 The script will ask for your **sudo password** and then your **BECOME password**. Those are both the same password, which is your Ubuntu WSL password.
 
-> The reminder frequency can be changed by modifying the `cooldown` value in the `/usr/local/bin/devxp-files/cooldown.sh` script **after** the auto-setup is complete. By default it is set to 7 days.
+> The reminder frequency can be changed by modifying the `cooldown` value in the `$HOME/.local/devxp-files/cooldown.sh` script **after** the auto-setup is complete. By default it is set to 7 days.
 
 Once the script has finished, you should see an output similar to:
 

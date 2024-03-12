@@ -13,7 +13,7 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 echo -e "Starting firstime setup of devxp-linux, note that this script will"
-echo -e "install the devxp-linux repository in /usr/local/bin/devxp-files/devxp-linux"
+echo -e "install the devxp-linux repository in $HOME/.local/devxp-files/devxp-linux"
 echo -e "and ${YELLOW}run some commands as root.${NC}"
 echo -e "Make sure you are running this script as your user."
 
@@ -36,16 +36,16 @@ fi
 
 user=$(whoami)
 # Create the directory for the devxp-files anb devxp-linux
-sudo mkdir /usr/local/bin/devxp-files
-sudo chown -R ${user}:${user} /usr/local/bin/devxp-files
+sudo mkdir $HOME/.local/devxp-files
+sudo chown -R ${user}:${user} $HOME/.local/devxp-files
 
 # Save the username for later use
-sudo echo "$user" > /usr/local/bin/devxp-files/.user
+sudo echo "$user" > $HOME/.local/devxp-files/.user
 
 ./scripts/root.sh
-/usr/local/bin/devxp-files/devxp-linux/scripts/auto-bootstrap.sh
+$HOME/.local/devxp-files/devxp-linux/scripts/auto-bootstrap.sh
 
 # Create a file to decide if the user should be reminded when the script was last run
-touch /usr/local/bin/devxp-files/.startup-notification
+touch $HOME/.local/devxp-files/.startup-notification
 
 echo "${GREEN}First time setup is complete${NC}"

@@ -13,21 +13,21 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # Read the user from the file
-USER=$(cat /usr/local/bin/devxp-files/.user)
+USER=$(cat $HOME/.local/devxp-files/.user)
 
-echo "${GREEN}Cloning repository to /usr/local/bin/devxp-files...${NC}"
-git clone -b move https://github.com/elhub/devxp-linux.git /usr/local/bin/devxp-files/devxp-linux
-git config --global --add safe.directory /usr/local/bin/devxp-files/devxp-linux
+echo "${GREEN}Cloning repository to $HOME/.local/devxp-files...${NC}"
+git clone -b move https://github.com/elhub/devxp-linux.git $HOME/.local/devxp-files/devxp-linux
+git config --global --add safe.directory $HOME/.local/devxp-files/devxp-linux
 
-chown -R ${user}:${user} /usr/local/bin/devxp-files/devxp-linux
+chown -R ${user}:${user} $HOME/.local/devxp-files/devxp-linux
 
 # Create timestamp file and set permissions
-timestamp="/usr/local/bin/devxp-files/.timestamp"
+timestamp="$HOME/.local/devxp-files/.timestamp"
 date +%s > "$timestamp"
 chmod a+rw "$timestamp"
 
 # Copy cooldown script from source to destination
 cp \
-  /usr/local/bin/devxp-files/devxp-linux/scripts/cooldown-do-not-edit.sh \
-  /usr/local/bin/devxp-files/cooldown.sh
-chmod +rwx /usr/local/bin/devxp-files/cooldown.sh
+  $HOME/.local/devxp-files/devxp-linux/scripts/cooldown-do-not-edit.sh \
+  $HOME/.local/devxp-files/cooldown.sh
+chmod +rwx $HOME/.local/devxp-files/cooldown.sh
