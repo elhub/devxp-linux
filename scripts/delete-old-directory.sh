@@ -14,11 +14,14 @@ remove_line() {
     local file="$1"
     local line_to_remove="$2"
 
+    # Escape special characters in the line
+    line_to_remove_escaped=$(sed 's/[][\\\/.^$*]/\\&/g' <<< "$line_to_remove")
+
     # Check if the line exists in the file
     if grep -qF "$line_to_remove" "$file"; then
         echo "Line found in $file. Removing the line."
         # Use sed to remove the line from the file
-        sed -i "/$line_to_remove/d" "$file"
+        sed -i "/$line_to_remove_escaped/d" "$file"
     else
         echo "Line not found in $file."
     fi
