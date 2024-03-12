@@ -6,10 +6,8 @@ new_path="$HOME/.local/devxp-files"
 
 sudo rm -rf "$old_path"
 
-$new_path/devxp-linux/auto-bootstrap.sh
-
 ####### remove the line from the initialization file #######
-script_to_remove="$old_path/devxp-linux/scripts/rc-notifications.sh"
+script_to_remove="/usr/local/bin/devxp-files/devxp-linux/scripts/rc-notifications.sh"
 
 # Function to remove the line from the initialization file
 remove_line() {
@@ -21,7 +19,7 @@ remove_line() {
     if grep -q "$line_to_remove" "$file"; then
         echo "Line found in $file. Removing the line."
         # Use sed to remove the line from the file
-        sed -i "/^$line_to_remove\$/d" "$file"
+        sed -i "\#^$line_to_remove\$#d" "$file"
         found=true
     fi
 }
