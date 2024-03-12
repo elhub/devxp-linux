@@ -13,14 +13,14 @@ script_to_remove="/usr/local/bin/devxp-files/devxp-linux/scripts/rc-notification
 remove_line() {
     local file="$1"
     local line_to_remove="$2"
-    local found=false
 
     # Check if the line exists in the file
-    if grep -q "$line_to_remove" "$file"; then
+    if grep -qF "$line_to_remove" "$file"; then
         echo "Line found in $file. Removing the line."
         # Use sed to remove the line from the file
-        sed -i "\#^$line_to_remove\$#d" "$file"
-        found=true
+        sed -i "/$line_to_remove/d" "$file"
+    else
+        echo "Line not found in $file."
     fi
 }
 

@@ -53,7 +53,7 @@ if [ -d "$old_path" ]; then
     ./scripts/delete-old-directory.sh
     exit 0
 fi
-
+exit 0
 user=$(whoami)
 # Create the directory for the devxp-files anb devxp-linux
 sudo mkdir $HOME/.local/devxp-files
