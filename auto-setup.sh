@@ -66,7 +66,7 @@ sudo chown -R ${user}:${user} $HOME/.local/devxp
 # Save the username for later use
 sudo echo "$user" > $HOME/.local/devxp/data/.user
 
-./scripts/clone.sh
+./scripts/devxp-clone.sh
 $HOME/.local/devxp/devxp-linux/scripts/auto-bootstrap.sh
 
 # Create a file to decide if the user should be reminded when the script was last run
