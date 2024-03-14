@@ -1,6 +1,6 @@
 #!/bin/bash
 
-timestamp="$HOME/.local/devxp/.timestamp"
+timestamp="$HOME/.local/devxp/data/.timestamp"
 current_timestamp=$(date +%s)
 
 # Check if the file exists

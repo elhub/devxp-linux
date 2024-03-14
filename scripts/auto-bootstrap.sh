@@ -6,7 +6,7 @@ RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
 NC=$(tput sgr0) # No Color
-timestamp="$HOME/.local/devxp/.timestamp"
+timestamp="$HOME/.local/devxp/data/.timestamp"
 
 # Navigate to the directory containing the script
 cd "$(dirname "$0")" || exit
@@ -29,7 +29,7 @@ if [ "$current_hash" != "$new_hash" ]; then
 fi
 
 # Read the user from the file
-USER=$(cat $HOME/.local/devxp/.user)
+USER=$(cat $HOME/.local/devxp/data/.user)
 
 # Ensure that user has ownership of the devxp scripts directory and its sub directories
 sudo chown -R ${user}:${user} $HOME/.local/devxp/devxp-linux/scripts

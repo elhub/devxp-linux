@@ -60,10 +60,11 @@ fi
 user=$(whoami)
 # Create the directory for the devxp-files anb devxp-linux
 sudo mkdir $HOME/.local/devxp
+sudo mkdir $HOME/.local/devxp/data
 sudo chown -R ${user}:${user} $HOME/.local/devxp
 
 # Save the username for later use
-sudo echo "$user" > $HOME/.local/devxp/.user
+sudo echo "$user" > $HOME/.local/devxp/data/.user
 
 ./scripts/clone.sh
 $HOME/.local/devxp/devxp-linux/scripts/auto-bootstrap.sh
