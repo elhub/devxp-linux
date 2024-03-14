@@ -34,7 +34,6 @@ else
     exit 1
 fi
 
-
 #### Cleanup old version of devxp-linux, remove this section as part of TDX-390 ####
 # Define the undesired path
 old_path="/usr/local/bin/devxp-files"
@@ -62,6 +61,10 @@ user=$(whoami)
 sudo mkdir $HOME/.local/devxp
 sudo mkdir $HOME/.local/devxp/data
 sudo chown -R ${user}:${user} $HOME/.local/devxp
+
+# Create a file to store the configuration
+touch $HOME/.local/devxp/config.yml
+chmod a+rw $HOME/.local/devxp/config.yml
 
 # Save the username for later use
 sudo echo "$user" > $HOME/.local/devxp/data/.user

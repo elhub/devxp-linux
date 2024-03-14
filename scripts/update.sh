@@ -24,9 +24,12 @@ if [ "$choice" == "Y" ]; then
     echo "Starting up..."
 elif [ "$choice" == "N" ]; then
     date +%s > "$timestamp"
-    echo "If you want to be updated less frequently you can edit the  ${GREEN}cooldown value${NC}"
-    echo "in ${YELLOW}$HOME/.local/devxp/cooldown.sh${NC}, it will not be overwritten by updates."
-    echo "We will remind you again in a a while. ${GREEN}Have a great day!${NC}"
+    echo "To customize the update frequency, you can add a 'cooldown' variable in the config file."
+    echo "Open ${YELLOW}$HOME/.local/devxp/config.yml${NC} in a text editor and add a line like:"
+    echo "${GREEN}cooldown: number${NC},"
+    echo "where ${GREEN}number${NC} represents the number of days between reminders."
+    echo "The config.yml will not be overwritten by updates."
+    echo "We'll remind you again after a while. ${GREEN}Have a great day!${NC}"
     exit 0
 else
     echo "Invalid choice. Please enter Y or N."
