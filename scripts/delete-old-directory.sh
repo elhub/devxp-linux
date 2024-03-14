@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 #  script for cleaning up the old directory
 
+#### Cleanup old version of devxp-linux, delete this script as part of TDX-390 ####
+
 old_path="/usr/local/bin/devxp-files"
 new_path="$HOME/.local/devxp"
 

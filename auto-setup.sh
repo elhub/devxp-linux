@@ -35,6 +35,7 @@ else
 fi
 
 
+#### Cleanup old version of devxp-linux, remove this section as part of TDX-390 ####
 # Define the undesired path
 old_path="/usr/local/bin/devxp-files"
 new_path="$HOME/.local/devxp"
@@ -53,6 +54,8 @@ if [ -d "$old_path" ]; then
     echo
     ./scripts/delete-old-directory.sh
 fi
+
+#### Cleanup old version of devxp-linux, remove this section as part of TDX-390 ####
 
 user=$(whoami)
 # Create the directory for the devxp-files anb devxp-linux
