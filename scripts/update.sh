@@ -6,6 +6,7 @@ RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
 NC=$(tput sgr0) # No Color
+reminderFile="/usr/local/bin/devxp-files/reminder"
 
 # Print the first part of the prompt with the newline
 echo -e "Hey there, looks like its been a while since you last ran ${GREEN}devxp-linux${NC}"
@@ -22,6 +23,8 @@ choice=$(echo "$choice" | tr '[:lower:]' '[:upper:]')
 if [ "$choice" == "Y" ]; then
     echo "Starting up..."
 elif [ "$choice" == "N" ]; then
+    echo "false" > "$reminderFile"
+    chmod a+rw "$reminderFile"
     echo "If you want to be updated less frequently, you can configure the cooldown in /etc/anacrontab"
     echo "We will remind you again in a a while. ${GREEN}Have a great day!${NC}"
     exit 1
