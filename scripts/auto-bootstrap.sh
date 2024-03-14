@@ -6,12 +6,12 @@ RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
 NC=$(tput sgr0) # No Color
-timestamp="$HOME/.local/devxp-files/.timestamp"
+timestamp="$HOME/.local/devxp/.timestamp"
 
 # Navigate to the directory containing the script
 cd "$(dirname "$0")" || exit
 
-git config --global --add safe.directory $HOME/.local/devxp-files/devxp-linux
+git config --global --add safe.directory $HOME/.local/devxp/devxp-linux
 
 # Store the current script hash
 current_hash=$(sha256sum "$0")
@@ -29,11 +29,11 @@ if [ "$current_hash" != "$new_hash" ]; then
 fi
 
 # Read the user from the file
-USER=$(cat $HOME/.local/devxp-files/.user)
+USER=$(cat $HOME/.local/devxp/.user)
 
 # Ensure that user has ownership of the devxp scripts directory and its sub directories
-sudo chown -R ${user}:${user} $HOME/.local/devxp-files/devxp-linux/scripts
-sudo chmod -R u+rx $HOME/.local/devxp-files/devxp-linux/scripts
+sudo chown -R ${user}:${user} $HOME/.local/devxp/devxp-linux/scripts
+sudo chmod -R u+rx $HOME/.local/devxp/devxp-linux/scripts
 
 # Upgrade the distro.
 sudo apt-get update
@@ -55,16 +55,16 @@ python3 -m pip install --user ansible
 source ~/.profile
 
 # Run Ansible-runbooks to install necessary command-line tools.
-ansible-galaxy install -r $HOME/.local/devxp-files/devxp-linux/requirements.yml --force
+ansible-galaxy install -r $HOME/.local/devxp/devxp-linux/requirements.yml --force
 
-logFile="$HOME/.local/devxp-files/ansible-playbook.log"
-lastRunFile="$HOME/.local/devxp-files/.last-run"
+logFile="$HOME/.local/devxp/ansible-playbook.log"
+lastRunFile="$HOME/.local/devxp/.last-run"
 
 # Write a message indicating that the Ansible playbook is starting
 echo "${YELLOW}Ansible playbook is starting, this can take some time.${NC}"
 
 # Run Ansible playbook and redirect output to the log file
-ANSIBLE_FORCE_COLOR=true ansible-playbook $HOME/.local/devxp-files/devxp-linux/site.yml --ask-become-pass 2>&1 | tee "$logFile";
+ANSIBLE_FORCE_COLOR=true ansible-playbook $HOME/.local/devxp/devxp-linux/site.yml --ask-become-pass 2>&1 | tee "$logFile";
 if [[ "$?" -eq 0 ]]; then
 
     # Completion message content
@@ -90,8 +90,8 @@ fi
 sed -i 's/\x1b\[[0-9;]*m//g' "$logFile"
 
 # Run the rc-injecter script to add the rc-notifications.sh script to the shell initialization files
-$HOME/.local/devxp-files/devxp-linux/scripts/rc-injecter.sh
-sudo chmod +x $HOME/.local/devxp-files/devxp-linux/scripts/rc-notifications.sh
+$HOME/.local/devxp/devxp-linux/scripts/rc-injecter.sh
+sudo chmod +x $HOME/.local/devxp/devxp-linux/scripts/rc-notifications.sh
 date +%s > "$timestamp"
 
 echo "${GREEN}Update complete${NC}"

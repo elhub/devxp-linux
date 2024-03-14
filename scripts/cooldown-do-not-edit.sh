@@ -1,6 +1,6 @@
 #!/bin/bash
 
-timestamp="$HOME/.local/devxp-files/.timestamp"
+timestamp="$HOME/.local/devxp/.timestamp"
 current_timestamp=$(date +%s)
 
 # Check if the file exists
@@ -13,7 +13,7 @@ if [ -f "$timestamp" ]; then
 
     # Compare timestamps
     if [ "$file_timestamp" -lt "$cooldown" ]; then
-        $HOME/.local/devxp-files/devxp-linux/scripts/update.sh
+        $HOME/.local/devxp/devxp-linux/scripts/update.sh
     else
         exit 1
     fi

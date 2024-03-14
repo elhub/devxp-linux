@@ -2,7 +2,7 @@
 #  script for cleaning up the old directory
 
 old_path="/usr/local/bin/devxp-files"
-new_path="$HOME/.local/devxp-files"
+new_path="$HOME/.local/devxp"
 
 sudo rm -rf "$old_path"
 

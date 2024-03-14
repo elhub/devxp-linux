@@ -6,7 +6,7 @@ RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
 NC=$(tput sgr0) # No Color
-timestamp="$HOME/.local/devxp-files/.timestamp"
+timestamp="$HOME/.local/devxp/.timestamp"
 
 # Print the first part of the prompt with the newline
 echo -e "Hey there, looks like its been a while since you last ran ${GREEN}devxp-linux${NC}"
@@ -25,7 +25,7 @@ if [ "$choice" == "Y" ]; then
 elif [ "$choice" == "N" ]; then
     date +%s > "$timestamp"
     echo "If you want to be updated less frequently you can edit the  ${GREEN}cooldown value${NC}"
-    echo "in ${YELLOW}$HOME/.local/devxp-files/cooldown.sh${NC}, it will not be overwritten by updates."
+    echo "in ${YELLOW}$HOME/.local/devxp/cooldown.sh${NC}, it will not be overwritten by updates."
     echo "We will remind you again in a a while. ${GREEN}Have a great day!${NC}"
     exit 0
 else
@@ -33,4 +33,4 @@ else
     exit 1
 fi
 
-$HOME/.local/devxp-files/devxp-linux/scripts/auto-bootstrap.sh
+$HOME/.local/devxp/devxp-linux/scripts/auto-bootstrap.sh
