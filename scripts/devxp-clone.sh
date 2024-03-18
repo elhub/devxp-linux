@@ -18,9 +18,3 @@ chown -R ${user}:${user} $HOME/.local/devxp/devxp-linux
 timestamp="$HOME/.local/devxp/data/.timestamp"
 date +%s > "$timestamp"
 chmod a+rw "$timestamp"
-
-# Copy cooldown script from source to destination
-cp \
-  $HOME/.local/devxp/devxp-linux/scripts/cooldown-do-not-edit.sh \
-  $HOME/.local/devxp/cooldown.sh
-chmod +rwx $HOME/.local/devxp/cooldown.sh

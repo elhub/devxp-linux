@@ -57,8 +57,8 @@ source ~/.profile
 # Run Ansible-runbooks to install necessary command-line tools.
 ansible-galaxy install -r $HOME/.local/devxp/devxp-linux/requirements.yml --force
 
-logFile="$HOME/.local/devxp/ansible-playbook.log"
-lastRunFile="$HOME/.local/devxp/.last-run"
+logFile="$HOME/.local/devxp/devxp/log/devxp-linux-ansible-playbook.log"
+lastRunFile="$HOME/.local/devxp/data/.last-run"
 
 # Write a message indicating that the Ansible playbook is starting
 echo "${YELLOW}Ansible playbook is starting, this can take some time.${NC}"

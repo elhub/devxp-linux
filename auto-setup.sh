@@ -60,6 +60,7 @@ user=$(whoami)
 # Create the directory for the devxp-files anb devxp-linux
 sudo mkdir $HOME/.local/devxp
 sudo mkdir $HOME/.local/devxp/data
+sudo mkdir $HOME/.local/devxp/log
 sudo chown -R ${user}:${user} $HOME/.local/devxp
 
 # Create a file to store the configuration
@@ -73,6 +74,6 @@ sudo echo "$user" > $HOME/.local/devxp/data/.user
 $HOME/.local/devxp/devxp-linux/scripts/auto-bootstrap.sh
 
 # Create a file to decide if the user should be reminded when the script was last run
-touch $HOME/.local/devxp/.startup-notification
+touch $HOME/.local/devxp/data/.startup-notification
 
 echo "${GREEN}First time setup is complete${NC}"
