@@ -60,6 +60,7 @@ user=$(whoami)
 # Create the directory for the devxp-files anb devxp-linux
 sudo mkdir $HOME/.local/devxp
 sudo mkdir $HOME/.local/devxp/data
+sudo mkdir $HOME/.local/devxp/scripts
 sudo mkdir $HOME/.local/devxp/log
 sudo chown -R ${user}:${user} $HOME/.local/devxp
 
