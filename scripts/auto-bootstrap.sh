@@ -89,6 +89,9 @@ fi
 # Remove ANSI color codes from the logfile for easier reading
 sed -i 's/\x1b\[[0-9;]*m//g' "$logFile"
 
+# Run the linking playbook
+ansible-playbook $HOME/.local/devxp/devxp-linux/scripts/linking.yml
+
 # Run the rc-injecter script to add the rc-notifications.sh script to the shell initialization files
 $HOME/.local/devxp/devxp-linux/scripts/rc-injecter.sh
 sudo chmod +x $HOME/.local/devxp/devxp-linux/scripts/rc-notifications.sh
