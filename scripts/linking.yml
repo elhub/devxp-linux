@@ -13,6 +13,6 @@
 
     - name: Create symlink for auto-bootstrap.sh
       file:
-        src: "{{ ansible_user_dir }}/devxp/devxp-linux/scripts/auto-bootstrap.sh"
+        src: "{{ ansible_user_dir }}/.local/devxp/devxp-linux/scripts/auto-bootstrap.sh"
         dest: "{{ ansible_user_dir }}/devxp/scripts/auto-bootstrap.sh"
         state: link
