@@ -57,7 +57,7 @@ To install necessary developer tools and receive weekly update reminders, execut
 ```
 The script will ask for your **sudo password** and then your **BECOME password**. Those are both the same password, which is your Ubuntu WSL password.
 
-> After completing the auto-setup, the reminder frequency can be adjusted by adding a line to the `$HOME/.local/devxp/config.yml` file. Simply include `cooldown: 8`, where the number represents the desired number of days between reminders. Note that the `config.yml` file starts empty, so you need to add this line yourself. By default, the reminder cooldown is set to 7 days.
+> After completing the auto-setup, the reminder frequency can be adjusted by adding a line to the `$HOME/.local/devxp/config.yml` file. Simply include a line like `cooldown: 8`, where the number represents the desired number of days between reminders. Note that the `config.yml` file starts empty, so you need to add this line yourself. By default, the reminder cooldown is set to 7 days.
 
 Once the script has finished, you should see an output similar to:
 
