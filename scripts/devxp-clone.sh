@@ -9,7 +9,7 @@ NC=$(tput sgr0) # No Color
 USER=$(cat $HOME/.local/devxp/data/.user)
 
 echo "${GREEN}Cloning repository to $HOME/.local/devxp...${NC}"
-git clone -b move https://github.com/elhub/devxp-linux.git $HOME/.local/devxp/devxp-linux
+git clone https://github.com/elhub/devxp-linux.git $HOME/.local/devxp/devxp-linux
 git config --global --add safe.directory $HOME/.local/devxp/devxp-linux
 
 chown -R ${user}:${user} $HOME/.local/devxp/devxp-linux
