@@ -17,8 +17,6 @@ appropriate.
 
 ## Getting Started
 
-The following instructions assume you have gotten a developer computer from 3020@statnett.no, which is a Lenovo ThinkPad-laptop that runs Windows 11 as its main operating system.
-
 To install **Windows Subsystem for Linux**, run this command inside **Windows PowerShell** or **Windows Command Prompt**:
 
 ```powershell
