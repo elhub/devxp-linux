@@ -17,26 +17,10 @@ appropriate.
 
 ## Getting Started
 
-The following instructions assumes you have gotten a developer computer from 3020@statnett.no, which is a Lenovo ThinkPad-laptop that runs Windows 11 as its main operating system.
-
-To install **Windows Subsystem for Linux**, run these commands inside **Windows PowerShell** or **Windows Command Prompt**:
+To install **Windows Subsystem for Linux**, run this command inside **Windows PowerShell** or **Windows Command Prompt**:
 
 ```powershell
-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-```
-
-which enables **WSL**, and
-
-```powershell
-dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-```
-
-which enables **Hyper-V** that **WSL** needs.
-
-Then execute this line to install **Ubuntu 22.04.1 LTS**:
-
-```powershell
-wsl.exe --install -d Ubuntu
+wsl --install -d Ubuntu-22.04
 ```
 
 
