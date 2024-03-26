@@ -13,7 +13,7 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 echo -e "Starting firstime setup of devxp-linux, note that this script will"
-echo -e "install the devxp-linux repository in /usr/local/bin/devxp-files/devxp-linux"
+echo -e "install the devxp-linux repository in $HOME/.local/devxp/devxp-linux"
 echo -e "and ${YELLOW}run some commands as root.${NC}"
 echo -e "Make sure you are running this script as your user."
 
@@ -34,18 +34,47 @@ else
     exit 1
 fi
 
+#### Cleanup old version of devxp-linux, remove this section as part of TDX-390 ####
+# Define the undesired path
+old_path="/usr/local/bin/devxp-files"
+new_path="$HOME/.local/devxp"
+
+# Check if the current directory is the old directory
+if [ -d "$old_path" ]; then
+    echo "${RED}Permission issues prevented the auto-bootstrap script from performing a git pull.${NC}"
+    echo "${RED}The directory with the following path was affected:${NC}"
+    echo "${RED}$old_path${NC}"
+    echo "${YELLOW}To address this, the repository storage location has been relocated.${NC}"
+    echo "${YELLOW}It's now situated under the home directory to maintain better structure.${NC}"
+    echo "${GREEN}The script will now proceed from the new location:${NC}"
+    echo "${GREEN}$new_path${NC}"
+    # Wait for user confirmation before proceeding
+    read -p "${YELLOW}Press any key to continue... ${NC}" -n1 -s
+    echo
+    ./scripts/delete-old-directory.sh
+fi
+
+#### Cleanup old version of devxp-linux, remove this section as part of TDX-390 ####
+
 user=$(whoami)
 # Create the directory for the devxp-files anb devxp-linux
-sudo mkdir /usr/local/bin/devxp-files
-sudo chown -R ${user}:${user} /usr/local/bin/devxp-files
+sudo mkdir $HOME/.local/devxp
+sudo mkdir $HOME/.local/devxp/data
+sudo mkdir $HOME/.local/devxp/scripts
+sudo mkdir $HOME/.local/devxp/log
+sudo chown -R ${user}:${user} $HOME/.local/devxp
+
+# Create a file to store the configuration
+touch $HOME/.local/devxp/config.yml
+chmod a+rw $HOME/.local/devxp/config.yml
 
 # Save the username for later use
-sudo echo "$user" > /usr/local/bin/devxp-files/.user
+sudo echo "$user" > $HOME/.local/devxp/data/.user
 
-./scripts/root.sh
-/usr/local/bin/devxp-files/devxp-linux/scripts/auto-bootstrap.sh
+./scripts/devxp-clone.sh
+$HOME/.local/devxp/devxp-linux/scripts/auto-bootstrap.sh
 
 # Create a file to decide if the user should be reminded when the script was last run
-touch /usr/local/bin/devxp-files/.startup-notification
+touch $HOME/.local/devxp/data/.startup-notification
 
 echo "${GREEN}First time setup is complete${NC}"
