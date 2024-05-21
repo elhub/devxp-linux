@@ -23,5 +23,6 @@
     - role: arcanist
     - role: git_utils
     - role: linters
+    - role: github
     # Test
     - role: validate
