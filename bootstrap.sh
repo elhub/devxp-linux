@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # Bootstrap script for devxp-linux. Run this the first time you set up your WSL system.
 
+#Sync system and hardware clocks
+sudo hwclock -s
+
 # Upgrade the distro.
 sudo apt-get update
 sudo apt-get -y dist-upgrade
