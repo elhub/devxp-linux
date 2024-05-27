@@ -23,3 +23,5 @@ source ~/.profile
 # Run Ansible-runbooks to install necessary command-line tools.
 ansible-galaxy install -r requirements.yml --force # pulls down necessary dependencies for Ansible.
 ansible-playbook site.yml --ask-become-pass # installs devxp tools.
+
+./scripts/install-gh-dxp.sh
