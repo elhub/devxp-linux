@@ -1,8 +1,25 @@
+### Local Lint Files
+.checkmake.ini
+.jsonlintrc
+.golangci.yml
+.markdownlint.json
+.prettierrc.json
+.stylelintrc.json
+.yamllint.yml
+revive.toml
+
 ### Elhub-Ansible
-galaxy
-ansible/galaxy/*
-ansible/inventories/*
-ansible/vault_ids/*
+**/galaxy/*
+**/inventories/*
+!**/galaxy/.gitkeep
+!**/inventories/.gitkeep
+
+### Backup files
+**/*.bkp
+**/*.bak
+
+### Env files
+*.env
 
 ### Intellij+all Patch ###
 # Ignores the whole .idea folder and all .iml files
@@ -97,6 +114,3 @@ dist/
 /coverage
 /allure-report
 /allure-results
-
-### GitKeep
-!**/.gitkeep
