@@ -8,4 +8,4 @@ if [[ $status == *"You are not logged into any GitHub hosts"* ]]; then
   gh auth login --git-protocol https
 fi
 
-gh extension install elhub/gh-dxp
+gh extension install elhub/gh-dxp --force

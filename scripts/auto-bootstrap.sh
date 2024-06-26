@@ -86,6 +86,9 @@ else
     echo "$content" > $lastRunFile
 fi
 
+# Install or update gh-dxp
+$HOME/.local/devxp/devxp-linux/scripts/install-gh-dxp.sh
+
 # Remove ANSI color codes from the logfile for easier reading
 sed -i 's/\x1b\[[0-9;]*m//g' "$logFile"
 
