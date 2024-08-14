@@ -18,7 +18,7 @@ echo -e "and ${YELLOW}run some commands as root.${NC}"
 echo -e "Make sure you are running this script as your user."
 
 # Prompt the user to confirm if they want to continue running the script as their user
-read -p "It is typically ${GREEN}firstname.lastname${NC} Continue? (Y/N): " choice
+read -r -p "It is typically ${GREEN}firstname.lastname${NC} Continue? (Y/N): " choice
 
 # Convert the choice to uppercase
 choice=$(echo "$choice" | tr '[:lower:]' '[:upper:]')
@@ -49,7 +49,7 @@ if [ -d "$old_path" ]; then
     echo "${GREEN}The script will now proceed from the new location:${NC}"
     echo "${GREEN}$new_path${NC}"
     # Wait for user confirmation before proceeding
-    read -p "${YELLOW}Press any key to continue... ${NC}" -n1 -s
+    read -r -p "${YELLOW}Press any key to continue... ${NC}" -n1 -s
     echo
     ./scripts/delete-old-directory.sh
 fi
@@ -58,23 +58,24 @@ fi
 
 user=$(whoami)
 # Create the directory for the devxp-files anb devxp-linux
-sudo mkdir $HOME/.local/devxp
-sudo mkdir $HOME/.local/devxp/data
-sudo mkdir $HOME/.local/devxp/scripts
-sudo mkdir $HOME/.local/devxp/log
-sudo chown -R ${user}:${user} $HOME/.local/devxp
+sudo mkdir "$HOME"/.local
+sudo mkdir "$HOME"/.local/devxp
+sudo mkdir "$HOME"/.local/devxp/data
+sudo mkdir "$HOME"/.local/devxp/scripts
+sudo mkdir "$HOME"/.local/devxp/log
+sudo chown -R "${user}":"${user}" "$HOME"/.local/devxp
 
 # Create a file to store the configuration
-touch $HOME/.local/devxp/config.yml
-chmod a+rw $HOME/.local/devxp/config.yml
+touch "$HOME"/.local/devxp/config.yml
+chmod a+rw "$HOME"/.local/devxp/config.yml
 
 # Save the username for later use
-sudo echo "$user" > $HOME/.local/devxp/data/.user
+sudo echo "$user" > "$HOME"/.local/devxp/data/.user
 
 ./scripts/devxp-clone.sh
-$HOME/.local/devxp/devxp-linux/scripts/auto-bootstrap.sh
+"$HOME"/.local/devxp/devxp-linux/scripts/auto-bootstrap.sh
 
 # Create a file to decide if the user should be reminded when the script was last run
-touch $HOME/.local/devxp/data/.startup-notification
+touch "$HOME"/.local/devxp/data/.startup-notification
 
 echo "${GREEN}First time setup is complete${NC}"
