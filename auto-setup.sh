@@ -70,7 +70,7 @@ touch "$HOME"/.local/devxp/config.yml
 chmod a+rw "$HOME"/.local/devxp/config.yml
 
 # Save the username for later use
-sudo echo "$user" > "$HOME"/.local/devxp/data/.user
+echo "$user" > "$HOME"/.local/devxp/data/.user
 
 ./scripts/devxp-clone.sh
 "$HOME"/.local/devxp/devxp-linux/scripts/auto-bootstrap.sh
