@@ -20,7 +20,6 @@
     - role: node
     # Install Workflow
     - role: adr
-    - role: arcanist
     - role: git_utils
     - role: linters
     - role: github
