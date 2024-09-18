@@ -9,3 +9,4 @@ if [[ $status == *"You are not logged into any GitHub hosts"* ]]; then
 fi
 
 gh extension install elhub/gh-dxp --force
+gh dxp alias import
