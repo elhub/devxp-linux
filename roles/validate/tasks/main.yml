@@ -1,14 +1,5 @@
 ---
 # Do some basic sanity checking that things are set up correctly
-- name: Test arc # noqa command-instead-of-shell
-  shell: "arc help --"
-  args:
-    executable: /bin/bash
-  register: result
-  failed_when:
-    - result.rc != 77
-  changed_when: false
-
 - name: Test checkstyle
   shell: "source ~/.sdkman/bin/sdkman-init.sh && ~/.local/bin/checkstyle --version"
   args:
