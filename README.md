@@ -8,6 +8,11 @@
 [<img src="https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.devxp%3Adevxp-linux&metric=bugs" alt="">](https://sonar.elhub.cloud/dashboard?id=no.elhub.devxp%3Adevxp-linux)
 [<img src="https://sonar.elhub.cloud/api/project_badges/measure?project=no.elhub.devxp%3Adevxp-linux&metric=vulnerabilities" alt="">](https://sonar.elhub.cloud/dashboard?id=no.elhub.devxp%3Adevxp-linux)
 
+## Sunset
+
+> [!WARNING] This setup is sunset and about to be replaced by `devxp-wsl`, which
+> is a simpler setup based on Ubuntu 24.04.
+
 ## About
 
 The `devxp-linux` script is used to bootstrap Ubuntu WSL on an Elhub developer PC. It ensures that all the required
