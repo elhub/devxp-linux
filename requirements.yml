@@ -2,4 +2,4 @@
 collections:
    - name: https://github.com/elhub/devxp-ansible-collection-wsl.git
      type: git
-     version: main
+     version: ubuntu22
